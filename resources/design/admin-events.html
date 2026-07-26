@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Progress Hub — Admin Events</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --background: #0a0a0b;
+      --card-bg: #141414;
+      --card-border: #27272a;
+      --card-hover: #1c1c1e;
+      --foreground: #fafafa;
+      --muted: #a1a1aa;
+      --muted-foreground: #a1a1aa;
+      --accent: #fafafa;
+      --accent-foreground: #18181b;
+      --primary: #f4f4f5;
+      --primary-foreground: #18181b;
+      --border: #27272a;
+      --input: #27272a;
+      --ring: #d4d4d8;
+      --destructive: #ef4444;
+      --destructive-foreground: #fafafa;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --info: #3b82f6;
+      --radius: 0.5rem;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--foreground);
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background-color: var(--foreground);
+      color: var(--background);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+
+    .nav a:hover {
+      color: var(--foreground);
+      background-color: var(--card-hover);
+    }
+
+    .nav a.active {
+      color: var(--foreground);
+      background-color: var(--card-hover);
+    }
+
+    main {
+      padding: 32px 0;
+    }
+
+    .page-title {
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .page-subtitle {
+      color: var(--muted-foreground);
+      margin-bottom: 32px;
+      font-size: 15px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      background-color: var(--background);
+      border: 1px solid var(--input);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      color: var(--foreground);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.15s ease;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--ring);
+      border-color: var(--ring);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: var(--muted-foreground);
+    }
+
+    .field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .field select option {
+      background-color: var(--card-bg);
+      color: var(--foreground);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: var(--radius);
+      border: 1px solid var(--input);
+      background-color: var(--foreground);
+      color: var(--accent-foreground);
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background-color: var(--card-hover);
+      color: var(--foreground);
+      border-color: var(--card-border);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--card-border);
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 500;
+      border: 1px solid transparent;
+    }
+
+    .badge-success {
+      background-color: rgba(34, 197, 94, 0.15);
+      color: var(--success);
+      border-color: rgba(34, 197, 94, 0.3);
+    }
+
+    .badge-warning {
+      background-color: rgba(245, 158, 11, 0.15);
+      color: var(--warning);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .badge-info {
+      background-color: rgba(59, 130, 246, 0.15);
+      color: var(--info);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      background-color: var(--card-bg);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    thead {
+      background-color: var(--background);
+    }
+
+    th,
+    td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+      white-space: nowrap;
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--muted-foreground);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: var(--card-hover);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted-foreground);
+    }
+
+    .empty-state h3 {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--foreground);
+    }
+
+    .empty-state p {
+      font-size: 13px;
+    }
+
+    .profile {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #3f3f46;
+      border: 2px solid var(--card-bg);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--foreground);
+      text-decoration: none;
+      margin-left: 8px;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 24px 0;
+      text-align: center;
+      color: var(--muted-foreground);
+      font-size: 13px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 1024px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        display: none;
+      }
+      .container {
+        padding: 0 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a href="admin.html" class="logo">
+          <div class="logo-icon">P</div>
+          Progress Hub
+        </a>
+        <nav class="nav">
+          <a href="admin-events.html" class="active">Events</a>
+          <a href="admin-projects.html">Projects</a>
+          <a href="admin-resources.html">Resources</a>
+        </nav>
+        <a href="dashboard.html" class="profile" title="Profile">U</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 class="page-title">Admin Events</h1>
+      <p class="page-subtitle">Tambah, edit, dan hapus program kerja serta kegiatan UKM.</p>
+
+      <div class="section-header">
+        <h2 class="section-title">Tambah / Edit Event</h2>
+      </div>
+      <a href="admin-event-create.html" class="btn" style="width: fit-content;">+ Tambah Event</a>
+
+      <div class="section-header" style="margin-top: 48px;">
+        <h2 class="section-title">Daftar Event</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Judul</th>
+              <th>Tipe</th>
+              <th>Status</th>
+              <th>Sesi</th>
+              <th>Peserta</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kelas React Dasar</td>
+              <td>Kelas</td>
+              <td><span class="badge badge-success">Berlangsung</span></td>
+              <td>8</td>
+              <td>42</td>
+              <td>
+                <a href="admin-event-edit.html" class="btn btn-sm btn-secondary">Edit</a>
+                <button class="btn btn-sm" type="button" style="background:var(--destructive);color:var(--destructive-foreground);border-color:var(--destructive);">Hapus</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Python Dasar untuk Pemula</td>
+              <td>Kelas</td>
+              <td><span class="badge badge-warning">Mendatang</span></td>
+              <td>6</td>
+              <td>35</td>
+              <td>
+                <a href="admin-event-edit.html" class="btn btn-sm btn-secondary">Edit</a>
+                <button class="btn btn-sm" type="button" style="background:var(--destructive);color:var(--destructive-foreground);border-color:var(--destructive);">Hapus</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Hackathon Internal 2025</td>
+              <td>Hackathon</td>
+              <td><span class="badge badge-warning">Open Registration</span></td>
+              <td>48 jam</td>
+              <td>48 Teams</td>
+              <td>
+                <a href="admin-event-edit.html" class="btn btn-sm btn-secondary">Edit</a>
+                <button class="btn btn-sm" type="button" style="background:var(--destructive);color:var(--destructive-foreground);border-color:var(--destructive);">Hapus</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Progress Hub — UKM Dashboard. Dibuat dengan purpose.</p>
+    </div>
+  </footer>
+</body>
+</html>
