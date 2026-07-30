@@ -36,11 +36,5 @@
         @yield('content')
     </main>
 
-    <footer class="border-t border-zinc-800 py-5 text-center text-zinc-400 text-xs bg-zinc-950">
-        <div class="max-w-7xl mx-auto px-6">
-            <p>Progress Hub — UKM Dashboard. Dibuat dengan purpose.</p>
-        </div>
-    </footer>
-
 </body>
 </html>
