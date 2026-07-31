@@ -15,7 +15,7 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::prefix('members')->name('members.')->group(function () {
-    Route::get('/dashboard', function () {
+    Route::get('/', function () {
         return view('members.dashboard');
     })->name('dashboard');
 

@@ -40,10 +40,7 @@
             </nav>
 
             <div class="flex items-center gap-4">
-                <a href="/members/dashboard" class="text-xs text-zinc-400 hover:text-white transition hidden sm:inline">
-                    &larr; Exit Admin
-                </a>
-                <a href="/members/dashboard" class="w-8 h-8 rounded-full bg-zinc-700 border-2 border-zinc-800 inline-flex items-center justify-center text-xs font-semibold text-zinc-100 hover:border-zinc-500 transition" title="Profile">
+                <a href="/members" class="w-8 h-8 rounded-full bg-zinc-700 border-2 border-zinc-800 inline-flex items-center justify-center text-xs font-semibold text-zinc-100 hover:border-zinc-500 transition" title="Profile">
                     U
                 </a>
             </div>

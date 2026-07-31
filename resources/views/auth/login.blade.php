@@ -22,7 +22,7 @@
                 class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition" />
         </div>
 
-        <button type="button" onclick="location.href='/members/dashboard'" 
+        <button type="button" onclick="location.href='/members'" 
             class="w-full mt-2 inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-zinc-950 bg-zinc-100 rounded-lg hover:bg-white transition hover:-translate-y-0.5 shadow-sm">
             Login
         </button>

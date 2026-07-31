@@ -15,7 +15,7 @@
 
     <header class="bg-zinc-900 border-b border-zinc-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="/members/dashboard" class="flex items-center gap-3 font-semibold text-lg text-zinc-100 hover:text-white transition">
+            <a href="/members" class="flex items-center gap-3 font-semibold text-lg text-zinc-100 hover:text-white transition">
                 <div class="w-8 h-8 bg-zinc-100 text-zinc-950 rounded-lg flex items-center justify-center font-bold text-sm">
                     P
                 </div>
@@ -42,7 +42,7 @@
                     <input type="text" placeholder="Cari event, proyek, resource..." class="bg-transparent border-none outline-none text-xs text-zinc-100 placeholder-zinc-400 w-full">
                 </div>
 
-                <a href="/members/dashboard" class="w-8 h-8 rounded-full bg-zinc-700 border-2 border-zinc-800 inline-flex items-center justify-center text-xs font-semibold text-zinc-100 hover:border-zinc-500 transition" title="Profile">
+                <a href="/members" class="w-8 h-8 rounded-full bg-zinc-700 border-2 border-zinc-800 inline-flex items-center justify-center text-xs font-semibold text-zinc-100 hover:border-zinc-500 transition" title="Profile">
                     U
                 </a>
             </div>

@@ -17,7 +17,7 @@
             <a href="/login" class="px-6 py-3 text-sm font-semibold text-zinc-950 bg-zinc-100 rounded-xl hover:bg-white transition hover:-translate-y-0.5 shadow-md">
                 Masuk ke Dashboard
             </a>
-            <a href="/members/dashboard" class="px-6 py-3 text-sm font-semibold text-zinc-200 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-800 transition hover:-translate-y-0.5">
+            <a href="/members" class="px-6 py-3 text-sm font-semibold text-zinc-200 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-800 transition hover:-translate-y-0.5">
                 Jelajahi Program UKM &rarr;
             </a>
         </div>
