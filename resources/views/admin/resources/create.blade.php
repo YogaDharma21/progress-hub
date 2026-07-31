@@ -100,7 +100,7 @@
                     <label for="cover" class="block text-xs font-medium text-zinc-300">Gambar Cover <span class="text-zinc-500 font-normal">(Opsional)</span></label>
                     <label for="cover" class="relative flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-zinc-800 hover:border-zinc-700 bg-zinc-950 rounded-xl cursor-pointer transition overflow-hidden group">
                         <div id="cover-placeholder" class="flex flex-col items-center justify-center p-4 text-center">
-                            <svg class="w-7 h-7 mb-2 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            <svg width="32" height="32" class="w-8 h-8 max-w-[32px] max-h-[32px] mb-2 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                             <p class="text-xs text-zinc-300"><span class="font-semibold text-zinc-100">Upload Thumbnail Cover</span></p>
                             <p class="text-[11px] text-zinc-500 mt-0.5">PNG, JPG, WebP (maks 3MB)</p>
                         </div>
@@ -121,12 +121,12 @@
                     <div class="grid grid-cols-2 gap-2 p-1.5 bg-zinc-950 border border-zinc-800 rounded-xl">
                         <button type="button" id="btn-source-file" onclick="switchSourceType('file')"
                             class="py-2.5 px-3 text-xs font-semibold text-center rounded-lg bg-zinc-800 text-zinc-100 transition shadow-sm inline-flex items-center justify-center gap-2 cursor-pointer">
-                            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                             Upload File
                         </button>
                         <button type="button" id="btn-source-video" onclick="switchSourceType('video')"
                             class="py-2.5 px-3 text-xs font-medium text-center rounded-lg text-zinc-400 hover:text-zinc-200 transition inline-flex items-center justify-center gap-2 cursor-pointer">
-                            <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                            <svg class="w-4 h-4 text-rose-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                             Link Video
                         </button>
                     </div>
@@ -135,7 +135,7 @@
                     <div id="source-file-container" class="space-y-1.5 pt-1">
                         <label for="file" class="block text-xs font-medium text-zinc-300">File Modul / Dokumen <span class="text-zinc-500 font-normal">(PDF, EPUB, DOCX, ZIP)</span></label>
                         <input id="file" name="file" type="file" accept=".pdf,.doc,.docx,.epub,.zip"
-                            class="block w-full text-xs text-zinc-400 bg-zinc-950 border border-zinc-800 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition file:mr-4 file:py-2.5 file:px-4 file:rounded-l-xl file:border-0 file:text-xs file:font-semibold file:bg-zinc-800 file:text-zinc-200 hover:file:bg-zinc-700" />
+                            class="block w-full text-xs text-zinc-300 bg-zinc-950 border border-zinc-800 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition file:mr-4 file:py-3.5 file:px-5 file:rounded-l-xl file:border-0 file:text-xs file:font-semibold file:bg-zinc-800 file:text-zinc-100 hover:file:bg-zinc-700 p-2" />
                     </div>
 
                     <!-- Input Video Link -->

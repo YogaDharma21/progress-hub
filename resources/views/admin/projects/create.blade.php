@@ -97,7 +97,7 @@
                     <label for="image" class="block text-xs font-medium text-zinc-300">Gambar Showcase Proyek</label>
                     <label for="image" class="relative flex flex-col items-center justify-center w-full h-44 border-2 border-dashed border-zinc-800 hover:border-zinc-700 bg-zinc-950 rounded-xl cursor-pointer transition overflow-hidden group">
                         <div id="image-placeholder" class="flex flex-col items-center justify-center pt-5 pb-6 text-center">
-                            <svg class="w-8 h-8 mb-2 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            <svg width="32" height="32" class="w-8 h-8 max-w-[32px] max-h-[32px] mb-2 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                             <p class="text-xs text-zinc-300"><span class="font-semibold text-zinc-100">Klik untuk upload banner</span></p>
                             <p class="text-[11px] text-zinc-500 mt-0.5">PNG, JPG, WebP (Maks 5MB)</p>
                         </div>

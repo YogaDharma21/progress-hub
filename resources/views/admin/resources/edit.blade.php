@@ -152,7 +152,7 @@
                             </div>
                         @endif
                         <input id="file" name="file" type="file" accept=".pdf,.doc,.docx,.epub,.zip"
-                            class="block w-full text-xs text-zinc-400 bg-zinc-950 border border-zinc-800 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition file:mr-4 file:py-2.5 file:px-4 file:rounded-l-xl file:border-0 file:text-xs file:font-semibold file:bg-zinc-800 file:text-zinc-200 hover:file:bg-zinc-700" />
+                            class="block w-full text-xs text-zinc-300 bg-zinc-950 border border-zinc-800 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition file:mr-4 file:py-3.5 file:px-5 file:rounded-l-xl file:border-0 file:text-xs file:font-semibold file:bg-zinc-800 file:text-zinc-100 hover:file:bg-zinc-700 p-2" />
                     </div>
 
                     <!-- Input Video Link -->
