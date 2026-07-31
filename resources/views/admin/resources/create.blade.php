@@ -134,8 +134,22 @@
                     <!-- Input File -->
                     <div id="source-file-container" class="space-y-1.5 pt-1">
                         <label for="file" class="block text-[11px] font-medium text-zinc-400">File Modul / Dokumen (PDF, EPUB, DOCX)</label>
-                        <input id="file" name="file" type="file" accept=".pdf,.doc,.docx,.epub,.zip"
-                            class="w-full text-xs text-zinc-300 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-zinc-800 file:text-zinc-200 hover:file:bg-zinc-700 cursor-pointer bg-zinc-950 border border-zinc-800 rounded-xl p-1.5" />
+                        <label for="file" class="relative flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-zinc-800 hover:border-zinc-700 bg-zinc-950 rounded-xl cursor-pointer transition overflow-hidden group">
+                            <div id="file-placeholder" class="flex flex-col items-center justify-center p-4 text-center">
+                                <svg class="w-7 h-7 mb-2 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                <p class="text-xs text-zinc-300"><span class="font-semibold text-zinc-100">Upload Dokumen Modul</span></p>
+                                <p class="text-[11px] text-zinc-500 mt-0.5">PDF, EPUB, DOCX, ZIP (maks 10MB)</p>
+                            </div>
+                            <div id="file-selected-info" class="hidden flex flex-col items-center justify-center p-4 text-center">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-1.5">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                                </div>
+                                <p id="file-name-display" class="text-xs font-semibold text-zinc-100 max-w-[200px] truncate"></p>
+                                <p id="file-size-display" class="text-[10px] text-zinc-400 mt-0.5"></p>
+                                <span class="mt-1 text-[10px] text-emerald-400 font-medium">Klik untuk ganti file</span>
+                            </div>
+                            <input id="file" name="file" type="file" accept=".pdf,.doc,.docx,.epub,.zip" class="hidden" />
+                        </label>
                     </div>
 
                     <!-- Input Video Link -->
@@ -258,6 +272,27 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (coverPlaceholder) coverPlaceholder.classList.add('hidden');
                 };
                 reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    const docFileInput = document.getElementById('file');
+    const docFilePlaceholder = document.getElementById('file-placeholder');
+    const docFileSelectedInfo = document.getElementById('file-selected-info');
+    const docFileNameDisplay = document.getElementById('file-name-display');
+    const docFileSizeDisplay = document.getElementById('file-size-display');
+
+    if (docFileInput && docFileSelectedInfo) {
+        docFileInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                if (docFileNameDisplay) docFileNameDisplay.textContent = file.name;
+                if (docFileSizeDisplay) {
+                    const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                    docFileSizeDisplay.textContent = `${sizeMB} MB`;
+                }
+                if (docFileSelectedInfo) docFileSelectedInfo.classList.remove('hidden');
+                if (docFilePlaceholder) docFilePlaceholder.classList.add('hidden');
             }
         });
     }
