@@ -9,12 +9,6 @@
         <p class="mt-1.5 text-sm text-zinc-400">Akses progres belajar, proyek, dan kegiatan UKM kamu.</p>
     </div>
 
-    @if (session('info'))
-        <div class="mb-4 p-3 rounded-lg bg-zinc-800 border border-zinc-700 text-xs text-zinc-300">
-            {{ session('info') }}
-        </div>
-    @endif
-
     @if (session('error'))
         <div class="mb-4 p-3 rounded-lg bg-red-950/50 border border-red-900 text-xs text-red-300">
             {{ session('error') }}
@@ -42,7 +36,7 @@
             @enderror
         </div>
 
-        <button type="submit" 
+        <button type="submit"
             class="w-full mt-2 inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-zinc-950 bg-zinc-100 rounded-lg hover:bg-white transition hover:-translate-y-0.5 shadow-sm cursor-pointer">
             Login
         </button>

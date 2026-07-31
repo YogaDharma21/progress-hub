@@ -24,7 +24,6 @@
     </div>
 
     <form class="space-y-6" onsubmit="return false;">
-        <!-- Card 1: Informasi Utama Event -->
         <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-sm">
             <div class="flex items-center gap-3 pb-5 border-b border-zinc-800">
                 <div class="w-9 h-9 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-200 shrink-0 shadow-sm">
@@ -39,13 +38,13 @@
             <div class="mt-5 space-y-4">
                 <div class="space-y-1.5">
                     <label for="event-title" class="block text-xs font-medium text-zinc-300">Judul Event</label>
-                    <input id="event-title" type="text" value="Kelas React Dasar" 
+                    <input id="event-title" type="text" value="Kelas React Dasar"
                         class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition" />
                 </div>
 
                 <div class="space-y-1.5">
                     <label for="event-desc" class="block text-xs font-medium text-zinc-300">Deskripsi Event</label>
-                    <textarea id="event-desc" rows="4" 
+                    <textarea id="event-desc" rows="4"
                         class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition leading-relaxed">Fundamental React dari nol: komponen, state, useEffect, Router, dan integrasi API</textarea>
                 </div>
 
@@ -74,13 +73,13 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="space-y-1.5">
                         <label for="event-sessions" class="block text-xs font-medium text-zinc-300">Pertemuan / Sesi</label>
-                        <input id="event-sessions" type="text" value="8 Pertemuan" 
+                        <input id="event-sessions" type="text" value="8 Pertemuan"
                             class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition" />
                     </div>
 
                     <div class="space-y-1.5">
                         <label for="event-participants" class="block text-xs font-medium text-zinc-300">Target / Kapasitas Peserta</label>
-                        <input id="event-participants" type="text" value="42 Peserta" 
+                        <input id="event-participants" type="text" value="42 Peserta"
                             class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition" />
                     </div>
                 </div>
@@ -119,12 +118,12 @@
                     <div class="space-y-3">
                         <div class="space-y-1.5">
                             <label class="block text-[11px] font-medium text-zinc-400">Judul Topik</label>
-                            <input type="text" name="topics[0][title]" value="Komponen & Props" placeholder="Judul Topik" 
+                            <input type="text" name="topics[0][title]" value="Komponen & Props" placeholder="Judul Topik"
                                 class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition font-medium" />
                         </div>
                         <div class="space-y-1.5">
                             <label class="block text-[11px] font-medium text-zinc-400">Penjelasan Ringkas</label>
-                            <textarea name="topics[0][description]" rows="3" placeholder="Penjelasan ringkas materi..." 
+                            <textarea name="topics[0][description]" rows="3" placeholder="Penjelasan ringkas materi..."
                                 class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition leading-relaxed">Memahami struktur komponen, props, dan cara meneruskan data antar komponen</textarea>
                         </div>
                     </div>
@@ -142,12 +141,12 @@
                     <div class="space-y-3">
                         <div class="space-y-1.5">
                             <label class="block text-[11px] font-medium text-zinc-400">Judul Topik</label>
-                            <input type="text" name="topics[1][title]" value="State & useEffect" placeholder="Judul Topik" 
+                            <input type="text" name="topics[1][title]" value="State & useEffect" placeholder="Judul Topik"
                                 class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition font-medium" />
                         </div>
                         <div class="space-y-1.5">
                             <label class="block text-[11px] font-medium text-zinc-400">Penjelasan Ringkas</label>
-                            <textarea name="topics[1][description]" rows="3" placeholder="Penjelasan ringkas materi..." 
+                            <textarea name="topics[1][description]" rows="3" placeholder="Penjelasan ringkas materi..."
                                 class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition leading-relaxed">Mengelola state lokal dan efek samping dengan hooks React modern</textarea>
                         </div>
                     </div>
@@ -165,12 +164,12 @@
                     <div class="space-y-3">
                         <div class="space-y-1.5">
                             <label class="block text-[11px] font-medium text-zinc-400">Judul Topik</label>
-                            <input type="text" name="topics[2][title]" value="React Router" placeholder="Judul Topik" 
+                            <input type="text" name="topics[2][title]" value="React Router" placeholder="Judul Topik"
                                 class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition font-medium" />
                         </div>
                         <div class="space-y-1.5">
                             <label class="block text-[11px] font-medium text-zinc-400">Penjelasan Ringkas</label>
-                            <textarea name="topics[2][description]" rows="3" placeholder="Penjelasan ringkas materi..." 
+                            <textarea name="topics[2][description]" rows="3" placeholder="Penjelasan ringkas materi..."
                                 class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition leading-relaxed">Navigasi single-page application, route protection, dan dynamic routing</textarea>
                         </div>
                     </div>
@@ -215,12 +214,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="space-y-3">
                     <div class="space-y-1.5">
                         <label class="block text-[11px] font-medium text-zinc-400">Judul Topik</label>
-                        <input type="text" name="topics[${index}][title]" placeholder="Contoh: Judul Topik Baru" 
+                        <input type="text" name="topics[${index}][title]" placeholder="Contoh: Judul Topik Baru"
                             class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition font-medium" />
                     </div>
                     <div class="space-y-1.5">
                         <label class="block text-[11px] font-medium text-zinc-400">Penjelasan Ringkas</label>
-                        <textarea name="topics[${index}][description]" rows="3" placeholder="Penjelasan ringkas materi..." 
+                        <textarea name="topics[${index}][description]" rows="3" placeholder="Penjelasan ringkas materi..."
                             class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition leading-relaxed"></textarea>
                     </div>
                 </div>

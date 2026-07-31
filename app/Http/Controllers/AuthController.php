@@ -62,7 +62,7 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->route('members.dashboard')->with('success', 'Registrasi berhasil! Selamat datang.');
+        return redirect()->route('members.dashboard');
     }
 
     /**
@@ -119,6 +119,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('info', 'Anda telah keluar dari akun.');
+        return redirect()->route('login');
     }
 }

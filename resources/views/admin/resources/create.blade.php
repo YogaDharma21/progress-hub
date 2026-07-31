@@ -24,7 +24,6 @@
     </div>
 
     <form class="space-y-6" onsubmit="return false;">
-        <!-- Card 1: Informasi Utama Resource -->
         <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-sm">
             <div class="flex items-center gap-3 pb-5 border-b border-zinc-800">
                 <div class="w-9 h-9 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-200 shrink-0 shadow-sm">
@@ -39,13 +38,13 @@
             <div class="mt-5 space-y-4">
                 <div class="space-y-1.5">
                     <label for="resource-title" class="block text-xs font-medium text-zinc-300">Judul Resource</label>
-                    <input id="resource-title" type="text" placeholder="Contoh: Modul Dasar React untuk Pemula" 
+                    <input id="resource-title" type="text" placeholder="Contoh: Modul Dasar React untuk Pemula"
                         class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition" />
                 </div>
 
                 <div class="space-y-1.5">
                     <label for="resource-desc" class="block text-xs font-medium text-zinc-300">Deskripsi / Ringkasan</label>
-                    <textarea id="resource-desc" rows="4" placeholder="Rangkuman singkat isi modul atau materi..." 
+                    <textarea id="resource-desc" rows="4" placeholder="Rangkuman singkat isi modul atau materi..."
                         class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition leading-relaxed"></textarea>
                 </div>
 
@@ -63,7 +62,7 @@
 
                     <div class="space-y-1.5">
                         <label for="resource-tags" class="block text-xs font-medium text-zinc-300">Tags (pisahkan dengan koma)</label>
-                        <input id="resource-tags" type="text" placeholder="React, Frontend, Web" 
+                        <input id="resource-tags" type="text" placeholder="React, Frontend, Web"
                             class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition" />
                     </div>
                 </div>
@@ -100,12 +99,12 @@
                 <div class="space-y-3">
                     <label class="block text-xs font-medium text-zinc-300">Pilih Tipe Sumber Resource</label>
                     <div class="grid grid-cols-2 gap-2 p-1.5 bg-zinc-950 border border-zinc-800 rounded-xl">
-                        <button type="button" id="btn-source-file" onclick="switchSourceType('file')" 
+                        <button type="button" id="btn-source-file" onclick="switchSourceType('file')"
                             class="py-2.5 px-3 text-xs font-semibold text-center rounded-lg bg-zinc-800 text-zinc-100 transition shadow-sm inline-flex items-center justify-center gap-2">
                             <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                             Upload File
                         </button>
-                        <button type="button" id="btn-source-video" onclick="switchSourceType('video')" 
+                        <button type="button" id="btn-source-video" onclick="switchSourceType('video')"
                             class="py-2.5 px-3 text-xs font-medium text-center rounded-lg text-zinc-400 hover:text-zinc-200 transition inline-flex items-center justify-center gap-2">
                             <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                             Link Video
@@ -115,14 +114,14 @@
                     <!-- Input File -->
                     <div id="source-file-container" class="space-y-1.5 pt-1">
                         <label for="resource-file" class="block text-[11px] font-medium text-zinc-400">File Modul / Dokumen (PDF, EPUB, DOCX)</label>
-                        <input id="resource-file" type="file" accept=".pdf,.doc,.docx,.epub,.zip" 
+                        <input id="resource-file" type="file" accept=".pdf,.doc,.docx,.epub,.zip"
                             class="w-full text-xs text-zinc-300 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-zinc-800 file:text-zinc-200 hover:file:bg-zinc-700 cursor-pointer bg-zinc-950 border border-zinc-800 rounded-xl p-1.5" />
                     </div>
 
                     <!-- Input Video Link -->
                     <div id="source-video-container" class="space-y-1.5 pt-1 hidden">
                         <label for="resource-video" class="block text-[11px] font-medium text-zinc-400">Link Video Pembelajaran (YouTube / Embed)</label>
-                        <input id="resource-video" type="url" placeholder="https://www.youtube.com/watch?v=..." 
+                        <input id="resource-video" type="url" placeholder="https://www.youtube.com/watch?v=..."
                             class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition" />
                     </div>
                 </div>
@@ -161,12 +160,12 @@
                     <div class="space-y-3">
                         <div class="space-y-1.5">
                             <label class="block text-[11px] font-medium text-zinc-400">Judul Bab</label>
-                            <input type="text" name="chapters[0][title]" placeholder="Contoh: Bab 1: Pengenalan React" 
+                            <input type="text" name="chapters[0][title]" placeholder="Contoh: Bab 1: Pengenalan React"
                                 class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition font-medium" />
                         </div>
                         <div class="space-y-1.5">
                             <label class="block text-[11px] font-medium text-zinc-400">Penjelasan Bab</label>
-                            <textarea name="chapters[0][description]" rows="3" placeholder="Penjelasan atau pembahasan materi bab ini..." 
+                            <textarea name="chapters[0][description]" rows="3" placeholder="Penjelasan atau pembahasan materi bab ini..."
                                 class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition leading-relaxed"></textarea>
                         </div>
                     </div>
@@ -230,12 +229,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="space-y-3">
                     <div class="space-y-1.5">
                         <label class="block text-[11px] font-medium text-zinc-400">Judul Bab</label>
-                        <input type="text" name="chapters[${index}][title]" placeholder="Contoh: Bab ${count}: Judul Bab" 
+                        <input type="text" name="chapters[${index}][title]" placeholder="Contoh: Bab ${count}: Judul Bab"
                             class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition font-medium" />
                     </div>
                     <div class="space-y-1.5">
                         <label class="block text-[11px] font-medium text-zinc-400">Penjelasan Bab</label>
-                        <textarea name="chapters[${index}][description]" rows="3" placeholder="Penjelasan atau pembahasan materi bab ini..." 
+                        <textarea name="chapters[${index}][description]" rows="3" placeholder="Penjelasan atau pembahasan materi bab ini..."
                             class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition leading-relaxed"></textarea>
                     </div>
                 </div>
