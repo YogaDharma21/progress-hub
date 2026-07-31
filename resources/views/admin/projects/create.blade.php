@@ -95,11 +95,17 @@
                 <!-- Gambar Showcase -->
                 <div class="space-y-1.5">
                     <label for="image" class="block text-xs font-medium text-zinc-300">Gambar Showcase Proyek</label>
-                    <label for="image" class="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-zinc-800 hover:border-zinc-700 bg-zinc-950 rounded-xl cursor-pointer transition">
-                        <div class="flex flex-col items-center justify-center pt-5 pb-6 text-center">
+                    <label for="image" class="relative flex flex-col items-center justify-center w-full h-44 border-2 border-dashed border-zinc-800 hover:border-zinc-700 bg-zinc-950 rounded-xl cursor-pointer transition overflow-hidden group">
+                        <div id="image-placeholder" class="flex flex-col items-center justify-center pt-5 pb-6 text-center">
                             <svg class="w-8 h-8 mb-2 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                             <p class="text-xs text-zinc-300"><span class="font-semibold text-zinc-100">Klik untuk upload banner</span></p>
                             <p class="text-[11px] text-zinc-500 mt-0.5">PNG, JPG, WebP (Maks 5MB)</p>
+                        </div>
+                        <div id="image-preview-container" class="hidden absolute inset-0 w-full h-full">
+                            <img id="image-preview" src="#" alt="Preview Banner" class="w-full h-full object-cover" />
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-xs font-semibold text-white">
+                                Klik untuk ganti gambar
+                            </div>
                         </div>
                         <input id="image" name="image" type="file" class="hidden" accept="image/*" />
                     </label>
@@ -201,6 +207,26 @@ function updateFeatureLabels() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    const imageInput = document.getElementById('image');
+    const imagePreviewContainer = document.getElementById('image-preview-container');
+    const imagePreview = document.getElementById('image-preview');
+    const imagePlaceholder = document.getElementById('image-placeholder');
+
+    if (imageInput && imagePreview) {
+        imageInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    if (imagePreviewContainer) imagePreviewContainer.classList.remove('hidden');
+                    if (imagePlaceholder) imagePlaceholder.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
     const container = document.getElementById('features-container');
     const addBtn = document.getElementById('add-feature-btn');
     if (addBtn && container) {

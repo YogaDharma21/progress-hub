@@ -98,14 +98,15 @@
                     <label for="image" class="block text-xs font-medium text-zinc-300">Gambar Showcase Proyek</label>
                     <div class="flex items-center gap-4 p-4 bg-zinc-950 border border-zinc-800 rounded-xl">
                         @if($project->image_path)
-                            <img src="{{ Storage::url($project->image_path) }}" alt="{{ $project->title }}" class="w-24 h-16 rounded-lg object-cover border border-zinc-700 shadow-inner" />
+                            <img id="image-preview" src="{{ Storage::url($project->image_path) }}" alt="{{ $project->title }}" class="w-24 h-16 rounded-lg object-cover border border-zinc-700 shadow-inner" />
                         @else
-                            <div class="w-24 h-16 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg border border-zinc-700 flex items-center justify-center text-xs text-zinc-400 font-medium shrink-0 shadow-inner">
+                            <div id="image-fallback" class="w-24 h-16 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg border border-zinc-700 flex items-center justify-center text-xs text-zinc-400 font-medium shrink-0 shadow-inner">
                                 No Image
                             </div>
+                            <img id="image-preview" src="#" alt="Preview" class="hidden w-24 h-16 rounded-lg object-cover border border-zinc-700 shadow-inner" />
                         @endif
                         <div class="flex-1 space-y-1">
-                            <p class="text-xs font-medium text-zinc-200">{{ $project->image_path ? basename($project->image_path) : 'Belum ada gambar' }}</p>
+                            <p id="image-filename" class="text-xs font-medium text-zinc-200">{{ $project->image_path ? basename($project->image_path) : 'Belum ada gambar' }}</p>
                             <label for="image" class="inline-block mt-1 px-3.5 py-1.5 text-xs font-medium text-zinc-200 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg cursor-pointer transition">
                                 {{ $project->image_path ? 'Ganti Gambar Banner' : 'Upload Gambar Banner' }}
                             </label>
@@ -235,6 +236,27 @@ function updateFeatureLabels() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.getElementById('image-preview');
+    const imageFallback = document.getElementById('image-fallback');
+    const imageFilename = document.getElementById('image-filename');
+
+    if (imageInput && imagePreview) {
+        imageInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                    if (imageFallback) imageFallback.classList.add('hidden');
+                    if (imageFilename) imageFilename.textContent = file.name;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
     const container = document.getElementById('features-container');
     const addBtn = document.getElementById('add-feature-btn');
     if (addBtn && container) {

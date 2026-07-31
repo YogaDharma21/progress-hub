@@ -105,14 +105,15 @@
                     <label for="cover" class="block text-xs font-medium text-zinc-300">Gambar Cover <span class="text-zinc-500 font-normal">(Opsional)</span></label>
                     <div class="flex items-center gap-4 p-4 bg-zinc-950 border border-zinc-800 rounded-xl">
                         @if($resource->cover_image)
-                            <img src="{{ Storage::url($resource->cover_image) }}" alt="{{ $resource->title }}" class="w-20 h-16 rounded-lg object-cover border border-zinc-700 shadow-inner" />
+                            <img id="cover-preview" src="{{ Storage::url($resource->cover_image) }}" alt="{{ $resource->title }}" class="w-20 h-16 rounded-lg object-cover border border-zinc-700 shadow-inner" />
                         @else
-                            <div class="w-20 h-16 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg border border-zinc-700 flex items-center justify-center text-xs text-zinc-400 font-medium shrink-0 shadow-inner">
+                            <div id="cover-fallback" class="w-20 h-16 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg border border-zinc-700 flex items-center justify-center text-xs text-zinc-400 font-medium shrink-0 shadow-inner">
                                 Cover
                             </div>
+                            <img id="cover-preview" src="#" alt="Preview" class="hidden w-20 h-16 rounded-lg object-cover border border-zinc-700 shadow-inner" />
                         @endif
                         <div class="flex-1 space-y-1">
-                            <p class="text-xs font-medium text-zinc-200">{{ $resource->cover_image ? basename($resource->cover_image) : 'Belum ada cover' }}</p>
+                            <p id="cover-filename" class="text-xs font-medium text-zinc-200">{{ $resource->cover_image ? basename($resource->cover_image) : 'Belum ada cover' }}</p>
                             <label for="cover" class="inline-block mt-1 px-3.5 py-1.5 text-xs font-medium text-zinc-200 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg cursor-pointer transition">
                                 {{ $resource->cover_image ? 'Ganti Gambar Cover' : 'Upload Cover' }}
                             </label>
@@ -288,6 +289,27 @@ function updateChapterLabels() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    const coverInput = document.getElementById('cover');
+    const coverPreview = document.getElementById('cover-preview');
+    const coverFallback = document.getElementById('cover-fallback');
+    const coverFilename = document.getElementById('cover-filename');
+
+    if (coverInput && coverPreview) {
+        coverInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    coverPreview.src = e.target.result;
+                    coverPreview.classList.remove('hidden');
+                    if (coverFallback) coverFallback.classList.add('hidden');
+                    if (coverFilename) coverFilename.textContent = file.name;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
     const container = document.getElementById('chapters-container');
     const addBtn = document.getElementById('add-chapter-btn');
     if (addBtn && container) {

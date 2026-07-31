@@ -98,11 +98,17 @@
                 <!-- Cover Image Optional -->
                 <div class="space-y-1.5">
                     <label for="cover" class="block text-xs font-medium text-zinc-300">Gambar Cover <span class="text-zinc-500 font-normal">(Opsional)</span></label>
-                    <label for="cover" class="flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-zinc-800 hover:border-zinc-700 bg-zinc-950 rounded-xl cursor-pointer transition">
-                        <div class="flex flex-col items-center justify-center p-4 text-center">
+                    <label for="cover" class="relative flex flex-col items-center justify-center w-full h-36 border-2 border-dashed border-zinc-800 hover:border-zinc-700 bg-zinc-950 rounded-xl cursor-pointer transition overflow-hidden group">
+                        <div id="cover-placeholder" class="flex flex-col items-center justify-center p-4 text-center">
                             <svg class="w-7 h-7 mb-2 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                             <p class="text-xs text-zinc-300"><span class="font-semibold text-zinc-100">Upload Thumbnail Cover</span></p>
                             <p class="text-[11px] text-zinc-500 mt-0.5">PNG, JPG, WebP (maks 3MB)</p>
+                        </div>
+                        <div id="cover-preview-container" class="hidden absolute inset-0 w-full h-full">
+                            <img id="cover-preview" src="#" alt="Preview Cover" class="w-full h-full object-cover" />
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-xs font-semibold text-white">
+                                Klik untuk ganti cover
+                            </div>
                         </div>
                         <input id="cover" name="cover" type="file" class="hidden" accept="image/*" />
                     </label>
@@ -236,6 +242,26 @@ function updateChapterLabels() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    const coverInput = document.getElementById('cover');
+    const coverPreviewContainer = document.getElementById('cover-preview-container');
+    const coverPreview = document.getElementById('cover-preview');
+    const coverPlaceholder = document.getElementById('cover-placeholder');
+
+    if (coverInput && coverPreview) {
+        coverInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    coverPreview.src = e.target.result;
+                    if (coverPreviewContainer) coverPreviewContainer.classList.remove('hidden');
+                    if (coverPlaceholder) coverPlaceholder.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
     const container = document.getElementById('chapters-container');
     const addBtn = document.getElementById('add-chapter-btn');
     if (addBtn && container) {
