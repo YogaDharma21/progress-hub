@@ -9,27 +9,47 @@
         <p class="mt-1.5 text-sm text-zinc-400">Akses progres belajar, proyek, dan kegiatan UKM kamu.</p>
     </div>
 
-    <form class="space-y-4" onsubmit="return false;">
+    @if (session('info'))
+        <div class="mb-4 p-3 rounded-lg bg-zinc-800 border border-zinc-700 text-xs text-zinc-300">
+            {{ session('info') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="mb-4 p-3 rounded-lg bg-red-950/50 border border-red-900 text-xs text-red-300">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    <form class="space-y-4" action="{{ route('login') }}" method="POST">
+        @csrf
+
         <div class="space-y-1.5">
             <label for="email" class="block text-xs font-medium text-zinc-200">Email</label>
-            <input id="email" type="email" placeholder="nama@kampus.ac.id" 
-                class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition" />
+            <input id="email" name="email" type="email" value="{{ old('email') }}" placeholder="nama@kampus.ac.id" required
+                class="w-full bg-zinc-950 border @error('email') border-red-500 @else border-zinc-800 @enderror rounded-lg px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition" />
+            @error('email')
+                <p class="text-xs text-red-400 mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="space-y-1.5">
             <label for="password" class="block text-xs font-medium text-zinc-200">Password</label>
-            <input id="password" type="password" placeholder="Masukkan password" 
-                class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition" />
+            <input id="password" name="password" type="password" placeholder="Masukkan password" required
+                class="w-full bg-zinc-950 border @error('password') border-red-500 @else border-zinc-800 @enderror rounded-lg px-3.5 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition" />
+            @error('password')
+                <p class="text-xs text-red-400 mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
-        <button type="button" onclick="location.href='/members'" 
-            class="w-full mt-2 inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-zinc-950 bg-zinc-100 rounded-lg hover:bg-white transition hover:-translate-y-0.5 shadow-sm">
+        <button type="submit" 
+            class="w-full mt-2 inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-zinc-950 bg-zinc-100 rounded-lg hover:bg-white transition hover:-translate-y-0.5 shadow-sm cursor-pointer">
             Login
         </button>
     </form>
 
     <div class="mt-6 text-center text-xs text-zinc-400">
-        Belum punya akun? <a href="/register" class="font-medium text-zinc-100 hover:text-white hover:underline transition">Daftar</a>
+        Belum punya akun? <a href="{{ route('register') }}" class="font-medium text-zinc-100 hover:text-white hover:underline transition">Daftar</a>
     </div>
 </div>
 @endsection

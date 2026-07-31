@@ -35,21 +35,43 @@
             </nav>
 
             <div class="flex items-center gap-4">
-                <div class="hidden lg:flex items-center gap-2 bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-1.5 w-64 focus-within:ring-2 focus-within:ring-zinc-400">
-                    <svg class="w-4 h-4 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
-                    <input type="text" placeholder="Cari event, proyek, resource..." class="bg-transparent border-none outline-none text-xs text-zinc-100 placeholder-zinc-400 w-full">
-                </div>
-
-                <a href="/members" class="w-8 h-8 rounded-full bg-zinc-700 border-2 border-zinc-800 inline-flex items-center justify-center text-xs font-semibold text-zinc-100 hover:border-zinc-500 transition" title="Profile">
-                    U
-                </a>
+                @auth
+                    <div class="flex items-center gap-3">
+                        @if(Auth::user()->avatar_url)
+                            <img src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}" class="w-8 h-8 rounded-full object-cover border border-zinc-700 shadow-sm" />
+                        @else
+                            <div class="w-8 h-8 rounded-full bg-zinc-700 border border-zinc-600 inline-flex items-center justify-center text-xs font-semibold text-zinc-100">
+                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                            </div>
+                        @endif
+                        <span class="text-xs font-medium text-zinc-300 hidden sm:inline">{{ Auth::user()->name }}</span>
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="px-2.5 py-1 text-xs font-medium text-zinc-400 hover:text-white bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700 rounded-md transition cursor-pointer">
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                @else
+                    <a href="/login" class="text-xs font-medium text-zinc-300 hover:text-white">Login</a>
+                @endauth
             </div>
         </div>
     </header>
 
     <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-8">
+        @if (session('success'))
+            <div class="mb-6 p-4 rounded-lg bg-emerald-950/60 border border-emerald-800/70 text-sm text-emerald-300">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="mb-6 p-4 rounded-lg bg-red-950/60 border border-red-800/70 text-sm text-red-300">
+                {{ session('error') }}
+            </div>
+        @endif
+
         @yield('content')
     </main>
 

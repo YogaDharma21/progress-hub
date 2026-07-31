@@ -1,20 +1,21 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('landing');
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+// Guest Auth Routes
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-
-Route::prefix('members')->name('members.')->group(function () {
+// Member Routes (Requires Authentication)
+Route::middleware(['auth'])->prefix('members')->name('members.')->group(function () {
     Route::get('/', function () {
         return view('members.dashboard');
     })->name('dashboard');
@@ -50,7 +51,8 @@ Route::prefix('members')->name('members.')->group(function () {
     });
 });
 
-Route::prefix('admin')->name('admin.')->group(function () {
+// Admin Routes (Requires Admin Role)
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     })->name('index');
