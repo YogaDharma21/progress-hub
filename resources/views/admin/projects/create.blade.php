@@ -24,7 +24,6 @@
     </div>
 
     <form class="space-y-6" onsubmit="return false;">
-        <!-- Card 1: Informasi Utama Proyek -->
         <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-sm">
             <div class="flex items-center gap-3 pb-5 border-b border-zinc-800">
                 <div class="w-9 h-9 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-200 shrink-0 shadow-sm">
@@ -39,13 +38,13 @@
             <div class="mt-5 space-y-4">
                 <div class="space-y-1.5">
                     <label for="project-title" class="block text-xs font-medium text-zinc-300">Judul Proyek</label>
-                    <input id="project-title" type="text" placeholder="Contoh: Sistem E-Voting Kampus" 
+                    <input id="project-title" type="text" placeholder="Contoh: Sistem E-Voting Kampus"
                         class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition" />
                 </div>
 
                 <div class="space-y-1.5">
                     <label for="project-desc" class="block text-xs font-medium text-zinc-300">Deskripsi Proyek</label>
-                    <textarea id="project-desc" rows="4" placeholder="Jelaskan tujuan dan fungsi utama proyek ini..." 
+                    <textarea id="project-desc" rows="4" placeholder="Jelaskan tujuan dan fungsi utama proyek ini..."
                         class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition leading-relaxed"></textarea>
                 </div>
 
@@ -61,7 +60,7 @@
 
                     <div class="space-y-1.5">
                         <label for="project-tech" class="block text-xs font-medium text-zinc-300">Teknologi (pisahkan dengan koma)</label>
-                        <input id="project-tech" type="text" placeholder="React, Node.js, PostgreSQL" 
+                        <input id="project-tech" type="text" placeholder="React, Node.js, PostgreSQL"
                             class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition" />
                     </div>
                 </div>
@@ -100,17 +99,17 @@
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div class="space-y-1.5">
                             <span class="block text-[11px] font-medium text-zinc-400">Live Demo</span>
-                            <input id="link-demo" type="url" placeholder="https://demo.example.com" 
+                            <input id="link-demo" type="url" placeholder="https://demo.example.com"
                                 class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition" />
                         </div>
                         <div class="space-y-1.5">
                             <span class="block text-[11px] font-medium text-zinc-400">GitHub Repository</span>
-                            <input id="link-github" type="url" placeholder="https://github.com/user/repo" 
+                            <input id="link-github" type="url" placeholder="https://github.com/user/repo"
                                 class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition" />
                         </div>
                         <div class="space-y-1.5">
                             <span class="block text-[11px] font-medium text-zinc-400">Documentation</span>
-                            <input id="link-docs" type="url" placeholder="https://docs.example.com" 
+                            <input id="link-docs" type="url" placeholder="https://docs.example.com"
                                 class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition" />
                         </div>
                     </div>
@@ -150,12 +149,12 @@
                     <div class="space-y-3">
                         <div class="space-y-1.5">
                             <label class="block text-[11px] font-medium text-zinc-400">Nama Fitur</label>
-                            <input type="text" name="features[0][title]" placeholder="Contoh: Verifikasi Identitas" 
+                            <input type="text" name="features[0][title]" placeholder="Contoh: Verifikasi Identitas"
                                 class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition font-medium" />
                         </div>
                         <div class="space-y-1.5">
                             <label class="block text-[11px] font-medium text-zinc-400">Deskripsi Fitur</label>
-                            <textarea name="features[0][description]" rows="3" placeholder="Deskripsi ringkas keunggulan fitur..." 
+                            <textarea name="features[0][description]" rows="3" placeholder="Deskripsi ringkas keunggulan fitur..."
                                 class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition leading-relaxed"></textarea>
                         </div>
                     </div>
@@ -200,12 +199,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="space-y-3">
                     <div class="space-y-1.5">
                         <label class="block text-[11px] font-medium text-zinc-400">Nama Fitur</label>
-                        <input type="text" name="features[${index}][title]" placeholder="Contoh: Voting Terenkripsi" 
+                        <input type="text" name="features[${index}][title]" placeholder="Contoh: Voting Terenkripsi"
                             class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition font-medium" />
                     </div>
                     <div class="space-y-1.5">
                         <label class="block text-[11px] font-medium text-zinc-400">Deskripsi Fitur</label>
-                        <textarea name="features[${index}][description]" rows="3" placeholder="Deskripsi ringkas keunggulan fitur..." 
+                        <textarea name="features[${index}][description]" rows="3" placeholder="Deskripsi ringkas keunggulan fitur..."
                             class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-3.5 py-2.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition leading-relaxed"></textarea>
                     </div>
                 </div>
