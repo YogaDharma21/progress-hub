@@ -65,9 +65,15 @@
     </header>
 
     <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-8">
+        @if (session('success'))
+            <div class="mb-6 p-4 rounded-xl bg-emerald-950/60 border border-emerald-800/70 text-sm text-emerald-300 flex items-center justify-between shadow-sm">
+                <span>{{ session('success') }}</span>
+            </div>
+        @endif
+
         @if (session('error'))
-            <div class="mb-6 p-4 rounded-lg bg-red-950/60 border border-red-800/70 text-sm text-red-300">
-                {{ session('error') }}
+            <div class="mb-6 p-4 rounded-xl bg-red-950/60 border border-red-800/70 text-sm text-red-300 flex items-center justify-between shadow-sm">
+                <span>{{ session('error') }}</span>
             </div>
         @endif
 
