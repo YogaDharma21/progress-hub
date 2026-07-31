@@ -45,13 +45,15 @@
                             </td>
                             <td class="px-5 py-4 text-zinc-400">{{ $event->sessions_count ? $event->sessions_count . ' Pertemuan' : '-' }}</td>
                             <td class="px-5 py-4 text-zinc-400">{{ $event->participants_count ?? 0 }} / {{ $event->target_capacity ?? '∞' }} Peserta</td>
-                            <td class="px-5 py-4 text-right space-x-2">
-                                <a href="{{ route('admin.events.edit', $event) }}" class="px-3 py-1.5 text-xs font-medium text-zinc-200 bg-zinc-800 border border-zinc-700 rounded-md hover:bg-zinc-700 transition">Edit</a>
-                                <form action="{{ route('admin.events.destroy', $event) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus event ini?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="px-3 py-1.5 text-xs font-medium text-rose-400 bg-rose-500/10 border border-rose-500/30 rounded-md hover:bg-rose-500/20 transition">Hapus</button>
-                                </form>
+                            <td class="px-5 py-4 whitespace-nowrap">
+                                <div class="flex items-center justify-end gap-2">
+                                    <a href="{{ route('admin.events.edit', $event) }}" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-zinc-200 bg-zinc-800 border border-zinc-700 rounded-md hover:bg-zinc-700 transition">Edit</a>
+                                    <form action="{{ route('admin.events.destroy', $event) }}" method="POST" class="inline-flex m-0 p-0" onsubmit="return confirm('Apakah Anda yakin ingin menghapus event ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-rose-400 bg-rose-500/10 border border-rose-500/30 rounded-md hover:bg-rose-500/20 transition cursor-pointer">Hapus</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @empty

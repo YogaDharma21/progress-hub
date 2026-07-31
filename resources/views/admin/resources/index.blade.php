@@ -33,13 +33,15 @@
                                 <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-200">{{ $resource->type ?? 'Resource' }}</span>
                             </td>
                             <td class="px-5 py-4 text-zinc-400">{{ $resource->tags ?? '-' }}</td>
-                            <td class="px-5 py-4 text-right space-x-2">
-                                <a href="{{ route('admin.resources.edit', $resource) }}" class="px-3 py-1.5 text-xs font-medium text-zinc-200 bg-zinc-800 border border-zinc-700 rounded-md hover:bg-zinc-700 transition">Edit</a>
-                                <form action="{{ route('admin.resources.destroy', $resource) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus resource ini?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="px-3 py-1.5 text-xs font-medium text-rose-400 bg-rose-500/10 border border-rose-500/30 rounded-md hover:bg-rose-500/20 transition">Hapus</button>
-                                </form>
+                            <td class="px-5 py-4 whitespace-nowrap">
+                                <div class="flex items-center justify-end gap-2">
+                                    <a href="{{ route('admin.resources.edit', $resource) }}" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-zinc-200 bg-zinc-800 border border-zinc-700 rounded-md hover:bg-zinc-700 transition">Edit</a>
+                                    <form action="{{ route('admin.resources.destroy', $resource) }}" method="POST" class="inline-flex m-0 p-0" onsubmit="return confirm('Apakah Anda yakin ingin menghapus resource ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-rose-400 bg-rose-500/10 border border-rose-500/30 rounded-md hover:bg-rose-500/20 transition cursor-pointer">Hapus</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @empty
