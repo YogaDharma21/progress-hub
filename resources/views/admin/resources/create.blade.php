@@ -135,7 +135,7 @@
                     <div id="source-file-container" class="space-y-1.5 pt-1">
                         <label for="file" class="block text-xs font-medium text-zinc-300">File Modul / Dokumen <span class="text-zinc-500 font-normal">(PDF, EPUB, DOCX, ZIP)</span></label>
                         <input id="file" name="file" type="file" accept=".pdf,.doc,.docx,.epub,.zip"
-                            class="block w-full text-xs text-zinc-300 bg-zinc-950 border border-zinc-800 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition file:mr-4 file:py-3.5 file:px-5 file:rounded-l-xl file:border-0 file:text-xs file:font-semibold file:bg-zinc-800 file:text-zinc-100 hover:file:bg-zinc-700 p-2" />
+                            class="block w-full text-xs text-zinc-300 bg-zinc-950 border border-zinc-800 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition file:mr-4 file:py-4 file:px-5 file:rounded-l-xl file:border-0 file:text-xs file:font-semibold file:bg-zinc-800 file:text-zinc-100 hover:file:bg-zinc-700 p-3.5" />
                     </div>
 
                     <!-- Input Video Link -->
