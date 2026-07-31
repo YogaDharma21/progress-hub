@@ -8,13 +8,7 @@
         <h1 class="text-2xl font-bold text-zinc-100 tracking-tight">Login</h1>
         <p class="mt-1.5 text-sm text-zinc-400">Akses progres belajar, proyek, dan kegiatan UKM kamu.</p>
     </div>
-
-    @if (session('error'))
-        <div class="mb-4 p-3 rounded-lg bg-red-950/50 border border-red-900 text-xs text-red-300">
-            {{ session('error') }}
-        </div>
-    @endif
-
+    
     <form class="space-y-4" action="{{ route('login') }}" method="POST">
         @csrf
 
