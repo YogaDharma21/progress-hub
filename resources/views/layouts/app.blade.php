@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@yield('title', 'Progress Hub — UKM Dashboard')</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <header class="bg-zinc-900 border-b border-zinc-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="/members/dashboard" class="flex items-center gap-3 font-semibold text-lg text-zinc-100 hover:text-white transition">
+                <div class="w-8 h-8 bg-zinc-100 text-zinc-950 rounded-lg flex items-center justify-center font-bold text-sm">
+                    P
+                </div>
+                Progress Hub
+            </a>
+
+            <nav class="hidden md:flex items-center gap-1">
+                <a href="/members/events" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('members/events*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                    Events
+                </a>
+                <a href="/members/projects" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('members/projects*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                    Projects
+                </a>
+                <a href="/members/resources" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('members/resources*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                    Resources
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <div class="hidden lg:flex items-center gap-2 bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-1.5 w-64 focus-within:ring-2 focus-within:ring-zinc-400">
+                    <svg class="w-4 h-4 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input type="text" placeholder="Cari event, proyek, resource..." class="bg-transparent border-none outline-none text-xs text-zinc-100 placeholder-zinc-400 w-full">
+                </div>
+
+                <a href="/members/dashboard" class="w-8 h-8 rounded-full bg-zinc-700 border-2 border-zinc-800 inline-flex items-center justify-center text-xs font-semibold text-zinc-100 hover:border-zinc-500 transition" title="Profile">
+                    U
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-8">
+        @yield('content')
+    </main>
+
+</body>
+</html>
