@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\MemberDashboardController;
+use App\Http\Controllers\MemberEventController;
+use App\Http\Controllers\MemberProjectController;
+use App\Http\Controllers\MemberResourceController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ResourceController;
 use Illuminate\Support\Facades\Route;
@@ -17,38 +21,34 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->prefix('members')->name('members.')->group(function () {
-    Route::get('/', function () {
-        return view('members.dashboard');
-    })->name('dashboard');
+    Route::get('/', [MemberDashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('events')->name('events.')->group(function () {
-        Route::get('/', function () {
-            return view('members.events.index');
-        })->name('index');
-
+        Route::get('/', [MemberEventController::class, 'index'])->name('index');
         Route::get('/detail', function () {
-            return view('members.events.show');
-        })->name('show');
+            $event = \App\Models\Event::first();
+            return $event ? redirect()->route('members.events.show', $event) : redirect()->route('members.events.index');
+        });
+        Route::get('/{event}', [MemberEventController::class, 'show'])->name('show');
+        Route::post('/{event}/register', [MemberEventController::class, 'toggleRegistration'])->name('register');
     });
 
     Route::prefix('projects')->name('projects.')->group(function () {
-        Route::get('/', function () {
-            return view('members.projects.index');
-        })->name('index');
-
+        Route::get('/', [MemberProjectController::class, 'index'])->name('index');
         Route::get('/detail', function () {
-            return view('members.projects.show');
-        })->name('show');
+            $project = \App\Models\Project::first();
+            return $project ? redirect()->route('members.projects.show', $project) : redirect()->route('members.projects.index');
+        });
+        Route::get('/{project}', [MemberProjectController::class, 'show'])->name('show');
     });
 
     Route::prefix('resources')->name('resources.')->group(function () {
-        Route::get('/', function () {
-            return view('members.resources.index');
-        })->name('index');
-
+        Route::get('/', [MemberResourceController::class, 'index'])->name('index');
         Route::get('/detail', function () {
-            return view('members.resources.show');
-        })->name('show');
+            $resource = \App\Models\Resource::first();
+            return $resource ? redirect()->route('members.resources.show', $resource) : redirect()->route('members.resources.index');
+        });
+        Route::get('/{resource}', [MemberResourceController::class, 'show'])->name('show');
     });
 });
 
