@@ -24,6 +24,16 @@ class MemberResourceController extends Controller
     }
 
     /**
+     * Redirect to the first resource detail or back to index.
+     */
+    public function detail()
+    {
+        $resource = Resource::first();
+
+        return $resource ? redirect()->route('members.resources.show', $resource) : redirect()->route('members.resources.index');
+    }
+
+    /**
      * Display the specified resource and increment views count.
      */
     public function show(Resource $resource)

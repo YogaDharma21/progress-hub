@@ -24,6 +24,16 @@ class MemberProjectController extends Controller
     }
 
     /**
+     * Redirect to the first project detail or back to index.
+     */
+    public function detail()
+    {
+        $project = Project::first();
+
+        return $project ? redirect()->route('members.projects.show', $project) : redirect()->route('members.projects.index');
+    }
+
+    /**
      * Display the specified project.
      */
     public function show(Project $project)
