@@ -27,6 +27,16 @@ class MemberEventController extends Controller
     }
 
     /**
+     * Redirect to the first event detail or back to index.
+     */
+    public function detail()
+    {
+        $event = Event::first();
+
+        return $event ? redirect()->route('members.events.show', $event) : redirect()->route('members.events.index');
+    }
+
+    /**
      * Display the specified event.
      */
     public function show(Event $event)
