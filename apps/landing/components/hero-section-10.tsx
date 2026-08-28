@@ -21,7 +21,7 @@ export default function HeroSection() {
                                     <Button
                                         className="w-fit"
                                         nativeButton={false}
-                                        render={<Link href="/login">Masuk Yuk</Link>}
+                                        render={<Link href="/login">Login</Link>}
                                     />
                                     <Button
                                         variant="outline"
