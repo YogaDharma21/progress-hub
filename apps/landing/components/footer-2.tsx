@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { LogoIcon } from '@/components/logo'
+import { Logo } from '@/components/logo'
 
 const footerLinks = [
     {
@@ -29,7 +29,7 @@ export default function Footer() {
                             href="/"
                             aria-label="go home"
                         >
-                            <LogoIcon uniColor />
+                            <Logo uniColor />
                         </Link>
                     </div>
 
@@ -52,7 +52,7 @@ export default function Footer() {
                     ))}
                 </div>
                 <div className="mt-24 border-t pt-6">
-                    <span className="text-muted-foreground block text-sm">&copy; 2026 <a href="https://github.com/yogaDharma21/" className="hover:text-foreground underline underline-offset-4">Yoga Dharma</a>.</span>
+                    <span className="text-muted-foreground block text-sm">&copy; 2026 <a href="https://github.com/yogaDharma21/" className="hover:text-foreground underline underline-offset-4">Yoga Dharma</a>. Built with <a href="https://github.com/YogaDharma21/progress-hub" className="hover:text-foreground underline underline-offset-4">Progress Hub</a>.</span>
                 </div>
             </div>
         </footer>
