@@ -64,12 +64,17 @@ export default function FeaturesSection() {
 
         const observer = new IntersectionObserver(
             (entries) => {
-                const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+                const visible = entries.filter((entry) => entry.isIntersecting)
+                if (visible.length === 0) return
 
-                const nextId = visible[0]?.target.id as FeatureId | undefined
+                const topmost = visible.reduce((prev, curr) => {
+                    return prev.boundingClientRect.top < curr.boundingClientRect.top ? prev : curr
+                })
+
+                const nextId = topmost.target.id as FeatureId | undefined
                 if (nextId) setActiveId(nextId)
             },
-            { rootMargin: '-25% 0px -55% 0px', threshold: [0.15, 0.35, 0.55, 0.75] }
+            { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
         )
 
         sections.forEach((section) => observer.observe(section))
