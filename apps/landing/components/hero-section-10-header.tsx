@@ -6,10 +6,9 @@ import { Button } from '@/components/ui/button'
 import React from 'react'
 
 const menuItems = [
-    { name: 'Product', href: '#link' },
-    { name: 'Solutions', href: '#link' },
-    { name: 'Pricing', href: '#link' },
-    { name: 'Company', href: '#link' },
+    { name: 'Events', href: '#events' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Resources', href: '#resources' },
 ]
 
 export const HeroHeader = () => {
@@ -102,7 +101,7 @@ export const HeroHeader = () => {
                                     size="sm"
                                     nativeButton={false}
                                     render={
-                                        <Link href="#">
+                                        <Link href="/login">
                                             <span>Login</span>
                                         </Link>
                                     }
@@ -111,8 +110,8 @@ export const HeroHeader = () => {
                                     size="sm"
                                     nativeButton={false}
                                     render={
-                                        <Link href="#">
-                                            <span>Sign Up</span>
+                                        <Link href="/register">
+                                            <span>Register</span>
                                         </Link>
                                     }
                                 />

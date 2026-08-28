@@ -1,37 +1,20 @@
 import Link from 'next/link'
 import { LogoIcon } from '@/components/logo'
-import { Gemini } from '@/components/ui/svgs/gemini'
-import { ClaudeAI } from '@/components/ui/svgs/claude-ai'
-import { Openai } from '@/components/ui/svgs/openai'
-import { Perplexity } from '@/components/ui/svgs/perplexity'
-import { Button } from '@/components/ui/button'
 
 const footerLinks = [
     {
-        name: 'Product',
+        name: 'Platform',
         links: [
-            { href: '#', label: 'Features' },
-            { href: '#', label: 'Solutions' },
-            { href: '#', label: 'Agents' },
-            { href: '#', label: 'Pricing' },
+            { href: 'https://progress-hub.laravel.cloud/members', label: 'Events' },
+            { href: 'https://progress-hub.laravel.cloud/members/projects', label: 'Projects' },
+            { href: 'https://progress-hub.laravel.cloud/members/resources', label: 'Resources' },
         ],
     },
     {
-        name: 'Company',
+        name: 'Akun',
         links: [
-            { href: '#', label: 'About' },
-            { href: '#', label: 'Blog' },
-            { href: '#', label: 'Contact' },
-            { href: '#', label: 'LinkedIn' },
-            { href: '#', label: 'X' },
-        ],
-    },
-    {
-        name: 'Legal',
-        links: [
-            { href: '#', label: 'Licence' },
-            { href: '#', label: 'Privacy Policy' },
-            { href: '#', label: 'Terms of Service' },
+            { href: 'https://progress-hub.laravel.cloud/login', label: 'Login' },
+            { href: 'https://progress-hub.laravel.cloud/register', label: 'Register' },
         ],
     },
 ]
@@ -68,65 +51,8 @@ export default function Footer() {
                         </div>
                     ))}
                 </div>
-                <div className="mt-24 grid gap-x-3 gap-y-6 border-t pt-6 sm:grid-cols-2">
-                    <div>
-                        <p className="text-muted-foreground text-sm">Get an AI summary of this page</p>
-                        <div className="-ml-2.5 mt-2 flex items-center">
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                nativeButton={false}
-                                render={
-                                    <Link
-                                        href="#"
-                                        aria-label="Claude AI"
-                                    >
-                                        <ClaudeAI />
-                                    </Link>
-                                }
-                            />
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                nativeButton={false}
-                                render={
-                                    <Link
-                                        href="#"
-                                        aria-label="OpenAI"
-                                    >
-                                        <Openai />
-                                    </Link>
-                                }
-                            />
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                nativeButton={false}
-                                render={
-                                    <Link
-                                        href="#"
-                                        aria-label="Perplexity"
-                                    >
-                                        <Perplexity className="size-5!" />
-                                    </Link>
-                                }
-                            />
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                nativeButton={false}
-                                render={
-                                    <Link
-                                        href="#"
-                                        aria-label="Gemini"
-                                    >
-                                        <Gemini />
-                                    </Link>
-                                }
-                            />
-                        </div>
-                    </div>
-                    <span className="text-muted-foreground block text-sm">&copy; Tailark 2025 - Present</span>
+                <div className="mt-24 border-t pt-6">
+                    <span className="text-muted-foreground block text-sm">&copy; Progress Hub 2025 - Present</span>
                 </div>
             </div>
         </footer>
