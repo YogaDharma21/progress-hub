@@ -172,7 +172,7 @@ export default function FeaturesSection() {
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Repositori Pembelajaran</h3>
                                     <p className="text-muted-foreground text-balance text-lg font-medium">
-                                        <span className="text-foreground">Belajar gratis!</span> Modul praktikum, tutorial jagoan, dan panduan karir software engineering.
+                                        <span className="text-foreground">Belajar gratis!</span> Modul praktikum, tutorial teknis, dan panduan karir software engineering.
                                     </p>
                                 </div>
                                 <FeatureList items={featureHighlights.resources} />
