@@ -52,7 +52,7 @@ export default function Footer() {
                     ))}
                 </div>
                 <div className="mt-24 border-t pt-6">
-                    <span className="text-muted-foreground block text-sm">&copy; Progress Hub 2025 - Present</span>
+                    <span className="text-muted-foreground block text-sm">&copy; 2025 <a href="https://github.com/yogaDharma21/" className="hover:text-foreground underline underline-offset-4">Yoga Dharma</a>. Built with <a href="https://github.com/YogaDharma21/progress-hub" className="hover:text-foreground underline underline-offset-4">Progress Hub</a>.</span>
                 </div>
             </div>
         </footer>

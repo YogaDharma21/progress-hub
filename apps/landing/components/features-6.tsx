@@ -1,4 +1,3 @@
-import { BookOpen, FolderGit2, GraduationCap, Users } from 'lucide-react'
 import Image from 'next/image'
 
 export default function FeaturesSection() {
@@ -6,7 +5,7 @@ export default function FeaturesSection() {
         <section className="py-16 md:py-20">
             <div className="mx-auto max-w-7xl space-y-12 px-6">
                 <h2 className="text-muted-foreground relative z-10 max-w-4xl text-balance text-4xl font-medium tracking-tight lg:text-5xl">
-                    <span className="text-foreground">Dukung ekosistem developer UKM.</span> <br /> Program, proyek, dan pembelajaran dalam satu tempat.
+                    <span className="text-foreground">Dukung developer UKM Progress jadi lebih keren.</span> <br /> Program, proyek, dan ilmu baru, semua ada di sini.
                 </h2>
                 <div className="relative -mx-6 overflow-hidden px-3 pt-3 md:-mx-8">
                     <div className="mask-radial-at-top-left mask-radial-from-65% mask-radial-[100%_60%] z-1 absolute inset-3 size-64 rounded-tl-3xl border-l border-t md:size-96 lg:inset-4"></div>
@@ -27,35 +26,7 @@ export default function FeaturesSection() {
                         />
                     </div>
                 </div>
-                <div className="max-sm:*:not-last:border-b max-sm:*:not-last:pb-3 mt-12 grid gap-3 *:max-w-xs sm:grid-cols-2 md:mt-16 md:gap-y-6 lg:mt-24 lg:grid-cols-4 lg:gap-6">
-                    <p className="text-muted-foreground text-balance">
-                        <span className="text-foreground font-medium">
-                            <GraduationCap className="inline size-4 -translate-y-0.5" /> 12+ Program Kerja.
-                        </span>{' '}
-                        Kelas, hackathon, dan sharing session untuk tingkatkan kemampuan.
-                    </p>
 
-                    <p className="text-muted-foreground text-balance">
-                        <span className="text-foreground font-medium">
-                            <FolderGit2 className="inline size-4 -translate-y-0.5" /> 28+ Proyek Showcase.
-                        </span>{' '}
-                            Portofolio proyek tim dan individu mahasiswa.
-                    </p>
-
-                    <p className="text-muted-foreground text-balance">
-                        <span className="text-foreground font-medium">
-                            <BookOpen className="inline size-4 -translate-y-0.5" /> 45+ Modul & Artikel.
-                        </span>{' '}
-                        Repositori pembelajaran dan tutorial teknis.
-                    </p>
-
-                    <p className="text-muted-foreground text-balance">
-                        <span className="text-foreground font-medium">
-                            <Users className="inline size-4 -translate-y-0.5" /> Komunitas Developer.
-                        </span>{' '}
-                        Kolaborasi dan berkontribusi bersama seluruh anggota UKM.
-                    </p>
-                </div>
             </div>
         </section>
     )

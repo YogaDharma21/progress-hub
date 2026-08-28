@@ -31,7 +31,7 @@ const featureHighlights: Record<FeatureId, { icon: LucideIcon; label: string }[]
         { icon: Lightbulb, label: 'Akses gratis untuk semua anggota' },
     ],
     platform: [
-        { icon: Users, label: 'Kolaborasi antar anggota UKM' },
+        { icon: Users, label: 'Kolaborasi antar anggota UKM Progress' },
         { icon: Layout, label: 'Dashboard progres belajar' },
         { icon: BookOpen, label: 'Pusat informasi kegiatan' },
     ],
@@ -81,7 +81,7 @@ export default function FeaturesSection() {
         <section className="py-16 md:py-20">
             <div className="mx-auto max-w-7xl px-6">
                 <h2 className="text-muted-foreground max-w-4xl text-balance text-4xl font-medium tracking-tight">
-                    <span className="text-foreground">Fitur & Layanan Utama.</span> <br /> Dirancang untuk mendukung ekosistem developer UKM.
+                    <span className="text-foreground">Yang bikin Progress Hub seru.</span> <br /> Fitur-fitur yang bikin coding jadi nggak sendirian.
                 </h2>
                 <div className="mt-16 grid gap-6 md:mt-32 lg:grid-cols-[auto_1fr]">
                     <div className="sticky top-24 h-fit w-56 max-lg:hidden">
@@ -111,7 +111,7 @@ export default function FeaturesSection() {
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Program Kerja & Kelas</h3>
                                     <p className="text-muted-foreground text-balance text-lg font-medium">
-                                        <span className="text-foreground">Kelas pemrograman.</span> Ikuti hackathon internal, dan sharing session terstruktur untuk tingkatkan kemampuan coding.
+                                        <span className="text-foreground">Kelas seru.</span> Ikuti hackathon asik, sharing session, dan level-up skill coding bareng temen-temen.
                                     </p>
                                 </div>
                                 <FeatureList items={featureHighlights.events} />
@@ -139,7 +139,7 @@ export default function FeaturesSection() {
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Portofolio Proyek</h3>
                                     <p className="text-muted-foreground text-balance text-lg font-medium">
-                                        <span className="text-foreground">Pamerkan karya.</span> Tampilkan hasil proyek tim maupun individu lengkap dengan deskripsi, tech stack, dan link repository.
+                                        <span className="text-foreground">Pamerin karyamu.</span> Tampilin proyek tim atau individual, lengkap sama deskripsi, tech stack, dan repo-nya.
                                     </p>
                                 </div>
                                 <FeatureList items={featureHighlights.projects} />
@@ -167,7 +167,7 @@ export default function FeaturesSection() {
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Repositori Pembelajaran</h3>
                                     <p className="text-muted-foreground text-balance text-lg font-medium">
-                                        <span className="text-foreground">Akses gratis.</span> Modul silabus praktikum, tutorial teknis, dan panduan karir software engineering <span className="rounded bg-emerald-500/10 px-1.5 text-emerald-500">secara gratis</span>.
+                                        <span className="text-foreground">Belajar gratis!</span> Modul praktikum, tutorial jagoan, dan panduan karir software engineering.
                                     </p>
                                 </div>
                                 <FeatureList items={featureHighlights.resources} />
@@ -195,7 +195,7 @@ export default function FeaturesSection() {
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Platform Terpadu</h3>
                                     <p className="text-muted-foreground text-balance text-lg font-medium">
-                                        <span className="text-foreground">Satu platform.</span> Kolaborasi antar anggota, pantau progres belajar, dan pusat informasi kegiatan UKM.
+                                        <span className="text-foreground">Semua ada di sini.</span> Kolaborasi sama anggota lain, pantau progres belajar, dan info kegiatan UKM Progress terkini.
                                     </p>
                                 </div>
                                 <FeatureList items={featureHighlights.platform} />

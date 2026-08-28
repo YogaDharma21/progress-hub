@@ -24,7 +24,7 @@ export default function IntegrationsSection() {
                         </div>
 
                         <p className="text-muted-foreground max-w-xs text-balance text-lg">
-                            Tailark CRM integrates with <span className="text-foreground font-medium">over 150 Tools</span> to enhance your workflow.
+                            Progress Hub integrates with <span className="text-foreground font-medium">over 150 Tools</span> to enhance your workflow.
                         </p>
                     </div>
 

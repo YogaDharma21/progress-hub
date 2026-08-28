@@ -13,21 +13,21 @@ export default function HeroSection() {
                 <section className="pt-40 xl:pt-48">
                     <div className="mx-auto max-w-7xl px-6">
                         <div className="grid items-end gap-4 md:grid-cols-2 md:gap-6">
-                            <h1 className="text-balance text-4xl font-medium tracking-tight md:text-5xl">Pusat Kolaborasi, Proyek, & Kegiatan UKM Modern</h1>
+                            <h1 className="text-balance text-4xl font-medium tracking-tight md:text-5xl">Bikin Proyek, Belajar, dan Kolaborasi, Satu Tempat Aja.</h1>
                             <div className="flex max-w-md flex-col gap-4 md:mx-auto">
-                                <p className="text-muted-foreground text-balance text-lg">Pantau progres belajar, eksplorasi repositori modul & artikel, dan pamerkan portofolio proyek terbaik mahasiswa dalam satu platform terpadu.</p>
+                                <p className="text-muted-foreground text-balance text-lg">Tempat nongkrongnya developer UKM Progress. Eksplor modul, pamerin proyek, dan belajar bareng, seru, gratis, dan nggak ribet.</p>
 
                                 <div className="flex gap-3">
                                     <Button
                                         className="w-fit"
                                         nativeButton={false}
-                                        render={<Link href="/login">Masuk ke Dashboard</Link>}
+                                        render={<Link href="/login">Masuk Yuk</Link>}
                                     />
                                     <Button
                                         variant="outline"
                                         className="w-fit"
                                         nativeButton={false}
-                                        render={<Link href="/members">Jelajahi Program UKM →</Link>}
+                                        render={<Link href="https://progress-stikombali.org">Lihat-lihat Dulu</Link>}
                                     />
                                 </div>
                             </div>
