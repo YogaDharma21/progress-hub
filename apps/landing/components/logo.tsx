@@ -59,22 +59,42 @@ export const LogoIcon = ({ className, uniColor }: { className?: string; uniColor
     return (
         <svg
             className={cn('size-6', className)}
-            viewBox="0 0 180 220"
+            viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
-            <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M80 100H28C12.536 100 0 87.464 0 72V28C0 12.536 12.536 0 28 0H72C87.464 0 100 12.536 100 28V80H160C171.046 80 180 88.9543 180 100V167.639C180 175.215 175.72 182.14 168.944 185.528L103.416 218.292C101.17 219.415 98.6923 220 96.1803 220C87.2442 220 80 212.756 80 203.82V100ZM28 20C23.5817 20 20 23.5817 20 28V72C20 76.4183 23.5817 80 28 80H80V28C80 23.5817 76.4183 20 72 20H28ZM100 100H152C156.418 100 160 103.582 160 108V165.092C160 168.103 158.309 170.859 155.625 172.224L111.625 194.591C106.303 197.296 100 193.429 100 187.459V100Z"
-                fill={uniColor ? 'currentColor' : 'url(#paint_logo)'}
+            <rect
+                x="3"
+                y="3"
+                width="8"
+                height="8"
+                rx="2"
+                fill={uniColor ? 'currentColor' : 'url(#paint_logo_icon)'}
+            />
+            <rect
+                x="13"
+                y="13"
+                width="8"
+                height="8"
+                rx="2"
+                fill={uniColor ? 'currentColor' : 'url(#paint_logo_icon)'}
+                opacity="0.6"
+            />
+            <rect
+                x="13"
+                y="3"
+                width="8"
+                height="8"
+                rx="2"
+                fill={uniColor ? 'currentColor' : 'url(#paint_logo_icon)'}
+                opacity="0.3"
             />
             <defs>
                 <linearGradient
-                    id="paint_logo"
-                    x1="90"
+                    id="paint_logo_icon"
+                    x1="0"
                     y1="0"
-                    x2="90"
-                    y2="220"
+                    x2="24"
+                    y2="24"
                     gradientUnits="userSpaceOnUse">
                     <stop stopColor="#9B99FE" />
                     <stop
