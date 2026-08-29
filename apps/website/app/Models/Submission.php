@@ -39,4 +39,9 @@ class Submission extends Model
     {
         return $this->morphTo();
     }
+
+    public function getTypeAttribute(): string
+    {
+        return class_basename($this->submittable_type);
+    }
 }

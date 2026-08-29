@@ -180,7 +180,7 @@
                         default => 'bg-zinc-800 text-zinc-300 border-zinc-700',
                     };
                 @endphp
-                <div class="event-card group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition hover:-translate-y-0.5 shadow-sm cursor-pointer" onclick="location.href='{{ route('members.events.show', $event) }}'" data-type="{{ strtolower($event->type ?? 'class') }}">
+                <div class="event-card group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition hover:-translate-y-0.5 shadow-sm cursor-pointer" onclick="location.href='{{ route('members.events.show', $event) }}'" data-type="{{ match(strtolower($event->type ?? '')) { 'kelas', 'class' => 'class', 'hackathon' => 'hackathon', 'sharing' => 'sharing', default => strtolower($event->type ?? 'class') } }}">
                     <div class="flex items-start justify-between gap-3 mb-3">
                         <div>
                             <h3 class="font-semibold text-sm text-zinc-100 group-hover:text-white">{{ $event->title }}</h3>

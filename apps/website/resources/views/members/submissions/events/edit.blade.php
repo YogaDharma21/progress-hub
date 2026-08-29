@@ -76,9 +76,9 @@
                         <label for="type" class="block text-xs font-medium text-zinc-300">Tipe Event</label>
                         <select id="type" name="type" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:border-zinc-700 transition cursor-pointer">
                             <option value="" disabled>Pilih tipe</option>
-                            <option value="class" {{ old('type', $event->type) == 'class' ? 'selected' : '' }}>Kelas</option>
-                            <option value="hackathon" {{ old('type', $event->type) == 'hackathon' ? 'selected' : '' }}>Hackathon</option>
-                            <option value="sharing" {{ old('type', $event->type) == 'sharing' ? 'selected' : '' }}>Sharing</option>
+                            <option value="Kelas" {{ old('type', $event->type) == 'Kelas' || old('type', $event->type) == 'class' ? 'selected' : '' }}>Kelas</option>
+                            <option value="Hackathon" {{ old('type', $event->type) == 'Hackathon' || old('type', $event->type) == 'hackathon' ? 'selected' : '' }}>Hackathon</option>
+                            <option value="Sharing" {{ old('type', $event->type) == 'Sharing' || old('type', $event->type) == 'sharing' ? 'selected' : '' }}>Sharing</option>
                         </select>
                     </div>
                 </div>

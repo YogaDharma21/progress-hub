@@ -24,6 +24,7 @@
                         <th class="px-5 py-3.5">Status</th>
                         <th class="px-5 py-3.5">Sesi</th>
                         <th class="px-5 py-3.5">Peserta</th>
+                        <th class="px-5 py-3.5">Oleh</th>
                         <th class="px-5 py-3.5 text-right">Aksi</th>
                     </tr>
                 </thead>
@@ -45,6 +46,7 @@
                             </td>
                             <td class="px-5 py-4 text-zinc-400">{{ $event->sessions_count ? $event->sessions_count . ' Pertemuan' : '-' }}</td>
                             <td class="px-5 py-4 text-zinc-400">{{ $event->participants_count ?? 0 }} / {{ $event->target_capacity ?? '∞' }} Peserta</td>
+                            <td class="px-5 py-4 text-zinc-400">{{ $event->creator->name ?? '-' }}</td>
                             <td class="px-5 py-4 whitespace-nowrap">
                                 <div class="flex items-center justify-end gap-2">
                                     <a href="{{ route('admin.events.edit', $event) }}" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-zinc-200 bg-zinc-800 border border-zinc-700 rounded-md hover:bg-zinc-700 transition">Edit</a>
@@ -58,7 +60,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-5 py-8 text-center text-zinc-500">
+                            <td colspan="7" class="px-5 py-8 text-center text-zinc-500">
                                 Belum ada data event. Klik <a href="{{ route('admin.events.create') }}" class="text-zinc-300 underline">Tambah Event</a> untuk membuat baru.
                             </td>
                         </tr>

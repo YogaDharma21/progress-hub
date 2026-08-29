@@ -20,7 +20,7 @@
     <!-- Resources Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="resources-grid">
         @forelse($resources as $resource)
-            <div class="resource-card group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition hover:-translate-y-0.5 cursor-pointer flex flex-col justify-between" onclick="location.href='{{ route('members.resources.show', $resource) }}'" data-type="{{ strtolower($resource->type ?? 'module') }}">
+            <div class="resource-card group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition hover:-translate-y-0.5 cursor-pointer flex flex-col justify-between" onclick="location.href='{{ route('members.resources.show', $resource) }}'" data-type="{{ match(strtolower($resource->type ?? '')) { 'modul', 'module' => 'module', 'artikel', 'article' => 'article', 'tutorial', 'tools', 'tool' => 'tool', default => strtolower($resource->type ?? 'module') } }}">
                 <div>
                     <div class="flex items-center gap-2 mb-3">
                         <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-200 capitalize">{{ $resource->type ?? 'Modul' }}</span>

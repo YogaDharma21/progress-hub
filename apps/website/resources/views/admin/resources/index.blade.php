@@ -22,6 +22,7 @@
                         <th class="px-5 py-3.5">Judul Resource</th>
                         <th class="px-5 py-3.5">Tipe</th>
                         <th class="px-5 py-3.5">Tag</th>
+                        <th class="px-5 py-3.5">Oleh</th>
                         <th class="px-5 py-3.5 text-right">Aksi</th>
                     </tr>
                 </thead>
@@ -33,6 +34,7 @@
                                 <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-200">{{ $resource->type ?? 'Resource' }}</span>
                             </td>
                             <td class="px-5 py-4 text-zinc-400">{{ $resource->tags ?? '-' }}</td>
+                            <td class="px-5 py-4 text-zinc-400">{{ $resource->creator->name ?? '-' }}</td>
                             <td class="px-5 py-4 whitespace-nowrap">
                                 <div class="flex items-center justify-end gap-2">
                                     <a href="{{ route('admin.resources.edit', $resource) }}" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-zinc-200 bg-zinc-800 border border-zinc-700 rounded-md hover:bg-zinc-700 transition">Edit</a>
@@ -46,7 +48,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="px-5 py-8 text-center text-zinc-500">
+                            <td colspan="5" class="px-5 py-8 text-center text-zinc-500">
                                 Belum ada data resource. Klik <a href="{{ route('admin.resources.create') }}" class="text-zinc-300 underline">Tambah Resource</a> untuk membuat baru.
                             </td>
                         </tr>
