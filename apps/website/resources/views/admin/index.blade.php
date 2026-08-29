@@ -41,7 +41,7 @@
         <!-- Activity Chart -->
         <div class="lg:col-span-3 bg-zinc-900 border border-zinc-800 rounded-xl p-5">
             <h3 class="text-sm font-semibold text-zinc-100 mb-4">Aktivitas 7 Hari</h3>
-            <div class="flex items-end gap-2 h-40">
+            <div class="flex items-end gap-2 h-28">
                 @foreach($days as $day)
                     <div class="group/bar relative flex-1 flex flex-col items-center gap-1">
                         {{-- Tooltip --}}
@@ -53,7 +53,7 @@
                                 <div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-sm bg-zinc-400"></span> Resources: {{ $day['resources'] }}</div>
                             </div>
                         </div>
-                        <div class="w-full flex flex-col justify-end gap-0.5" style="height: 120px;">
+                        <div class="w-full flex flex-col justify-end gap-0.5" style="height: 80px;">
                             @if($day['events'] > 0)
                                 <div class="w-full rounded-sm bg-zinc-600 transition-all group-hover/bar:brightness-125" style="height: {{ ($day['events'] / $maxActivity) * 100 }}%; min-height: 4px;"></div>
                             @endif
@@ -89,7 +89,7 @@
             <div class="px-5 py-4 border-b border-zinc-800">
                 <h3 class="text-sm font-semibold text-zinc-100">Aktivitas Terbaru</h3>
             </div>
-            <div class="divide-y divide-zinc-800 max-h-64 overflow-y-auto">
+            <div class="divide-y divide-zinc-800 max-h-64 overflow-y-auto" style="-ms-overflow-style:none; scrollbar-width:none;">
                 @forelse($recentActivity as $item)
                     <a href="{{ $item['route'] }}" class="px-5 py-3 flex items-center gap-3 hover:bg-zinc-800/50 transition block">
                         <div class="w-8 h-8 rounded-lg bg-zinc-950 flex items-center justify-center shrink-0">
