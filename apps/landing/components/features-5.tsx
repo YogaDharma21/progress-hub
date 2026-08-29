@@ -1,9 +1,12 @@
 'use client'
 
 import { BookOpen, Code2, GraduationCap, Layout, Lightbulb, Users, FolderGit2, FileText, type LucideIcon } from 'lucide-react'
-import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
+import EventCardDemo from '@/components/feature-demos/event-card-demo'
+import ProjectCardDemo from '@/components/feature-demos/project-card-demo'
+import ResourceCardDemo from '@/components/feature-demos/resource-card-demo'
+import PlatformDemo from '@/components/feature-demos/platform-demo'
 
 const features = [
     { id: 'events', label: 'Program Kerja & Kelas' },
@@ -121,15 +124,9 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.events} />
                             </div>
-                            <div className="border-border/50 bg-foreground/2 relative flex aspect-square rounded-3xl border p-3 md:col-span-3">
-                                <div className="bg-linear-to-b aspect-76/59 relative m-auto max-w-sm rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700">
-                                    <Image
-                                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                        className="hidden rounded-[15px] dark:block"
-                                        alt="workflow agents illustration"
-                                        width={2426}
-                                        height={1617}
-                                    />
+                            <div className="border-border/50 bg-foreground/2 relative flex aspect-square items-center justify-center rounded-3xl border p-6 md:col-span-3">
+                                <div className="w-full max-w-sm">
+                                    <EventCardDemo />
                                 </div>
                             </div>
                         </div>
@@ -149,15 +146,9 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.projects} />
                             </div>
-                            <div className="border-border/50 bg-foreground/2 relative flex aspect-square rounded-3xl border p-3 md:col-span-3">
-                                <div className="bg-linear-to-b aspect-76/59 relative m-auto max-w-sm rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700">
-                                    <Image
-                                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                        className="hidden rounded-[15px] dark:block"
-                                        alt="alerts dashboard illustration"
-                                        width={2070}
-                                        height={1380}
-                                    />
+                            <div className="border-border/50 bg-foreground/2 relative flex aspect-square items-center justify-center rounded-3xl border p-6 md:col-span-3">
+                                <div className="w-full max-w-sm">
+                                    <ProjectCardDemo />
                                 </div>
                             </div>
                         </div>
@@ -177,15 +168,9 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.resources} />
                             </div>
-                            <div className="border-border/50 bg-foreground/2 relative flex aspect-square rounded-3xl border p-3 md:col-span-3">
-                                <div className="bg-linear-to-b aspect-76/59 relative m-auto max-w-sm rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700">
-                                    <Image
-                                        src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?q=80&w=2139&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                        className="hidden rounded-[15px] dark:block"
-                                        alt="timeline illustration"
-                                        width={2139}
-                                        height={1426}
-                                    />
+                            <div className="border-border/50 bg-foreground/2 relative flex aspect-square items-center justify-center rounded-3xl border p-6 md:col-span-3">
+                                <div className="w-full max-w-sm">
+                                    <ResourceCardDemo />
                                 </div>
                             </div>
                         </div>
@@ -205,15 +190,9 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.platform} />
                             </div>
-                            <div className="border-border/50 bg-foreground/2 relative flex aspect-square rounded-3xl border p-3 md:col-span-3">
-                                <div className="bg-linear-to-b aspect-76/59 relative m-auto max-w-sm rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700">
-                                    <Image
-                                        src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                        className="hidden rounded-[15px] dark:block"
-                                        alt="platform illustration"
-                                        width={2070}
-                                        height={1380}
-                                    />
+                            <div className="border-border/50 bg-foreground/2 relative flex aspect-square items-center justify-center rounded-3xl border p-6 md:col-span-3">
+                                <div className="w-full max-w-sm">
+                                    <PlatformDemo />
                                 </div>
                             </div>
                         </div>
