@@ -189,44 +189,64 @@ export default function FeaturesSection() {
                         </div>
                     </div>
 
-                    {/* Overlapping analytics card */}
+                    {/* Overlapping dashboard card */}
                     <div className="absolute -bottom-8 -right-4 lg:-bottom-12 lg:-right-8 z-20 w-64 lg:w-80 bg-zinc-950 border border-zinc-800/60 rounded-2xl p-4 lg:p-5 shadow-2xl shadow-black/50">
-                        <div className="flex items-center justify-between mb-3">
-                            <span className="text-[10px] lg:text-xs font-semibold text-zinc-100">Analytics</span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-2 mb-3">
+                        {/* Stats */}
+                        <div className="grid grid-cols-4 gap-2 mb-3">
                             {[
-                                { label: 'Page Views', value: '2.7K' },
-                                { label: 'Sessions', value: '479K' },
-                                { label: 'Bounce Rate', value: '40.6%' },
-                                { label: 'Duration', value: '17m' },
+                                { label: 'Events', value: '4' },
+                                { label: 'Projects', value: '2' },
+                                { label: 'Resources', value: '2' },
+                                { label: 'Users', value: '8' },
                             ].map((m) => (
                                 <div key={m.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-2">
                                     <div className="text-xs font-bold text-zinc-100">{m.value}</div>
-                                    <div className="text-[8px] text-zinc-500">{m.label}</div>
+                                    <div className="text-[7px] text-zinc-500">{m.label}</div>
                                 </div>
                             ))}
                         </div>
-                        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
-                            <div className="flex items-end gap-0.5 h-12">
-                                {[30, 45, 55, 40, 65, 50, 70, 60, 75, 80, 55, 65].map((h, i) => (
-                                    <div key={i} className="flex-1 rounded-t-sm bg-zinc-700" style={{ height: `${h}%` }} />
+                        {/* Chart */}
+                        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 mb-3">
+                            <span className="text-[9px] lg:text-[10px] font-semibold text-zinc-200">Aktivitas 7 Hari</span>
+                            <div className="flex items-end gap-1 h-12 mt-2">
+                                {[
+                                    { day: 'Min', vals: [0, 0, 0] },
+                                    { day: 'Sen', vals: [0, 0, 0] },
+                                    { day: 'Sel', vals: [0, 0, 0] },
+                                    { day: 'Rab', vals: [0, 0, 0] },
+                                    { day: 'Kam', vals: [0, 0, 0] },
+                                    { day: 'Jum', vals: [0, 0, 0] },
+                                    { day: 'Sab', vals: [2, 1, 1] },
+                                ].map((d) => (
+                                    <div key={d.day} className="flex-1 flex flex-col items-center">
+                                        <div className="w-full flex flex-col justify-end gap-0.5" style={{ height: '36px' }}>
+                                            {d.vals[0] > 0 && <div className="w-full rounded-t-sm bg-zinc-700" style={{ height: `${(d.vals[0] / 3) * 100}%`, minHeight: '3px' }} />}
+                                            {d.vals[1] > 0 && <div className="w-full rounded-t-sm bg-zinc-600" style={{ height: `${(d.vals[1] / 3) * 100}%`, minHeight: '3px' }} />}
+                                            {d.vals[2] > 0 && <div className="w-full rounded-t-sm bg-zinc-500" style={{ height: `${(d.vals[2] / 3) * 100}%`, minHeight: '3px' }} />}
+                                            {d.vals.every(v => v === 0) && <div className="w-full h-px bg-zinc-800" />}
+                                        </div>
+                                        <span className="text-[6px] text-zinc-600 mt-1">{d.day}</span>
+                                    </div>
                                 ))}
                             </div>
-                            <div className="flex items-center gap-3 mt-2">
-                                <span className="flex items-center gap-1 text-[7px] text-zinc-500">
-                                    <div className="w-1.5 h-0.5 bg-zinc-500 rounded" /> Load
-                                </span>
-                                <span className="flex items-center gap-1 text-[7px] text-zinc-500">
-                                    <div className="w-1.5 h-0.5 bg-zinc-400 rounded" /> Bounce
-                                </span>
-                            </div>
                         </div>
-                        <div className="flex -space-x-1 mt-3">
-                            {['A', 'M', 'R', 'S', 'K', '+23'].map((u, i) => (
-                                <div key={i} className="w-5 h-5 rounded-full bg-zinc-700 border border-zinc-950 flex items-center justify-center text-[7px] font-semibold text-zinc-200">{u}</div>
+                        {/* Activity */}
+                        <div className="space-y-1.5">
+                            {[
+                                { type: 'Event', title: 'Hackathon Sprint', time: '2m lalu' },
+                                { type: 'Project', title: 'Progress Hub', time: '1j lalu' },
+                                { type: 'Resource', title: 'Modul React', time: '3 hari lalu' },
+                            ].map((item, i) => (
+                                <div key={i} className="flex items-center gap-2">
+                                    <div className="w-4 h-4 rounded bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
+                                        <div className="w-1.5 h-1.5 rounded-sm bg-zinc-600" />
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                        <p className="text-[8px] text-zinc-100 font-medium truncate">{item.title}</p>
+                                        <p className="text-[6px] text-zinc-500">{item.type} &middot; {item.time}</p>
+                                    </div>
+                                </div>
                             ))}
-                            <span className="text-[8px] text-zinc-500 ml-2 self-center">128 active</span>
                         </div>
                     </div>
                 </div>
