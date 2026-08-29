@@ -1,4 +1,4 @@
-import { Calendar, FolderGit2, BookOpen, Clock, Users, TrendingUp, ArrowUpRight, Activity } from 'lucide-react'
+import { Calendar, FolderGit2, BookOpen, Clock, Users, TrendingUp, ArrowUpRight, Activity, LayoutDashboard, Code2, Settings } from 'lucide-react'
 
 export default function HeroDemo() {
     return (
@@ -16,10 +16,16 @@ export default function HeroDemo() {
                                     </div>
                                     <span className="text-[10px] font-semibold text-zinc-200">Progress Hub</span>
                                 </div>
-                                {['Dashboard', 'Events', 'Projects', 'Resources', 'Settings'].map((item, i) => (
-                                    <div key={item} className={`flex items-center gap-2 px-2 py-1.5 rounded text-[10px] ${i === 0 ? 'bg-zinc-800 text-zinc-100 font-medium' : 'text-zinc-500'}`}>
-                                        <div className="w-3 h-3 rounded bg-zinc-800" />
-                                        {item}
+                                {[
+                                    { label: 'Dashboard', icon: LayoutDashboard },
+                                    { label: 'Events', icon: Calendar },
+                                    { label: 'Projects', icon: FolderGit2 },
+                                    { label: 'Resources', icon: BookOpen },
+                                    { label: 'Settings', icon: Settings },
+                                ].map((item, i) => (
+                                    <div key={item.label} className={`flex items-center gap-2 px-2 py-1.5 rounded text-[10px] ${i === 0 ? 'bg-zinc-800 text-zinc-100 font-medium' : 'text-zinc-500'}`}>
+                                        <item.icon className="size-3" />
+                                        {item.label}
                                     </div>
                                 ))}
                             </div>

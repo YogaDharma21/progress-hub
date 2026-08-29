@@ -1,6 +1,66 @@
-import { Calendar, FolderGit2, BookOpen, Clock, Users, Eye, TrendingUp, ArrowUpRight } from 'lucide-react'
+'use client'
+
+import { Calendar, FolderGit2, BookOpen, Clock, Users, Eye } from 'lucide-react'
+import { useState } from 'react'
+
+const tabs = ['Semua', 'Kelas', 'Hackathon', 'Sharing'] as const
+type Tab = (typeof tabs)[number]
+
+const events = [
+    {
+        title: 'Hackathon Code Sprint',
+        description: 'Build innovative solutions in 48 hours.',
+        type: 'Hackathon' as const,
+        status: 'Berlangsung',
+        statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+        progressColor: 'bg-emerald-500',
+        progress: 65,
+        sessions: 8,
+        participants: 24,
+        avatars: ['A', 'R', '+12'],
+    },
+    {
+        title: 'React Deep Dive',
+        description: 'Master advanced React patterns.',
+        type: 'Kelas' as const,
+        status: 'Mendatang',
+        statusColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+        progressColor: 'bg-amber-500',
+        progress: 10,
+        sessions: 4,
+        participants: 18,
+        avatars: ['M', 'S', '+8'],
+    },
+    {
+        title: 'Sharing Session: CI/CD',
+        description: 'Learn CI/CD pipelines with GitHub Actions.',
+        type: 'Sharing' as const,
+        status: 'Berlangsung',
+        statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+        progressColor: 'bg-emerald-500',
+        progress: 30,
+        sessions: 2,
+        participants: 12,
+        avatars: ['K', 'D', '+5'],
+    },
+    {
+        title: 'Python for Data Science',
+        description: 'Introduction to data analysis with Python.',
+        type: 'Kelas' as const,
+        status: 'Registration',
+        statusColor: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
+        progressColor: 'bg-blue-500',
+        progress: 0,
+        sessions: 6,
+        participants: 32,
+        avatars: ['P', 'L', '+15'],
+    },
+]
 
 export default function FeaturesSection() {
+    const [activeTab, setActiveTab] = useState<Tab>('Semua')
+    const filtered = activeTab === 'Semua' ? events : events.filter((e) => e.type === activeTab)
+
     return (
         <section className="py-16 md:py-20">
             <div className="mx-auto max-w-7xl space-y-12 px-6">
@@ -18,62 +78,47 @@ export default function FeaturesSection() {
                                 <span className="text-xs font-semibold text-zinc-100">Program Kerja & Kegiatan</span>
                             </div>
                             <div className="flex gap-1">
-                                {['Semua', 'Kelas', 'Hackathon', 'Sharing'].map((tab, i) => (
-                                    <div key={tab} className={`px-2.5 py-1 text-[10px] font-medium rounded-md ${i === 0 ? 'bg-zinc-800 text-zinc-100' : 'text-zinc-500'}`}>
+                                {tabs.map((tab) => (
+                                    <button
+                                        key={tab}
+                                        onClick={() => setActiveTab(tab)}
+                                        className={`px-2.5 py-1 text-[10px] font-medium rounded-md transition-colors cursor-pointer ${activeTab === tab ? 'bg-zinc-800 text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>
                                         {tab}
-                                    </div>
+                                    </button>
                                 ))}
                             </div>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4 mb-5">
-                            {/* Event card 1 */}
-                            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-                                <div className="flex items-start justify-between gap-2 mb-2.5">
-                                    <div className="min-w-0 flex-1">
-                                        <h4 className="text-[11px] font-semibold text-zinc-100 truncate">Hackathon Code Sprint</h4>
-                                        <p className="text-[9px] text-zinc-500 mt-0.5 line-clamp-1">Build innovative solutions in 48 hours.</p>
+                            {filtered.map((event) => (
+                                <div key={event.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+                                    <div className="flex items-start justify-between gap-2 mb-2.5">
+                                        <div className="min-w-0 flex-1">
+                                            <h4 className="text-[11px] font-semibold text-zinc-100 truncate">{event.title}</h4>
+                                            <p className="text-[9px] text-zinc-500 mt-0.5 line-clamp-1">{event.description}</p>
+                                        </div>
+                                        <span className={`shrink-0 px-2 py-0.5 rounded-full text-[9px] font-medium border ${event.statusColor}`}>
+                                            {event.status}
+                                        </span>
                                     </div>
-                                    <span className="shrink-0 px-2 py-0.5 rounded-full text-[9px] font-medium border bg-emerald-500/10 text-emerald-400 border-emerald-500/30">Berlangsung</span>
-                                </div>
-                                <div className="w-full bg-zinc-950 h-1.5 rounded-full overflow-hidden mb-2.5">
-                                    <div className="bg-emerald-500 h-full rounded-full" style={{ width: '65%' }} />
-                                </div>
-                                <div className="flex items-center justify-between text-[9px] text-zinc-500">
-                                    <div className="flex items-center gap-3">
-                                        <span className="flex items-center gap-1"><Clock className="size-3" /> 8 Pertemuan</span>
-                                        <span className="flex items-center gap-1"><Users className="size-3" /> 24 Peserta</span>
+                                    <div className="w-full bg-zinc-950 h-1.5 rounded-full overflow-hidden mb-2.5">
+                                        <div className={`${event.progressColor} h-full rounded-full transition-all`} style={{ width: `${event.progress || 10}%` }} />
                                     </div>
-                                    <div className="flex -space-x-1">
-                                        {['A', 'R', '+12'].map((a, i) => (
-                                            <div key={i} className="w-5 h-5 rounded-full bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] font-semibold text-zinc-200">{a}</div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                            {/* Event card 2 */}
-                            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-                                <div className="flex items-start justify-between gap-2 mb-2.5">
-                                    <div className="min-w-0 flex-1">
-                                        <h4 className="text-[11px] font-semibold text-zinc-100 truncate">React Deep Dive</h4>
-                                        <p className="text-[9px] text-zinc-500 mt-0.5 line-clamp-1">Master advanced React patterns.</p>
-                                    </div>
-                                    <span className="shrink-0 px-2 py-0.5 rounded-full text-[9px] font-medium border bg-amber-500/10 text-amber-400 border-amber-500/30">Mendatang</span>
-                                </div>
-                                <div className="w-full bg-zinc-950 h-1.5 rounded-full overflow-hidden mb-2.5">
-                                    <div className="bg-amber-500 h-full rounded-full" style={{ width: '10%' }} />
-                                </div>
-                                <div className="flex items-center justify-between text-[9px] text-zinc-500">
-                                    <div className="flex items-center gap-3">
-                                        <span className="flex items-center gap-1"><Clock className="size-3" /> 4 Pertemuan</span>
-                                        <span className="flex items-center gap-1"><Users className="size-3" /> 18 Peserta</span>
-                                    </div>
-                                    <div className="flex -space-x-1">
-                                        {['M', 'S', '+8'].map((a, i) => (
-                                            <div key={i} className="w-5 h-5 rounded-full bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] font-semibold text-zinc-200">{a}</div>
-                                        ))}
+                                    <div className="flex items-center justify-between text-[9px] text-zinc-500">
+                                        <div className="flex items-center gap-3">
+                                            <span className="flex items-center gap-1"><Clock className="size-3" /> {event.sessions} Pertemuan</span>
+                                            <span className="flex items-center gap-1"><Users className="size-3" /> {event.participants} Peserta</span>
+                                        </div>
+                                        <div className="flex -space-x-1">
+                                            {event.avatars.map((a, i) => (
+                                                <div key={i} className="w-5 h-5 rounded-full bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] font-semibold text-zinc-200">{a}</div>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            ))}
+                            {filtered.length === 0 && (
+                                <div className="col-span-full text-center text-[11px] text-zinc-600 py-8">Belum ada event di kategori ini.</div>
+                            )}
                         </div>
 
                         {/* Bottom row: projects + resources + stats */}
