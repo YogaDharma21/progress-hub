@@ -111,15 +111,9 @@ export default function HeroDemo() {
             <div className="bg-card relative h-full w-2/3 overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring-1 ring-black/10">
                 <div className="bg-zinc-950 p-4 lg:p-6 min-h-[300px] lg:min-h-[420px]">
                     {/* Header */}
-                    <div className="flex items-center justify-between mb-4">
-                        <div>
-                            <h3 className="text-xs lg:text-sm font-semibold text-zinc-100">Analytics Overview</h3>
-                            <p className="text-[8px] lg:text-[9px] text-zinc-500 mt-0.5">Last 7 days using median</p>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                            <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                            <span className="text-[8px] lg:text-[9px] text-zinc-400">Live</span>
-                        </div>
+                    <div className="mb-4">
+                        <h3 className="text-xs lg:text-sm font-semibold text-zinc-100">Analytics Overview</h3>
+                        <p className="text-[8px] lg:text-[9px] text-zinc-500 mt-0.5">Last 7 days using median</p>
                     </div>
 
                     {/* Metrics row */}
