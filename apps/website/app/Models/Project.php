@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Project extends Model
 {
@@ -21,6 +22,12 @@ class Project extends Model
         'repository_url',
         'documentation_url',
         'created_by',
+        'approval_status',
+        'rejection_reason',
+    ];
+
+    protected $casts = [
+        'approval_status' => 'string',
     ];
 
     public function creator(): BelongsTo
@@ -36,5 +43,10 @@ class Project extends Model
     public function features(): HasMany
     {
         return $this->hasMany(ProjectFeature::class);
+    }
+
+    public function submissions(): MorphMany
+    {
+        return $this->morphMany(Submission::class, 'submittable');
     }
 }

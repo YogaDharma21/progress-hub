@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\EventParticipant;
 use App\Models\Project;
 use App\Models\Resource;
+use App\Models\Submission;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ class AdminDashboardController extends Controller
             'projects' => Project::count(),
             'resources' => Resource::count(),
             'users' => User::count(),
+            'pending_submissions' => Submission::where('status', 'pending')->count(),
         ];
 
         // Activity per day for last 7 days

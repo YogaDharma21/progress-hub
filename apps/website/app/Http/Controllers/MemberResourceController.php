@@ -12,7 +12,8 @@ class MemberResourceController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Resource::with(['chapters', 'creator']);
+        $query = Resource::where('approval_status', 'approved')
+            ->with(['chapters', 'creator']);
 
         if ($request->filled('type') && $request->type !== 'all') {
             $query->where('type', $request->type);
@@ -28,7 +29,7 @@ class MemberResourceController extends Controller
      */
     public function detail()
     {
-        $resource = Resource::first();
+        $resource = Resource::where('approval_status', 'approved')->first();
 
         return $resource ? redirect()->route('members.resources.show', $resource) : redirect()->route('members.resources.index');
     }

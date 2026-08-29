@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Project;
 use App\Models\Resource;
+use App\Models\Submission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MemberDashboardController extends Controller
 {
@@ -14,24 +16,32 @@ class MemberDashboardController extends Controller
      */
     public function index()
     {
-        $eventsCount = Event::count();
-        $projectsCount = Project::count();
-        $resourcesCount = Resource::count();
+        $eventsCount = Event::where('approval_status', 'approved')->count();
+        $projectsCount = Project::where('approval_status', 'approved')->count();
+        $resourcesCount = Resource::where('approval_status', 'approved')->count();
 
-        $events = Event::with(['topics', 'participants.user'])
+        $events = Event::where('approval_status', 'approved')
+            ->with(['topics', 'participants.user'])
             ->withCount('participants')
             ->latest()
             ->take(6)
             ->get();
 
-        $projects = Project::with(['features', 'creator', 'members.user'])
+        $projects = Project::where('approval_status', 'approved')
+            ->with(['features', 'creator', 'members.user'])
             ->latest()
             ->take(6)
             ->get();
 
-        $resources = Resource::with('chapters')
+        $resources = Resource::where('approval_status', 'approved')
+            ->with('chapters')
             ->latest()
             ->take(6)
+            ->get();
+
+        $mySubmissions = Submission::where('user_id', Auth::id())
+            ->with('submittable')
+            ->latest()
             ->get();
 
         return view('members.dashboard', compact(
@@ -40,7 +50,8 @@ class MemberDashboardController extends Controller
             'resourcesCount',
             'events',
             'projects',
-            'resources'
+            'resources',
+            'mySubmissions'
         ));
     }
 }

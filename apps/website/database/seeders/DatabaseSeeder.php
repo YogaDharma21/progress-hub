@@ -57,6 +57,7 @@ class DatabaseSeeder extends Seeder
                 'target_capacity' => 50,
                 'progress_percentage' => 65,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             EventTopic::create([
@@ -96,6 +97,7 @@ class DatabaseSeeder extends Seeder
                 'target_capacity' => 40,
                 'progress_percentage' => 0,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             EventTopic::create([
@@ -129,6 +131,7 @@ class DatabaseSeeder extends Seeder
                 'target_capacity' => 100,
                 'progress_percentage' => 15,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             EventTopic::create([
@@ -156,6 +159,7 @@ class DatabaseSeeder extends Seeder
                 'repository_url' => 'https://github.com/ukm-dev/evoting-kampus',
                 'documentation_url' => 'https://docs.evoting-example.com',
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             ProjectFeature::create([
@@ -191,6 +195,7 @@ class DatabaseSeeder extends Seeder
                 'repository_url' => 'https://github.com/ukm-dev/news-portal',
                 'documentation_url' => null,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             ProjectFeature::create([
@@ -221,6 +226,7 @@ class DatabaseSeeder extends Seeder
                 'repository_url' => 'https://github.com/ahmadfauzi/rust-task-cli',
                 'documentation_url' => 'https://github.com/ahmadfauzi/rust-task-cli#readme',
                 'created_by' => $members[0]->id,
+                'approval_status' => 'approved',
             ]);
 
             ProjectFeature::create([
@@ -251,6 +257,7 @@ class DatabaseSeeder extends Seeder
                 'file_path' => 'https://example.com/modul-react.pdf',
                 'views_count' => 1250,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             ResourceChapter::create([
@@ -280,6 +287,7 @@ class DatabaseSeeder extends Seeder
                 'file_path' => null,
                 'views_count' => 842,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             ResourceChapter::create([
@@ -303,6 +311,7 @@ class DatabaseSeeder extends Seeder
                 'file_path' => 'https://example.com/docker-guide.pdf',
                 'views_count' => 934,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             ResourceChapter::create([

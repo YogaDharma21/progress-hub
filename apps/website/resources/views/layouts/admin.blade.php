@@ -32,6 +32,12 @@
             </div>
 
             <nav class="hidden md:flex items-center gap-1">
+                <a href="/admin" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('admin') && !request()->is('admin/*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                    Dashboard
+                </a>
+                <a href="/admin/submissions" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('admin/submissions*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                    Submissions
+                </a>
                 <a href="/admin/events" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('admin/events*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                     Events
                 </a>

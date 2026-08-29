@@ -17,7 +17,11 @@
     </div>
 
     <!-- Stats -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        <a href="{{ route('admin.submissions.index') }}" class="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition block">
+            <div class="text-3xl font-bold text-amber-400">{{ $stats['pending_submissions'] }}</div>
+            <div class="text-sm text-zinc-500 mt-1">Pending Reviews</div>
+        </a>
         <a href="{{ route('admin.events.index') }}" class="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition block">
             <div class="text-3xl font-bold text-zinc-100">{{ $stats['events'] }}</div>
             <div class="text-sm text-zinc-500 mt-1">Events</div>

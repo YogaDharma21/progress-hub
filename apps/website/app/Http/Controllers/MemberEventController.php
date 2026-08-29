@@ -14,7 +14,8 @@ class MemberEventController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Event::with(['topics', 'participants.user'])
+        $query = Event::where('approval_status', 'approved')
+            ->with(['topics', 'participants.user'])
             ->withCount('participants');
 
         if ($request->filled('type') && $request->type !== 'all') {
@@ -31,7 +32,7 @@ class MemberEventController extends Controller
      */
     public function detail()
     {
-        $event = Event::first();
+        $event = Event::where('approval_status', 'approved')->first();
 
         return $event ? redirect()->route('members.events.show', $event) : redirect()->route('members.events.index');
     }

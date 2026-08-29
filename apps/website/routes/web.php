@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminSubmissionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\Member\EventSubmissionController;
+use App\Http\Controllers\Member\ProjectSubmissionController;
+use App\Http\Controllers\Member\ResourceSubmissionController;
 use App\Http\Controllers\MemberDashboardController;
 use App\Http\Controllers\MemberEventController;
 use App\Http\Controllers\MemberProjectController;
@@ -40,6 +44,32 @@ Route::middleware(['auth'])->prefix('members')->name('members.')->group(function
         Route::get('/detail', [MemberResourceController::class, 'detail'])->name('detail');
         Route::get('/{resource}', [MemberResourceController::class, 'show'])->name('show');
     });
+
+    Route::prefix('submissions')->name('submissions.')->group(function () {
+        Route::prefix('events')->name('events.')->group(function () {
+            Route::get('/create', [EventSubmissionController::class, 'create'])->name('create');
+            Route::post('/', [EventSubmissionController::class, 'store'])->name('store');
+            Route::get('/{event}/edit', [EventSubmissionController::class, 'edit'])->name('edit');
+            Route::put('/{event}', [EventSubmissionController::class, 'update'])->name('update');
+            Route::delete('/{event}', [EventSubmissionController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('projects')->name('projects.')->group(function () {
+            Route::get('/create', [ProjectSubmissionController::class, 'create'])->name('create');
+            Route::post('/', [ProjectSubmissionController::class, 'store'])->name('store');
+            Route::get('/{project}/edit', [ProjectSubmissionController::class, 'edit'])->name('edit');
+            Route::put('/{project}', [ProjectSubmissionController::class, 'update'])->name('update');
+            Route::delete('/{project}', [ProjectSubmissionController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('resources')->name('resources.')->group(function () {
+            Route::get('/create', [ResourceSubmissionController::class, 'create'])->name('create');
+            Route::post('/', [ResourceSubmissionController::class, 'store'])->name('store');
+            Route::get('/{resource}/edit', [ResourceSubmissionController::class, 'edit'])->name('edit');
+            Route::put('/{resource}', [ResourceSubmissionController::class, 'update'])->name('update');
+            Route::delete('/{resource}', [ResourceSubmissionController::class, 'destroy'])->name('destroy');
+        });
+    });
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -48,4 +78,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('events', EventController::class);
     Route::resource('projects', ProjectController::class);
     Route::resource('resources', ResourceController::class);
+
+    Route::prefix('submissions')->name('submissions.')->group(function () {
+        Route::get('/', [AdminSubmissionController::class, 'index'])->name('index');
+        Route::get('/{submission}', [AdminSubmissionController::class, 'show'])->name('show');
+        Route::patch('/{submission}/approve', [AdminSubmissionController::class, 'approve'])->name('approve');
+        Route::patch('/{submission}/reject', [AdminSubmissionController::class, 'reject'])->name('reject');
+    });
 });

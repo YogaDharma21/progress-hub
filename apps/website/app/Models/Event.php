@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Event extends Model
 {
@@ -20,6 +21,12 @@ class Event extends Model
         'target_capacity',
         'progress_percentage',
         'created_by',
+        'approval_status',
+        'rejection_reason',
+    ];
+
+    protected $casts = [
+        'approval_status' => 'string',
     ];
 
     public function getComputedProgressAttribute(): int
@@ -48,5 +55,10 @@ class Event extends Model
     public function topics(): HasMany
     {
         return $this->hasMany(EventTopic::class);
+    }
+
+    public function submissions(): MorphMany
+    {
+        return $this->morphMany(Submission::class, 'submittable');
     }
 }

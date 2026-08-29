@@ -27,6 +27,9 @@
             </a>
 
             <nav class="hidden md:flex items-center gap-1">
+                <a href="/members" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('members') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                    Dashboard
+                </a>
                 <a href="/members/events" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('members/events*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                     Events
                 </a>
@@ -35,6 +38,9 @@
                 </a>
                 <a href="/members/resources" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('members/resources*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                     Resources
+                </a>
+                <a href="{{ route('members.dashboard') }}#submissions" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('members/submissions*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                    Submit
                 </a>
             </nav>
 
