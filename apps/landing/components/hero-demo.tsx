@@ -1,4 +1,4 @@
-import { Calendar, FolderGit2, BookOpen, Clock, Users, Eye } from 'lucide-react'
+import { Calendar, FolderGit2, BookOpen, Clock, Users, TrendingUp } from 'lucide-react'
 import Image from 'next/image'
 
 export default function HeroDemo() {
@@ -21,7 +21,6 @@ export default function HeroDemo() {
                             </div>
                             <div className="flex items-center gap-2">
                                 <div className="w-5 h-5 rounded-full bg-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-200">M</div>
-                                <span className="text-[9px] text-zinc-400 hidden sm:inline">Member</span>
                             </div>
                         </div>
 
@@ -100,81 +99,93 @@ export default function HeroDemo() {
                 </div>
             </div>
 
-            {/* Second panel (right/overlapping) */}
+            {/* Analytics panel (right/overlapping) */}
             <div className="bg-card relative h-full w-2/3 overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring-1 ring-black/10">
-                <div className="bg-zinc-950 min-h-[300px] lg:min-h-[420px]">
-                    {/* Navbar */}
-                    <div className="flex items-center justify-between px-4 lg:px-5 py-3 border-b border-zinc-800/60">
-                        <div className="flex items-center gap-2">
-                            <Image src="/icon-192.png" alt="Progress Hub" width={18} height={18} className="rounded" />
-                            <span className="text-[11px] font-semibold text-zinc-100">Progress Hub</span>
+                <div className="bg-zinc-950 p-4 lg:p-6 min-h-[300px] lg:min-h-[420px]">
+                    {/* Header */}
+                    <div className="mb-4">
+                        <h3 className="text-xs lg:text-sm font-semibold text-zinc-100">Analytics Overview</h3>
+                        <p className="text-[8px] lg:text-[9px] text-zinc-500 mt-0.5">Last 7 days using median</p>
+                    </div>
+
+                    {/* Metrics row */}
+                    <div className="grid grid-cols-4 gap-2 mb-4">
+                        {[
+                            { label: 'Page Views', value: '2.7K' },
+                            { label: 'Bounce Rate', value: '40.6%' },
+                            { label: 'Sessions', value: '479K' },
+                            { label: 'Avg. Duration', value: '17m' },
+                        ].map((m) => (
+                            <div key={m.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-2 lg:p-2.5">
+                                <div className="text-xs lg:text-sm font-bold text-zinc-100">{m.value}</div>
+                                <div className="text-[7px] lg:text-[8px] text-zinc-500 mt-0.5">{m.label}</div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Chart */}
+                    <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 lg:p-4 mb-4">
+                        <div className="flex items-center justify-between mb-3">
+                            <span className="text-[10px] lg:text-xs font-semibold text-zinc-200">Page Load vs Bounce Rate</span>
+                            <div className="flex items-center gap-3">
+                                <span className="flex items-center gap-1 text-[7px] lg:text-[8px] text-zinc-500">
+                                    <div className="w-2 h-0.5 bg-zinc-500 rounded" />
+                                    Load Time
+                                </span>
+                                <span className="flex items-center gap-1 text-[7px] lg:text-[8px] text-zinc-500">
+                                    <div className="w-2 h-0.5 bg-zinc-400 rounded" />
+                                    Bounce
+                                </span>
+                            </div>
                         </div>
-                        <div className="hidden sm:flex items-center gap-5">
-                            {['Events', 'Projects', 'Resources'].map((item) => (
-                                <span key={item} className="text-[10px] text-zinc-400">{item}</span>
-                            ))}
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <div className="w-5 h-5 rounded-full bg-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-200">M</div>
+                        <div className="relative h-20 lg:h-28">
+                            {/* Bar chart */}
+                            <div className="absolute inset-0 flex items-end gap-1">
+                                {[30, 45, 60, 50, 70, 55, 80, 65, 75, 85, 60, 70].map((h, i) => (
+                                    <div key={i} className="flex-1 flex flex-col justify-end">
+                                        <div className="w-full rounded-t-sm bg-zinc-700" style={{ height: `${h}%` }} />
+                                    </div>
+                                ))}
+                            </div>
+                            {/* Line overlay */}
+                            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <path d="M0,70 Q10,65 20,55 T40,50 T60,45 T80,40 T100,35" fill="none" stroke="rgb(161,161,170)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+                            </svg>
                         </div>
                     </div>
 
-                    <div className="p-4 lg:p-5">
-                        {/* Projects section */}
-                        <div>
-                            <div className="flex items-center justify-between mb-3">
-                                <div className="flex items-center gap-1.5">
-                                    <FolderGit2 className="size-3.5 text-zinc-400" />
-                                    <span className="text-[11px] lg:text-xs font-semibold text-zinc-100">Portofolio & Proyek</span>
-                                </div>
-                                <span className="text-[8px] lg:text-[9px] text-zinc-500 underline">Lihat Semua</span>
+                    {/* Bottom row */}
+                    <div className="grid grid-cols-2 gap-2">
+                        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
+                            <div className="flex items-center justify-between mb-2">
+                                <span className="text-[9px] lg:text-[10px] font-semibold text-zinc-300">Top Resources</span>
                             </div>
-                            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 lg:p-4">
-                                <div className="w-full h-16 lg:h-24 bg-gradient-to-br from-violet-500/20 to-blue-500/20 rounded-lg border border-zinc-800 mb-2.5 flex items-center justify-center">
-                                    <Image src="/icon-192.png" alt="Progress Hub" width={20} height={20} className="rounded opacity-40" />
-                                </div>
-                                <span className="px-1.5 py-0.5 rounded text-[8px] lg:text-[9px] font-semibold bg-zinc-800 text-zinc-300">Member Project</span>
-                                <h4 className="text-[10px] lg:text-[11px] font-semibold text-zinc-100 mt-1.5">Progress Hub</h4>
-                                <p className="text-[8px] lg:text-[9px] text-zinc-500 line-clamp-1 mt-0.5">Platform manajemen kegiatan UKM.</p>
-                                <div className="flex flex-wrap gap-1 mt-2">
-                                    {['Laravel', 'React', 'Tailwind'].map((t) => (
-                                        <span key={t} className="px-1.5 py-0.5 rounded text-[7px] lg:text-[8px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800">{t}</span>
-                                    ))}
-                                </div>
-                                <div className="flex items-center justify-between text-[8px] lg:text-[9px] text-zinc-600 mt-2.5 pt-2 border-t border-zinc-800/60">
-                                    <span>oleh Ahmad F.</span>
-                                    <span>4 weeks ago</span>
-                                </div>
+                            <div className="space-y-1.5">
+                                {['Modul React', 'Tutorial API', 'CSS Tricks'].map((r, i) => (
+                                    <div key={r} className="flex items-center justify-between">
+                                        <span className="text-[8px] lg:text-[9px] text-zinc-400">{r}</span>
+                                        <div className="flex items-center gap-1">
+                                            <div className="h-1 rounded-full bg-zinc-600" style={{ width: `${[80, 60, 45][i]}px` }} />
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
-
-                        {/* Resources section */}
-                        <div className="mt-5 lg:mt-6">
-                            <div className="flex items-center justify-between mb-3">
-                                <div className="flex items-center gap-1.5">
-                                    <BookOpen className="size-3.5 text-zinc-400" />
-                                    <span className="text-[11px] lg:text-xs font-semibold text-zinc-100">Repositori & Artikel</span>
-                                </div>
-                                <span className="text-[8px] lg:text-[9px] text-zinc-500 underline">Browse Semua</span>
+                        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
+                            <div className="flex items-center justify-between mb-2">
+                                <span className="text-[9px] lg:text-[10px] font-semibold text-zinc-300">Active Users</span>
                             </div>
-                            <div className="grid grid-cols-1 gap-2 lg:gap-3">
-                                {[
-                                    { type: 'Modul', tags: ['JavaScript', 'React'], title: 'Modul Praktikum Web Dev', desc: 'Panduan lengkap belajar web development.', views: 342, time: '3 hari lalu' },
-                                    { type: 'Artikel', tags: ['Career'], title: 'Tips Lolos Tech Interview', desc: 'Strategi untuk technical interview.', views: 218, time: '1 minggu lalu' },
-                                ].map((resource) => (
-                                    <div key={resource.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 lg:p-4">
-                                        <div className="flex items-center gap-1.5 mb-1.5">
-                                            <span className="px-1.5 py-0.5 rounded text-[8px] lg:text-[9px] font-semibold bg-zinc-800 text-zinc-300">{resource.type}</span>
-                                            {resource.tags.map((tag) => (
-                                                <span key={tag} className="px-1.5 py-0.5 rounded text-[7px] lg:text-[8px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800">{tag}</span>
-                                            ))}
-                                        </div>
-                                        <h4 className="text-[10px] lg:text-[11px] font-semibold text-zinc-100">{resource.title}</h4>
-                                        <p className="text-[8px] lg:text-[9px] text-zinc-500 line-clamp-1 mt-0.5">{resource.desc}</p>
-                                        <div className="flex items-center justify-between text-[8px] lg:text-[9px] text-zinc-600 mt-2 pt-2 border-t border-zinc-800/60">
-                                            <span>{resource.time}</span>
-                                            <span className="flex items-center gap-1"><Eye className="size-2.5 lg:size-3" /> {resource.views} views</span>
-                                        </div>
+                            <div className="flex items-center gap-1 mb-2">
+                                <div className="text-lg lg:text-xl font-bold text-zinc-100">128</div>
+                                <span className="text-[8px] lg:text-[9px] text-zinc-400 font-medium flex items-center gap-0.5 mt-1">
+                                    <TrendingUp className="size-2.5" />
+                                    +12%
+                                </span>
+                            </div>
+                            <div className="flex -space-x-1">
+                                {['A', 'M', 'R', 'S', 'K', '+23'].map((u, i) => (
+                                    <div key={i} className="w-5 h-5 rounded-full bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] lg:text-[8px] font-semibold text-zinc-200">
+                                        {u}
                                     </div>
                                 ))}
                             </div>
