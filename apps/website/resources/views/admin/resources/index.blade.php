@@ -31,7 +31,7 @@
                             <td class="px-5 py-4 font-medium text-zinc-100">{{ $resource->title }}</td>
                             <td class="px-5 py-4 text-zinc-400">
                                 @if($resource->type)
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-200">{{ $resource->type }}</span>
+                                    <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-zinc-800 text-zinc-200">{{ $resource->type }}</span>
                                 @else
                                     <span class="text-zinc-500">-</span>
                                 @endif

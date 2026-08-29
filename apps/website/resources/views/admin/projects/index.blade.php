@@ -31,9 +31,9 @@
                             <td class="px-5 py-4 font-medium text-zinc-100">{{ $project->title }}</td>
                             <td class="px-5 py-4 text-zinc-400">
                                 @if($project->category == 'UKM Project')
-                                    <span class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-200">UKM Project</span>
+                                    <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-zinc-800 text-zinc-200">UKM Project</span>
                                 @else
-                                    <span class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-zinc-950 text-zinc-400 border border-zinc-800">{{ $project->category ?? 'Member Project' }}</span>
+                                    <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-zinc-950 text-zinc-400 border border-zinc-800">{{ $project->category ?? 'Member Project' }}</span>
                                 @endif
                             </td>
                             <td class="px-5 py-4 text-zinc-400">{{ $project->technologies ?? '-' }}</td>
