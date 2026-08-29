@@ -43,16 +43,25 @@
             <h3 class="text-sm font-semibold text-zinc-100 mb-4">Aktivitas 7 Hari</h3>
             <div class="flex items-end gap-2 h-40">
                 @foreach($days as $day)
-                    <div class="flex-1 flex flex-col items-center gap-1">
+                    <div class="group/bar relative flex-1 flex flex-col items-center gap-1">
+                        {{-- Tooltip --}}
+                        <div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 hidden group-hover/bar:block z-10">
+                            <div class="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-[10px] text-zinc-300 whitespace-nowrap shadow-lg">
+                                <div class="font-medium text-zinc-100 mb-1">{{ $day['label'] }}</div>
+                                <div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-sm bg-zinc-600"></span> Events: {{ $day['events'] }}</div>
+                                <div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-sm bg-zinc-500"></span> Projects: {{ $day['projects'] }}</div>
+                                <div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-sm bg-zinc-400"></span> Resources: {{ $day['resources'] }}</div>
+                            </div>
+                        </div>
                         <div class="w-full flex flex-col justify-end gap-0.5" style="height: 120px;">
                             @if($day['events'] > 0)
-                                <div class="w-full rounded-sm bg-zinc-600" style="height: {{ ($day['events'] / $maxActivity) * 100 }}%; min-height: 4px;"></div>
+                                <div class="w-full rounded-sm bg-zinc-600 transition-all group-hover/bar:brightness-125" style="height: {{ ($day['events'] / $maxActivity) * 100 }}%; min-height: 4px;"></div>
                             @endif
                             @if($day['projects'] > 0)
-                                <div class="w-full rounded-sm bg-zinc-500" style="height: {{ ($day['projects'] / $maxActivity) * 100 }}%; min-height: 4px;"></div>
+                                <div class="w-full rounded-sm bg-zinc-500 transition-all group-hover/bar:brightness-125" style="height: {{ ($day['projects'] / $maxActivity) * 100 }}%; min-height: 4px;"></div>
                             @endif
                             @if($day['resources'] > 0)
-                                <div class="w-full rounded-sm bg-zinc-400" style="height: {{ ($day['resources'] / $maxActivity) * 100 }}%; min-height: 4px;"></div>
+                                <div class="w-full rounded-sm bg-zinc-400 transition-all group-hover/bar:brightness-125" style="height: {{ ($day['resources'] / $maxActivity) * 100 }}%; min-height: 4px;"></div>
                             @endif
                             @if($day['events'] == 0 && $day['projects'] == 0 && $day['resources'] == 0)
                                 <div class="w-full h-px bg-zinc-800"></div>

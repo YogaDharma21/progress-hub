@@ -22,11 +22,12 @@ class AdminDashboardController extends Controller
         ];
 
         // Activity per day for last 7 days
+        $dayNames = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
         $days = collect();
         for ($i = 6; $i >= 0; $i--) {
             $date = Carbon::now()->subDays($i);
             $days->push([
-                'label' => $date->format('D'),
+                'label' => $dayNames[$date->dayOfWeek],
                 'events' => Event::whereDate('created_at', $date)->count(),
                 'projects' => Project::whereDate('created_at', $date)->count(),
                 'resources' => Resource::whereDate('created_at', $date)->count(),
