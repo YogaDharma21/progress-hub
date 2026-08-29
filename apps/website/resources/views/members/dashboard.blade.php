@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Progress Hub — Dashboard')
 
 @section('content')
 <div class="space-y-10">
@@ -43,6 +42,118 @@
         </div>
     </div>
 
+    @if (session('success'))
+        <div class="p-4 rounded-xl bg-emerald-950/60 border border-emerald-800/70 text-sm text-emerald-300 flex items-center justify-between shadow-sm">
+            <span>{{ session('success') }}</span>
+        </div>
+    @endif
+
+    <!-- My Submissions Section -->
+    <section>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+            <h2 class="text-xl font-semibold text-zinc-100 flex items-center gap-2">
+                <svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                Submission Saya
+            </h2>
+            <div class="flex gap-2">
+                <a href="{{ route('members.submissions.events.create') }}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-950 bg-zinc-100 rounded-lg hover:bg-white transition shadow-sm">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    Event
+                </a>
+                <a href="{{ route('members.submissions.projects.create') }}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-950 bg-zinc-100 rounded-lg hover:bg-white transition shadow-sm">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    Project
+                </a>
+                <a href="{{ route('members.submissions.resources.create') }}" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-950 bg-zinc-100 rounded-lg hover:bg-white transition shadow-sm">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    Resource
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-sm">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-zinc-300">
+                    <thead class="bg-zinc-950 text-zinc-400 uppercase text-[11px] font-semibold tracking-wider border-b border-zinc-800">
+                        <tr>
+                            <th class="px-5 py-3.5">Judul</th>
+                            <th class="px-5 py-3.5">Tipe</th>
+                            <th class="px-5 py-3.5">Status</th>
+                            <th class="px-5 py-3.5">Tanggal</th>
+                            <th class="px-5 py-3.5 text-right">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-zinc-800/60">
+                        @forelse($mySubmissions as $submission)
+                            @php
+                                $typeLabel = class_basename($submission->submittable_type);
+                                $typeLabel = match($typeLabel) {
+                                    'Event' => 'Event',
+                                    'Project' => 'Project',
+                                    'Resource' => 'Resource',
+                                    default => $typeLabel,
+                                };
+                                $statusClass = match($submission->status) {
+                                    'pending' => 'bg-amber-500/10 text-amber-400 border border-amber-500/30',
+                                    'approved' => 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30',
+                                    'rejected' => 'bg-rose-500/10 text-rose-400 border border-rose-500/30',
+                                    default => 'bg-zinc-800 text-zinc-300 border border-zinc-700',
+                                };
+                                $statusLabel = match($submission->status) {
+                                    'pending' => 'Menunggu Review',
+                                    'approved' => 'Disetujui',
+                                    'rejected' => 'Ditolak',
+                                    default => $submission->status,
+                                };
+                                $editRoute = match($typeLabel) {
+                                    'Event' => route('members.submissions.events.edit', $submission->submittable_id),
+                                    'Project' => route('members.submissions.projects.edit', $submission->submittable_id),
+                                    'Resource' => route('members.submissions.resources.edit', $submission->submittable_id),
+                                    default => '#',
+                                };
+                                $deleteRoute = match($typeLabel) {
+                                    'Event' => route('members.submissions.events.destroy', $submission->submittable_id),
+                                    'Project' => route('members.submissions.projects.destroy', $submission->submittable_id),
+                                    'Resource' => route('members.submissions.resources.destroy', $submission->submittable_id),
+                                    default => '#',
+                                };
+                            @endphp
+                            <tr class="hover:bg-zinc-800/40 transition">
+                                <td class="px-5 py-4 font-medium text-zinc-100">
+                                    {{ $submission->submittable->title ?? '-' }}
+                                    @if($submission->rejection_reason && $submission->status === 'rejected')
+                                        <p class="text-[11px] text-rose-400 mt-1 font-normal">Alasan: {{ Str::limit($submission->rejection_reason, 80) }}</p>
+                                    @endif
+                                </td>
+                                <td class="px-5 py-4 text-zinc-400">{{ $typeLabel }}</td>
+                                <td class="px-5 py-4">
+                                    <span class="px-2.5 py-0.5 rounded text-[11px] font-medium {{ $statusClass }}">{{ $statusLabel }}</span>
+                                </td>
+                                <td class="px-5 py-4 text-zinc-400">{{ $submission->created_at->diffForHumans() }}</td>
+                                <td class="px-5 py-4 whitespace-nowrap">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <a href="{{ $editRoute }}" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-zinc-200 bg-zinc-800 border border-zinc-700 rounded-md hover:bg-zinc-700 transition">Edit</a>
+                                        <form action="{{ $deleteRoute }}" method="POST" class="inline-flex m-0 p-0" onsubmit="return confirm('Apakah Anda yakin ingin menghapus submission ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-rose-400 bg-rose-500/10 border border-rose-500/30 rounded-md hover:bg-rose-500/20 transition cursor-pointer">Hapus</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="px-5 py-8 text-center text-zinc-500">
+                                    Belum ada submission. Klik tombol di atas untuk submit event, project, atau resource baru.
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
     <!-- Events Section -->
     <section>
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
@@ -68,13 +179,13 @@
                         default => 'bg-zinc-800 text-zinc-300 border-zinc-700',
                     };
                 @endphp
-                <div class="event-card group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition hover:-translate-y-0.5 shadow-sm cursor-pointer" onclick="location.href='{{ route('members.events.show', $event) }}'" data-type="{{ strtolower($event->type ?? 'class') }}">
+                <div class="event-card group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition hover:-translate-y-0.5 shadow-sm cursor-pointer" onclick="location.href='{{ route('members.events.show', $event) }}'" data-type="{{ match(strtolower($event->type ?? '')) { 'kelas', 'class' => 'class', 'hackathon' => 'hackathon', 'sharing' => 'sharing', default => strtolower($event->type ?? 'class') } }}">
                     <div class="flex items-start justify-between gap-3 mb-3">
                         <div>
                             <h3 class="font-semibold text-sm text-zinc-100 group-hover:text-white">{{ $event->title }}</h3>
                             <p class="text-xs text-zinc-400 line-clamp-2 mt-1">{{ $event->description }}</p>
                         </div>
-                        <span class="shrink-0 px-2.5 py-0.5 rounded-full text-xs font-medium border {{ $statusClass }}">
+                        <span class="shrink-0 px-2.5 py-0.5 rounded text-xs font-medium border {{ $statusClass }}">
                             {{ $event->status ?? 'Aktif' }}
                         </span>
                     </div>
@@ -87,12 +198,12 @@
                         @if($event->participants->count() > 0)
                             <div class="flex -space-x-1.5">
                                 @foreach($event->participants->take(2) as $participant)
-                                    <div class="w-6 h-6 rounded-full bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[10px] font-semibold text-zinc-200" title="{{ $participant->user->name ?? 'User' }}">
+                                    <div class="w-6 h-6 rounded bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[10px] font-semibold text-zinc-200" title="{{ $participant->user->name ?? 'User' }}">
                                         {{ strtoupper(substr($participant->user->name ?? 'U', 0, 1)) }}
                                     </div>
                                 @endforeach
                                 @if($event->participants_count > 2)
-                                    <div class="w-6 h-6 rounded-full bg-zinc-800 border border-zinc-800 flex items-center justify-center text-[9px] font-medium text-zinc-400">
+                                    <div class="w-6 h-6 rounded bg-zinc-800 border border-zinc-800 flex items-center justify-center text-[9px] font-medium text-zinc-400">
                                         +{{ $event->participants_count - 2 }}
                                     </div>
                                 @endif

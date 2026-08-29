@@ -52,11 +52,12 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Kelas React Dasar',
                 'description' => 'Fundamental React dari nol: komponen, state, useEffect, Router, dan integrasi API. Pembelajaran langsung dengan studi kasus nyata.',
                 'status' => 'Berlangsung',
-                'type' => 'class',
+                'type' => 'Kelas',
                 'sessions_count' => 8,
                 'target_capacity' => 50,
                 'progress_percentage' => 65,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             EventTopic::create([
@@ -91,11 +92,12 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Python Dasar untuk Pemula',
                 'description' => 'Syntax, tipe data, loop, fungsi, dan dasar-dasar algoritma komputer untuk mahasiswa pemula.',
                 'status' => 'Mendatang',
-                'type' => 'class',
+                'type' => 'Kelas',
                 'sessions_count' => 6,
                 'target_capacity' => 40,
                 'progress_percentage' => 0,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             EventTopic::create([
@@ -124,11 +126,12 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Hackathon Internal 2025',
                 'description' => 'Kompetisi 48 jam dalam tim untuk membangun solusi digital kreatif seputar permasalahan kampus.',
                 'status' => 'Registration',
-                'type' => 'hackathon',
+                'type' => 'Hackathon',
                 'sessions_count' => 1,
                 'target_capacity' => 100,
                 'progress_percentage' => 15,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             EventTopic::create([
@@ -156,6 +159,7 @@ class DatabaseSeeder extends Seeder
                 'repository_url' => 'https://github.com/ukm-dev/evoting-kampus',
                 'documentation_url' => 'https://docs.evoting-example.com',
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             ProjectFeature::create([
@@ -191,6 +195,7 @@ class DatabaseSeeder extends Seeder
                 'repository_url' => 'https://github.com/ukm-dev/news-portal',
                 'documentation_url' => null,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             ProjectFeature::create([
@@ -221,6 +226,7 @@ class DatabaseSeeder extends Seeder
                 'repository_url' => 'https://github.com/ahmadfauzi/rust-task-cli',
                 'documentation_url' => 'https://github.com/ahmadfauzi/rust-task-cli#readme',
                 'created_by' => $members[0]->id,
+                'approval_status' => 'approved',
             ]);
 
             ProjectFeature::create([
@@ -246,11 +252,12 @@ class DatabaseSeeder extends Seeder
             $res1 = Resource::create([
                 'title' => 'Modul Dasar React untuk Pemula',
                 'description' => 'Panduan langkah demi langkah memahami komponen, props, state, dan lifecycle React. Modul ini dirancang untuk pemula yang ingin mempelajari React dari nol dengan pendekatan praktis dan contoh nyata.',
-                'type' => 'module',
+                'type' => 'Modul',
                 'tags' => 'React, Frontend, JavaScript',
                 'file_path' => 'https://example.com/modul-react.pdf',
                 'views_count' => 1250,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             ResourceChapter::create([
@@ -275,11 +282,12 @@ class DatabaseSeeder extends Seeder
             $res2 = Resource::create([
                 'title' => 'Debugging JavaScript: Tips & Trik',
                 'description' => 'Teknik efektif debugging dengan Chrome DevTools, logging strategis, penanganan async/await, dan tools pemantau error otomatis.',
-                'type' => 'article',
+                'type' => 'Artikel',
                 'tags' => 'JavaScript, Debugging, DevTools',
                 'file_path' => null,
                 'views_count' => 842,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             ResourceChapter::create([
@@ -298,11 +306,12 @@ class DatabaseSeeder extends Seeder
             $res3 = Resource::create([
                 'title' => 'Deploy Aplikasi dengan Docker',
                 'description' => 'Panduan lengkap containerization dan deployment multi-environment menggunakan Dockerfile dan Docker Compose.',
-                'type' => 'tool',
+                'type' => 'Tools',
                 'tags' => 'DevOps, Docker, Deployment',
                 'file_path' => 'https://example.com/docker-guide.pdf',
                 'views_count' => 934,
                 'created_by' => $admin->id,
+                'approval_status' => 'approved',
             ]);
 
             ResourceChapter::create([

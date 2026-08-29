@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 
-@section('title', 'Progress Hub — Admin Events')
 
 @section('content')
 <div class="space-y-8">
@@ -24,6 +23,7 @@
                         <th class="px-5 py-3.5">Status</th>
                         <th class="px-5 py-3.5">Sesi</th>
                         <th class="px-5 py-3.5">Peserta</th>
+                        <th class="px-5 py-3.5">Oleh</th>
                         <th class="px-5 py-3.5 text-right">Aksi</th>
                     </tr>
                 </thead>
@@ -31,20 +31,27 @@
                     @forelse ($events as $event)
                         <tr class="hover:bg-zinc-800/40 transition">
                             <td class="px-5 py-4 font-medium text-zinc-100">{{ $event->title }}</td>
-                            <td class="px-5 py-4 text-zinc-400">{{ $event->type ?? '-' }}</td>
+                            <td class="px-5 py-4 text-zinc-400">
+                                @if($event->type)
+                                    <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-zinc-800 text-zinc-200">{{ $event->type }}</span>
+                                @else
+                                    <span class="text-zinc-500">-</span>
+                                @endif
+                            </td>
                             <td class="px-5 py-4">
                                 @if($event->status == 'Berlangsung')
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Berlangsung</span>
+                                    <span class="px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Berlangsung</span>
                                 @elseif($event->status == 'Mendatang')
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/30">Mendatang</span>
+                                    <span class="px-2.5 py-0.5 rounded text-[11px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/30">Mendatang</span>
                                 @elseif($event->status == 'Open Registration')
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-blue-500/10 text-blue-400 border border-blue-500/30">Open Registration</span>
+                                    <span class="px-2.5 py-0.5 rounded text-[11px] font-medium bg-blue-500/10 text-blue-400 border border-blue-500/30">Open Registration</span>
                                 @else
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-zinc-800 text-zinc-300 border border-zinc-700">{{ $event->status ?? 'Draft' }}</span>
+                                    <span class="px-2.5 py-0.5 rounded text-[11px] font-medium bg-zinc-800 text-zinc-300 border border-zinc-700">{{ $event->status ?? 'Draft' }}</span>
                                 @endif
                             </td>
                             <td class="px-5 py-4 text-zinc-400">{{ $event->sessions_count ? $event->sessions_count . ' Pertemuan' : '-' }}</td>
                             <td class="px-5 py-4 text-zinc-400">{{ $event->participants_count ?? 0 }} / {{ $event->target_capacity ?? '∞' }} Peserta</td>
+                            <td class="px-5 py-4 text-zinc-400">{{ $event->creator->name ?? '-' }}</td>
                             <td class="px-5 py-4 whitespace-nowrap">
                                 <div class="flex items-center justify-end gap-2">
                                     <a href="{{ route('admin.events.edit', $event) }}" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-zinc-200 bg-zinc-800 border border-zinc-700 rounded-md hover:bg-zinc-700 transition">Edit</a>
@@ -58,7 +65,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-5 py-8 text-center text-zinc-500">
+                            <td colspan="7" class="px-5 py-8 text-center text-zinc-500">
                                 Belum ada data event. Klik <a href="{{ route('admin.events.create') }}" class="text-zinc-300 underline">Tambah Event</a> untuk membuat baru.
                             </td>
                         </tr>

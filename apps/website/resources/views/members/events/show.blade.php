@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Progress Hub — ' . $event->title)
 
 @section('content')
 <div class="space-y-8 max-w-4xl mx-auto">
@@ -27,7 +26,7 @@
 
     <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 space-y-6">
         <div class="space-y-3">
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-medium border {{ $statusClass }}">
+            <span class="inline-block px-3 py-1 rounded text-xs font-medium border {{ $statusClass }}">
                 {{ $event->status ?? 'Aktif' }}
             </span>
             <h1 class="text-2xl font-bold text-zinc-100 tracking-tight">{{ $event->title }}</h1>

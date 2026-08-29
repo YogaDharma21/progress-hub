@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title', 'Progress Hub — Admin Dashboard')</title>
+    <title>Progress Hub</title>
 
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
@@ -26,12 +26,18 @@
                     <img src="/icon-192.png" alt="Progress Hub" class="w-8 h-8 rounded-lg" />
                     Progress Hub
                 </a>
-                <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30">
+                <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30">
                     Admin
                 </span>
             </div>
 
             <nav class="hidden md:flex items-center gap-1">
+                <a href="/admin" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('admin') && !request()->is('admin/*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                    Dashboard
+                </a>
+                <a href="/admin/submissions" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('admin/submissions*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                    Submissions
+                </a>
                 <a href="/admin/events" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('admin/events*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                     Events
                 </a>
@@ -47,9 +53,9 @@
                 @auth
                     <div class="flex items-center gap-3">
                         @if(Auth::user()->avatar_url)
-                            <img src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}" class="w-8 h-8 rounded-full object-cover border border-zinc-700 shadow-sm" />
+                            <img src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}" class="w-8 h-8 rounded object-cover border border-zinc-700 shadow-sm" />
                         @else
-                            <div class="w-8 h-8 rounded-full bg-zinc-700 border border-zinc-600 inline-flex items-center justify-center text-xs font-semibold text-zinc-100">
+                            <div class="w-8 h-8 rounded bg-zinc-700 border border-zinc-600 inline-flex items-center justify-center text-xs font-semibold text-zinc-100">
                                 {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                             </div>
                         @endif

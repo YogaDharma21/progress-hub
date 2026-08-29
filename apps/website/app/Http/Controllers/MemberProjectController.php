@@ -12,7 +12,8 @@ class MemberProjectController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Project::with(['features', 'creator', 'members.user']);
+        $query = Project::where('approval_status', 'approved')
+            ->with(['features', 'creator', 'members.user']);
 
         if ($request->filled('category') && $request->category !== 'all') {
             $query->where('category', $request->category);
@@ -28,7 +29,7 @@ class MemberProjectController extends Controller
      */
     public function detail()
     {
-        $project = Project::first();
+        $project = Project::where('approval_status', 'approved')->first();
 
         return $project ? redirect()->route('members.projects.show', $project) : redirect()->route('members.projects.index');
     }

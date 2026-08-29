@@ -35,7 +35,7 @@ export default function PlatformDemo() {
                 <div className="space-y-2.5">
                     {activity.map((item, i) => (
                         <div key={i} className="flex items-start gap-2">
-                            <div className="w-5 h-5 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-300 shrink-0 mt-0.5">
+                            <div className="w-5 h-5 rounded bg-zinc-800 border border-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-300 shrink-0 mt-0.5">
                                 {item.user[0]}
                             </div>
                             <div className="min-w-0 flex-1">

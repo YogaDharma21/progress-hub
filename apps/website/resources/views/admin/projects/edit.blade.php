@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 
-@section('title', 'Progress Hub — Edit Project')
 
 @section('content')
 <div class="space-y-8 max-w-4xl mx-auto">

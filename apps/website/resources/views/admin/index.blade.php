@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 
-@section('title', 'Progress Hub — Admin Dashboard')
 
 @section('content')
 <div class="space-y-8">
@@ -17,7 +16,11 @@
     </div>
 
     <!-- Stats -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        <a href="{{ route('admin.submissions.index') }}" class="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition block">
+            <div class="text-3xl font-bold text-amber-400">{{ $stats['pending_submissions'] }}</div>
+            <div class="text-sm text-zinc-500 mt-1">Pending Reviews</div>
+        </a>
         <a href="{{ route('admin.events.index') }}" class="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition block">
             <div class="text-3xl font-bold text-zinc-100">{{ $stats['events'] }}</div>
             <div class="text-sm text-zinc-500 mt-1">Events</div>
@@ -39,9 +42,9 @@
     <!-- Chart + Activity -->
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <!-- Activity Chart -->
-        <div class="lg:col-span-3 bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <div class="lg:col-span-3 bg-zinc-900 border border-zinc-800 rounded-xl p-5 self-start">
             <h3 class="text-sm font-semibold text-zinc-100 mb-4">Aktivitas 7 Hari</h3>
-            <div class="flex items-end gap-2 h-40">
+            <div class="flex items-end gap-2 h-28">
                 @foreach($days as $day)
                     <div class="group/bar relative flex-1 flex flex-col items-center gap-1">
                         {{-- Tooltip --}}
@@ -53,7 +56,7 @@
                                 <div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-sm bg-zinc-400"></span> Resources: {{ $day['resources'] }}</div>
                             </div>
                         </div>
-                        <div class="w-full flex flex-col justify-end gap-0.5" style="height: 110px;">
+                        <div class="w-full flex flex-col justify-end gap-0.5" style="height: 80px;">
                             @if($day['events'] > 0)
                                 <div class="w-full rounded-t-sm bg-zinc-600 transition-all group-hover/bar:brightness-125" style="height: {{ ($day['events'] / $maxActivity) * 100 }}%; min-height: 8px;"></div>
                             @endif
@@ -89,7 +92,7 @@
             <div class="px-5 py-4 border-b border-zinc-800">
                 <h3 class="text-sm font-semibold text-zinc-100">Aktivitas Terbaru</h3>
             </div>
-            <div class="divide-y divide-zinc-800 max-h-64 overflow-y-auto" style="-ms-overflow-style:none; scrollbar-width:none;">
+            <div class="divide-y divide-zinc-800 max-h-96 overflow-y-auto" style="-ms-overflow-style:none; scrollbar-width:none;">
                 @forelse($recentActivity as $item)
                     <a href="{{ $item['route'] }}" class="px-5 py-3 flex items-center gap-3 hover:bg-zinc-800/50 transition block">
                         <div class="w-8 h-8 rounded-lg bg-zinc-950 flex items-center justify-center shrink-0">
@@ -103,7 +106,14 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <p class="text-sm text-zinc-100 font-medium truncate">{{ $item['title'] }}</p>
-                            <p class="text-[11px] text-zinc-500">{{ ucfirst($item['type']) }} &middot; {{ $item['created_at']->diffForHumans() }}</p>
+                            <p class="text-[11px] text-zinc-500">
+                                {{ ucfirst($item['type']) }} &middot; {{ $item['creator'] }} &middot; {{ $item['created_at']->diffForHumans() }}
+                                @if(($item['approval_status'] ?? 'approved') === 'pending')
+                                    <span class="ml-1 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">Pending</span>
+                                @elseif(($item['approval_status'] ?? 'approved') === 'rejected')
+                                    <span class="ml-1 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">Ditolak</span>
+                                @endif
+                            </p>
                         </div>
                     </a>
                 @empty

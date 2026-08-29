@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 
-@section('title', 'Progress Hub — Admin Projects')
 
 @section('content')
 <div class="space-y-8">
@@ -22,6 +21,7 @@
                         <th class="px-5 py-3.5">Judul Proyek</th>
                         <th class="px-5 py-3.5">Kategori</th>
                         <th class="px-5 py-3.5">Teknologi</th>
+                        <th class="px-5 py-3.5">Oleh</th>
                         <th class="px-5 py-3.5 text-right">Aksi</th>
                     </tr>
                 </thead>
@@ -31,12 +31,13 @@
                             <td class="px-5 py-4 font-medium text-zinc-100">{{ $project->title }}</td>
                             <td class="px-5 py-4 text-zinc-400">
                                 @if($project->category == 'UKM Project')
-                                    <span class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-200">UKM Project</span>
+                                    <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-zinc-800 text-zinc-200">UKM Project</span>
                                 @else
-                                    <span class="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-zinc-950 text-zinc-400 border border-zinc-800">{{ $project->category ?? 'Member Project' }}</span>
+                                    <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-zinc-950 text-zinc-400 border border-zinc-800">{{ $project->category ?? 'Member Project' }}</span>
                                 @endif
                             </td>
                             <td class="px-5 py-4 text-zinc-400">{{ $project->technologies ?? '-' }}</td>
+                            <td class="px-5 py-4 text-zinc-400">{{ $project->creator->name ?? '-' }}</td>
                             <td class="px-5 py-4 whitespace-nowrap">
                                 <div class="flex items-center justify-end gap-2">
                                     <a href="{{ route('admin.projects.edit', $project) }}" class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-zinc-200 bg-zinc-800 border border-zinc-700 rounded-md hover:bg-zinc-700 transition">Edit</a>
@@ -50,7 +51,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="px-5 py-8 text-center text-zinc-500">
+                            <td colspan="5" class="px-5 py-8 text-center text-zinc-500">
                                 Belum ada data proyek. Klik <a href="{{ route('admin.projects.create') }}" class="text-zinc-300 underline">Tambah Project</a> untuk membuat baru.
                             </td>
                         </tr>

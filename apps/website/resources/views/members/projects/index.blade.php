@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Progress Hub — Projects')
 
 @section('content')
 <div class="space-y-8">
@@ -40,7 +39,7 @@
                         @if($project->members->count() > 0)
                             <div class="flex -space-x-1.5">
                                 @foreach($project->members->take(3) as $m)
-                                    <div class="w-6 h-6 rounded-full bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[10px] font-semibold text-zinc-200" title="{{ $m->user->name ?? '' }}">
+                                    <div class="w-6 h-6 rounded bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[10px] font-semibold text-zinc-200" title="{{ $m->user->name ?? '' }}">
                                         {{ strtoupper(substr($m->user->name ?? 'U', 0, 1)) }}
                                     </div>
                                 @endforeach
