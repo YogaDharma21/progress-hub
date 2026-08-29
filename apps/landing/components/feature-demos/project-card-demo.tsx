@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 const projects = [
     {
         title: 'Progress Hub',
@@ -25,8 +27,8 @@ export default function ProjectCardDemo() {
             <div className="space-y-3">
                 {projects.map((project) => (
                     <div key={project.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-                        <div className={`w-full h-20 bg-gradient-to-br ${project.gradient} rounded-lg border border-zinc-800 mb-3 flex items-center justify-center text-[10px] text-zinc-500 font-medium`}>
-                            {project.title}
+                        <div className={`w-full h-32 bg-gradient-to-br ${project.gradient} rounded-lg border border-zinc-800 mb-3 flex items-center justify-center`}>
+                            <Image src="/icon-192.png" alt="" width={24} height={24} className="rounded opacity-30" />
                         </div>
                         <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-semibold bg-zinc-800 text-zinc-300 mb-1.5">
                             {project.category}
