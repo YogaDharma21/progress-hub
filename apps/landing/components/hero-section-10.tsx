@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -5,6 +8,8 @@ import { HeroHeader } from '@/components/hero-section-10-header'
 import HeroDemo from '@/components/hero-demo'
 
 export default function HeroSection() {
+    const [bgLoaded, setBgLoaded] = useState(false)
+
     return (
         <>
             <HeroHeader />
@@ -27,18 +32,20 @@ export default function HeroSection() {
                             </div>
                         </div>
 
-                        <div className="bg-muted relative mt-16 overflow-hidden rounded-xl px-4 pt-6 max-lg:-mx-4 md:px-6 lg:px-8 lg:pt-16">
+                        <div className="relative mt-16 overflow-hidden rounded-xl px-4 pt-6 max-lg:-mx-4 md:px-6 lg:px-8 lg:pt-16" style={{ backgroundColor: '#D6D6D6' }}>
                             <div className="aspect-3/2 relative z-10 mx-auto flex items-end max-w-5xl -space-x-12 sm:aspect-video lg:-space-x-56">
                                 <HeroDemo />
                             </div>
 
                             <Image
-                                src="/hero-bg.jpg"
+                                src="/hero-bg.webp"
                                 alt="landscape image"
                                 width={2215}
                                 height={1477}
                                 sizes="(max-width: 768px) 100vw, 1280px"
-                                className="absolute inset-0 size-full object-cover"
+                                priority
+                                className={`absolute inset-0 size-full object-cover transition-all duration-700 ease-out ${bgLoaded ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-110 blur-sm'}`}
+                                onLoad={() => setBgLoaded(true)}
                             />
                         </div>
                     </div>
