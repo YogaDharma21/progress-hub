@@ -32,7 +32,13 @@
                     @forelse ($events as $event)
                         <tr class="hover:bg-zinc-800/40 transition">
                             <td class="px-5 py-4 font-medium text-zinc-100">{{ $event->title }}</td>
-                            <td class="px-5 py-4 text-zinc-400">{{ $event->type ?? '-' }}</td>
+                            <td class="px-5 py-4 text-zinc-400">
+                                @if($event->type)
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-200">{{ $event->type }}</span>
+                                @else
+                                    <span class="text-zinc-500">-</span>
+                                @endif
+                            </td>
                             <td class="px-5 py-4">
                                 @if($event->status == 'Berlangsung')
                                     <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Berlangsung</span>

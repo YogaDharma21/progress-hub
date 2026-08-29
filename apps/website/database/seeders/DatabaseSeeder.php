@@ -252,7 +252,7 @@ class DatabaseSeeder extends Seeder
             $res1 = Resource::create([
                 'title' => 'Modul Dasar React untuk Pemula',
                 'description' => 'Panduan langkah demi langkah memahami komponen, props, state, dan lifecycle React. Modul ini dirancang untuk pemula yang ingin mempelajari React dari nol dengan pendekatan praktis dan contoh nyata.',
-                'type' => 'module',
+                'type' => 'Modul',
                 'tags' => 'React, Frontend, JavaScript',
                 'file_path' => 'https://example.com/modul-react.pdf',
                 'views_count' => 1250,
@@ -282,7 +282,7 @@ class DatabaseSeeder extends Seeder
             $res2 = Resource::create([
                 'title' => 'Debugging JavaScript: Tips & Trik',
                 'description' => 'Teknik efektif debugging dengan Chrome DevTools, logging strategis, penanganan async/await, dan tools pemantau error otomatis.',
-                'type' => 'article',
+                'type' => 'Artikel',
                 'tags' => 'JavaScript, Debugging, DevTools',
                 'file_path' => null,
                 'views_count' => 842,
@@ -306,7 +306,7 @@ class DatabaseSeeder extends Seeder
             $res3 = Resource::create([
                 'title' => 'Deploy Aplikasi dengan Docker',
                 'description' => 'Panduan lengkap containerization dan deployment multi-environment menggunakan Dockerfile dan Docker Compose.',
-                'type' => 'tool',
+                'type' => 'Tools',
                 'tags' => 'DevOps, Docker, Deployment',
                 'file_path' => 'https://example.com/docker-guide.pdf',
                 'views_count' => 934,

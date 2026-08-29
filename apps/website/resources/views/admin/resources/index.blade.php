@@ -31,7 +31,11 @@
                         <tr class="hover:bg-zinc-800/40 transition">
                             <td class="px-5 py-4 font-medium text-zinc-100">{{ $resource->title }}</td>
                             <td class="px-5 py-4 text-zinc-400">
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-200">{{ $resource->type ?? 'Resource' }}</span>
+                                @if($resource->type)
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-200">{{ $resource->type }}</span>
+                                @else
+                                    <span class="text-zinc-500">-</span>
+                                @endif
                             </td>
                             <td class="px-5 py-4 text-zinc-400">{{ $resource->tags ?? '-' }}</td>
                             <td class="px-5 py-4 text-zinc-400">{{ $resource->creator->name ?? '-' }}</td>

@@ -46,14 +46,8 @@
                                     <span class="text-sm text-zinc-100 font-medium">{{ $submission->user->name }}</span>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <span class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-zinc-800 text-zinc-300 border border-zinc-700">
-                                        @if($submission->type === 'Event')
-                                            Event
-                                        @elseif($submission->type === 'Project')
-                                            Project
-                                        @elseif($submission->type === 'Resource')
-                                            Resource
-                                        @endif
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-200">
+                                        {{ $submission->type }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4">
