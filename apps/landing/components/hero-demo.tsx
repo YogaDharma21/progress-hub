@@ -191,8 +191,8 @@ export default function HeroDemo() {
                                     { title: 'Smart Attendance', cat: 'Member Project', desc: 'Sistem presensi QR code.', tech: ['Flutter', 'Firebase'], creator: 'Maya S.', time: '5 hari lalu' },
                                 ].map((p) => (
                                     <div key={p.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-3">
-                                        <div className="w-full h-12 bg-gradient-to-br from-violet-500/20 to-blue-500/20 rounded-lg border border-zinc-800 mb-2 flex items-center justify-center">
-                                            <Image src="/icon-192.png" alt="" width={14} height={14} className="rounded opacity-30" />
+                                        <div className="w-full h-24 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-lg border border-zinc-800 mb-2 flex items-center justify-center">
+                                            <Image src="/icon-192.png" alt="" width={20} height={20} className="rounded opacity-30" />
                                         </div>
                                         <span className="px-1.5 py-0.5 rounded text-[8px] font-semibold bg-zinc-800 text-zinc-300">{p.cat}</span>
                                         <h4 className="text-[10px] font-semibold text-zinc-100 mt-1">{p.title}</h4>

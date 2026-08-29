@@ -1,6 +1,7 @@
 'use client'
 
 import { Calendar, FolderGit2, BookOpen, Clock, Users, Eye } from 'lucide-react'
+import Image from 'next/image'
 import { useState } from 'react'
 
 const tabs = ['Semua', 'Kelas', 'Hackathon', 'Sharing'] as const
@@ -114,7 +115,9 @@ export default function FeaturesSection() {
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-4">
                             {/* Project card */}
                             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-                                <div className="w-full h-20 bg-gradient-to-br from-violet-500/20 to-blue-500/20 rounded-lg border border-zinc-800 mb-3 flex items-center justify-center text-[10px] text-zinc-500 font-medium">Progress Hub</div>
+                                <div className="w-full h-32 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-lg border border-zinc-800 mb-3 flex items-center justify-center">
+                                    <Image src="/icon-192.png" alt="" width={24} height={24} className="rounded opacity-30" />
+                                </div>
                                 <span className="px-2 py-0.5 rounded text-[9px] font-semibold bg-zinc-800 text-zinc-300">Web App</span>
                                 <h4 className="text-[11px] font-semibold text-zinc-100 mt-1.5">Progress Hub</h4>
                                 <p className="text-[9px] text-zinc-500 line-clamp-1 mt-0.5">Platform manajemen kegiatan UKM.</p>
