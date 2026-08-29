@@ -147,7 +147,6 @@ export default function FeaturesSection() {
                             </div>
                             {/* Stats + activity */}
                             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-                                <h5 className="text-[10px] font-semibold text-zinc-400 mb-3">Ringkasan</h5>
                                 <div className="grid grid-cols-3 gap-2 mb-3">
                                     {[
                                         { icon: Calendar, label: 'Program', value: '12' },
