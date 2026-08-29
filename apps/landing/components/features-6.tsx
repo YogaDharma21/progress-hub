@@ -13,8 +13,6 @@ const events = [
         type: 'Hackathon' as const,
         status: 'Berlangsung',
         statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-        progressColor: 'bg-emerald-500',
-        progress: 65,
         sessions: 8,
         participants: 24,
         avatars: ['A', 'R', '+12'],
@@ -25,8 +23,6 @@ const events = [
         type: 'Kelas' as const,
         status: 'Mendatang',
         statusColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
-        progressColor: 'bg-amber-500',
-        progress: 10,
         sessions: 4,
         participants: 18,
         avatars: ['M', 'S', '+8'],
@@ -37,8 +33,6 @@ const events = [
         type: 'Sharing' as const,
         status: 'Berlangsung',
         statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-        progressColor: 'bg-emerald-500',
-        progress: 30,
         sessions: 2,
         participants: 12,
         avatars: ['K', 'D', '+5'],
@@ -49,8 +43,6 @@ const events = [
         type: 'Kelas' as const,
         status: 'Registration',
         statusColor: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
-        progressColor: 'bg-blue-500',
-        progress: 0,
         sessions: 6,
         participants: 32,
         avatars: ['P', 'L', '+15'],
@@ -99,9 +91,6 @@ export default function FeaturesSection() {
                                         <span className={`shrink-0 px-2 py-0.5 rounded-full text-[9px] font-medium border ${event.statusColor}`}>
                                             {event.status}
                                         </span>
-                                    </div>
-                                    <div className="w-full bg-zinc-950 h-1.5 rounded-full overflow-hidden mb-2.5">
-                                        <div className={`${event.progressColor} h-full rounded-full transition-all`} style={{ width: `${event.progress || 10}%` }} />
                                     </div>
                                     <div className="flex items-center justify-between text-[9px] text-zinc-500">
                                         <div className="flex items-center gap-3">
