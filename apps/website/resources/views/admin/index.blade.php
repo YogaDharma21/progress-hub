@@ -93,7 +93,7 @@
             <div class="px-5 py-4 border-b border-zinc-800">
                 <h3 class="text-sm font-semibold text-zinc-100">Aktivitas Terbaru</h3>
             </div>
-            <div class="divide-y divide-zinc-800 max-h-64 overflow-y-auto" style="-ms-overflow-style:none; scrollbar-width:none;">
+            <div class="divide-y divide-zinc-800 max-h-96 overflow-y-auto" style="-ms-overflow-style:none; scrollbar-width:none;">
                 @forelse($recentActivity as $item)
                     <a href="{{ $item['route'] }}" class="px-5 py-3 flex items-center gap-3 hover:bg-zinc-800/50 transition block">
                         <div class="w-8 h-8 rounded-lg bg-zinc-950 flex items-center justify-center shrink-0">
@@ -107,7 +107,14 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <p class="text-sm text-zinc-100 font-medium truncate">{{ $item['title'] }}</p>
-                            <p class="text-[11px] text-zinc-500">{{ ucfirst($item['type']) }} &middot; {{ $item['created_at']->diffForHumans() }}</p>
+                            <p class="text-[11px] text-zinc-500">
+                                {{ ucfirst($item['type']) }} &middot; {{ $item['creator'] }} &middot; {{ $item['created_at']->diffForHumans() }}
+                                @if(($item['approval_status'] ?? 'approved') === 'pending')
+                                    <span class="ml-1 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">Pending</span>
+                                @elseif(($item['approval_status'] ?? 'approved') === 'rejected')
+                                    <span class="ml-1 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">Ditolak</span>
+                                @endif
+                            </p>
                         </div>
                     </a>
                 @empty
