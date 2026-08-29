@@ -185,7 +185,7 @@
     <!-- Quick Actions -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <a href="{{ route('admin.events.create') }}" class="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition hover:-translate-y-0.5 shadow-sm flex items-center gap-4 block">
-            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500/20 transition">
+            <div class="w-10 h-10 rounded-lg bg-zinc-950 flex items-center justify-center text-zinc-400 group-hover:text-zinc-100 transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             </div>
             <div>
@@ -195,7 +195,7 @@
         </a>
 
         <a href="{{ route('admin.projects.create') }}" class="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition hover:-translate-y-0.5 shadow-sm flex items-center gap-4 block">
-            <div class="w-10 h-10 rounded-lg bg-violet-500/10 flex items-center justify-center text-violet-400 group-hover:bg-violet-500/20 transition">
+            <div class="w-10 h-10 rounded-lg bg-zinc-950 flex items-center justify-center text-zinc-400 group-hover:text-zinc-100 transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             </div>
             <div>
@@ -205,7 +205,7 @@
         </a>
 
         <a href="{{ route('admin.resources.create') }}" class="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition hover:-translate-y-0.5 shadow-sm flex items-center gap-4 block">
-            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500/20 transition">
+            <div class="w-10 h-10 rounded-lg bg-zinc-950 flex items-center justify-center text-zinc-400 group-hover:text-zinc-100 transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             </div>
             <div>
