@@ -43,7 +43,7 @@
     <!-- Chart + Activity -->
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <!-- Activity Chart -->
-        <div class="lg:col-span-3 bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <div class="lg:col-span-3 bg-zinc-900 border border-zinc-800 rounded-xl p-5 self-start">
             <h3 class="text-sm font-semibold text-zinc-100 mb-4">Aktivitas 7 Hari</h3>
             <div class="flex items-end gap-2 h-28">
                 @foreach($days as $day)
