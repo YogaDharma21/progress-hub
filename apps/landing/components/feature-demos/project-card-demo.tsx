@@ -19,8 +19,6 @@ const projects = [
     },
 ]
 
-const techTags = ['TypeScript', 'Next.js', 'Prisma', 'PostgreSQL']
-
 export default function ProjectCardDemo() {
     return (
         <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-5 w-full max-w-md">
@@ -48,16 +46,6 @@ export default function ProjectCardDemo() {
                         </div>
                     </div>
                 ))}
-            </div>
-            <div className="mt-3 p-3 bg-zinc-900/50 border border-zinc-800/40 rounded-xl">
-                <p className="text-[9px] text-zinc-600 mb-2 font-medium">Tech Stack Populer</p>
-                <div className="flex flex-wrap gap-1">
-                    {techTags.map((t) => (
-                        <span key={t} className="px-2 py-0.5 rounded text-[9px] font-medium bg-zinc-800 text-zinc-400 border border-zinc-800">
-                            {t}
-                        </span>
-                    ))}
-                </div>
             </div>
         </div>
     )

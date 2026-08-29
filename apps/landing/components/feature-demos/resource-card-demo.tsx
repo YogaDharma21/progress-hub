@@ -1,4 +1,10 @@
+'use client'
+
 import { Eye } from 'lucide-react'
+import { useState } from 'react'
+
+const tabs = ['Semua', 'Modul', 'Artikel', 'Tools'] as const
+type Tab = (typeof tabs)[number]
 
 const resources = [
     {
@@ -25,24 +31,34 @@ const resources = [
         views: 156,
         time: '2 minggu lalu',
     },
+    {
+        type: 'Tools',
+        tags: ['DevOps'],
+        title: 'Setup Docker untuk Development',
+        description: 'Panduan konfigurasi Docker di environment lokal.',
+        views: 89,
+        time: '3 minggu lalu',
+    },
 ]
 
-const tabs = ['Semua', 'Modul', 'Artikel', 'Tools']
-
 export default function ResourceCardDemo() {
+    const [activeTab, setActiveTab] = useState<Tab>('Semua')
+    const filtered = activeTab === 'Semua' ? resources : resources.filter((r) => r.type === activeTab)
+
     return (
         <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-5 w-full max-w-md">
             <div className="flex gap-1.5 mb-4">
-                {tabs.map((tab, i) => (
-                    <div
+                {tabs.map((tab) => (
+                    <button
                         key={tab}
-                        className={`px-2.5 py-1 text-[10px] font-medium rounded-md ${i === 0 ? 'bg-zinc-800 text-zinc-100' : 'text-zinc-500'}`}>
+                        onClick={() => setActiveTab(tab)}
+                        className={`px-2.5 py-1 text-[10px] font-medium rounded-md transition-colors cursor-pointer ${activeTab === tab ? 'bg-zinc-800 text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>
                         {tab}
-                    </div>
+                    </button>
                 ))}
             </div>
             <div className="space-y-2.5">
-                {resources.map((resource) => (
+                {filtered.map((resource) => (
                     <div key={resource.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-3.5">
                         <div className="flex items-center gap-1.5 mb-1.5">
                             <span className="px-1.5 py-0.5 rounded text-[9px] font-semibold bg-zinc-800 text-zinc-300">
@@ -65,6 +81,9 @@ export default function ResourceCardDemo() {
                         </div>
                     </div>
                 ))}
+                {filtered.length === 0 && (
+                    <div className="text-center text-[11px] text-zinc-600 py-6">Belum ada resource di kategori ini.</div>
+                )}
             </div>
         </div>
     )
