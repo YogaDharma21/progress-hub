@@ -6,7 +6,7 @@ export default function HeroDemo() {
         <>
             {/* Admin dashboard panel (left/behind) */}
             <div className="w-2/3 pt-6 lg:pt-16">
-                <div className="bg-card relative h-full overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring-1 ring-black/10">
+                <div className="bg-card relative overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring-1 ring-black/10">
                     <div className="bg-zinc-950">
                         {/* Navbar */}
                         <div className="flex items-center justify-between px-4 lg:px-5 py-3 border-b border-zinc-800/60">

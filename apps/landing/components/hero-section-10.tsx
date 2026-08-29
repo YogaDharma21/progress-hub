@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import Image from 'next/image'
 import { HeroHeader } from '@/components/hero-section-10-header'
 import HeroDemo from '@/components/hero-demo'
 
@@ -26,10 +27,19 @@ export default function HeroSection() {
                             </div>
                         </div>
 
-                        <div className="relative mt-16 max-lg:-mx-4">
-                            <div className="relative z-10 mx-auto flex max-w-5xl -space-x-12 lg:-space-x-56">
+                        <div className="bg-muted relative mt-16 overflow-hidden rounded-xl px-4 pt-6 max-lg:-mx-4 md:px-6 lg:px-8 lg:pt-16">
+                            <div className="aspect-3/2 relative z-10 mx-auto flex max-w-5xl -space-x-12 sm:aspect-video lg:-space-x-56">
                                 <HeroDemo />
                             </div>
+
+                            <Image
+                                src="https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="landscape image"
+                                width={2215}
+                                height={1477}
+                                sizes="(max-width: 768px) 100vw, 1280px"
+                                className="absolute inset-0 size-full object-cover"
+                            />
                         </div>
                     </div>
                 </section>
