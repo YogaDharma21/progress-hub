@@ -130,3 +130,9 @@
     @apply font-sans;
     }
 }
+
+@layer utilities {
+  .rounded {
+    border-radius: 0.625rem;
+  }
+}

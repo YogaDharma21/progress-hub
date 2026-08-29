@@ -15,3 +15,9 @@
     --radius-3xl: 0.625rem;
     --radius-4xl: 0.625rem;
 }
+
+@layer utilities {
+    .rounded {
+        border-radius: 0.625rem;
+    }
+}
