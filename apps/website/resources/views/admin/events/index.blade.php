@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 
-@section('title', 'Progress Hub — Admin Events')
 
 @section('content')
 <div class="space-y-8">

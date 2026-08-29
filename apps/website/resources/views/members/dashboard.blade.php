@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Progress Hub — Dashboard')
 
 @section('content')
 <div class="space-y-10">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title', 'Progress Hub')</title>
+    <title>Progress Hub</title>
 
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">

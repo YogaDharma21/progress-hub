@@ -1,6 +1,5 @@
 @extends('layouts.guest')
 
-@section('title', 'Progress Hub — Register')
 
 @section('content')
 <div class="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-xl p-7 shadow-xl">
