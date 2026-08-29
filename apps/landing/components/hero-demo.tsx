@@ -7,7 +7,7 @@ export default function HeroDemo() {
             {/* Admin dashboard panel (left/behind) */}
             <div className="w-2/3 pt-6 lg:pt-16">
                 <div className="bg-card relative h-full overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring-1 ring-black/10">
-                    <div className="bg-zinc-950 min-h-[300px] lg:min-h-[420px]">
+                    <div className="bg-zinc-950">
                         {/* Navbar */}
                         <div className="flex items-center justify-between px-4 lg:px-5 py-3 border-b border-zinc-800/60">
                             <div className="flex items-center gap-2">
@@ -149,8 +149,8 @@ export default function HeroDemo() {
                             </div>
                             <div className="grid grid-cols-2 gap-2">
                                 {[
-                                    { title: 'Hackathon Sprint', desc: 'Build solutions in 48h.', status: 'Berlangsung', sc: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30', pc: 'bg-emerald-500', p: 65, s: 8, pa: 24, av: ['A', 'R', '+12'] },
-                                    { title: 'React Deep Dive', desc: 'Master React patterns.', status: 'Berlangsung', sc: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30', pc: 'bg-emerald-500', p: 30, s: 4, pa: 18, av: ['M', 'S', '+8'] },
+                                    { title: 'Hackathon Sprint', desc: 'Build solutions in 48h.', status: 'Berlangsung', sc: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30', s: 8, pa: 24, av: ['A', 'R', '+12'] },
+                                    { title: 'React Deep Dive', desc: 'Master React patterns.', status: 'Berlangsung', sc: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30', s: 4, pa: 18, av: ['M', 'S', '+8'] },
                                 ].map((e) => (
                                     <div key={e.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-3">
                                         <div className="flex items-start justify-between gap-2 mb-2">
@@ -159,9 +159,6 @@ export default function HeroDemo() {
                                                 <p className="text-[8px] text-zinc-500 mt-0.5 line-clamp-1">{e.desc}</p>
                                             </div>
                                             <span className={`shrink-0 px-2 py-0.5 rounded-full text-[8px] font-medium border ${e.sc}`}>{e.status}</span>
-                                        </div>
-                                        <div className="w-full bg-zinc-950 h-1.5 rounded-full overflow-hidden mb-2">
-                                            <div className={`${e.pc} h-full rounded-full`} style={{ width: `${e.p}%` }} />
                                         </div>
                                         <div className="flex items-center justify-between text-[8px] text-zinc-500">
                                             <div className="flex items-center gap-2">
