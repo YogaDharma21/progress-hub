@@ -1,4 +1,5 @@
-import { Calendar, FolderGit2, BookOpen, Clock, Users, TrendingUp, ArrowUpRight, Activity, LayoutDashboard, Code2, Settings } from 'lucide-react'
+import { Calendar, FolderGit2, BookOpen, Clock, Users, TrendingUp, ArrowUpRight, LayoutDashboard, Settings } from 'lucide-react'
+import { LogoIcon } from '@/components/logo'
 
 export default function HeroDemo() {
     return (
@@ -11,9 +12,7 @@ export default function HeroDemo() {
                         <div className="flex gap-4 lg:gap-6">
                             <div className="hidden lg:flex flex-col gap-3 w-36 shrink-0">
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-6 h-6 rounded bg-emerald-500/20 flex items-center justify-center">
-                                        <Activity className="size-3 text-emerald-400" />
-                                    </div>
+                                    <LogoIcon className="size-4" />
                                     <span className="text-[10px] font-semibold text-zinc-200">Progress Hub</span>
                                 </div>
                                 {[
