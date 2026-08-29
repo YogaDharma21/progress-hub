@@ -127,7 +127,7 @@
                                 </td>
                                 <td class="px-5 py-4 text-zinc-400">{{ $typeLabel }}</td>
                                 <td class="px-5 py-4">
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium {{ $statusClass }}">{{ $statusLabel }}</span>
+                                    <span class="px-2.5 py-0.5 rounded text-[11px] font-medium {{ $statusClass }}">{{ $statusLabel }}</span>
                                 </td>
                                 <td class="px-5 py-4 text-zinc-400">{{ $submission->created_at->diffForHumans() }}</td>
                                 <td class="px-5 py-4 whitespace-nowrap">
@@ -185,7 +185,7 @@
                             <h3 class="font-semibold text-sm text-zinc-100 group-hover:text-white">{{ $event->title }}</h3>
                             <p class="text-xs text-zinc-400 line-clamp-2 mt-1">{{ $event->description }}</p>
                         </div>
-                        <span class="shrink-0 px-2.5 py-0.5 rounded-full text-xs font-medium border {{ $statusClass }}">
+                        <span class="shrink-0 px-2.5 py-0.5 rounded text-xs font-medium border {{ $statusClass }}">
                             {{ $event->status ?? 'Aktif' }}
                         </span>
                     </div>
@@ -198,12 +198,12 @@
                         @if($event->participants->count() > 0)
                             <div class="flex -space-x-1.5">
                                 @foreach($event->participants->take(2) as $participant)
-                                    <div class="w-6 h-6 rounded-full bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[10px] font-semibold text-zinc-200" title="{{ $participant->user->name ?? 'User' }}">
+                                    <div class="w-6 h-6 rounded bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[10px] font-semibold text-zinc-200" title="{{ $participant->user->name ?? 'User' }}">
                                         {{ strtoupper(substr($participant->user->name ?? 'U', 0, 1)) }}
                                     </div>
                                 @endforeach
                                 @if($event->participants_count > 2)
-                                    <div class="w-6 h-6 rounded-full bg-zinc-800 border border-zinc-800 flex items-center justify-center text-[9px] font-medium text-zinc-400">
+                                    <div class="w-6 h-6 rounded bg-zinc-800 border border-zinc-800 flex items-center justify-center text-[9px] font-medium text-zinc-400">
                                         +{{ $event->participants_count - 2 }}
                                     </div>
                                 @endif

@@ -40,13 +40,13 @@
                             </td>
                             <td class="px-5 py-4">
                                 @if($event->status == 'Berlangsung')
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Berlangsung</span>
+                                    <span class="px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Berlangsung</span>
                                 @elseif($event->status == 'Mendatang')
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/30">Mendatang</span>
+                                    <span class="px-2.5 py-0.5 rounded text-[11px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/30">Mendatang</span>
                                 @elseif($event->status == 'Open Registration')
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-blue-500/10 text-blue-400 border border-blue-500/30">Open Registration</span>
+                                    <span class="px-2.5 py-0.5 rounded text-[11px] font-medium bg-blue-500/10 text-blue-400 border border-blue-500/30">Open Registration</span>
                                 @else
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-zinc-800 text-zinc-300 border border-zinc-700">{{ $event->status ?? 'Draft' }}</span>
+                                    <span class="px-2.5 py-0.5 rounded text-[11px] font-medium bg-zinc-800 text-zinc-300 border border-zinc-700">{{ $event->status ?? 'Draft' }}</span>
                                 @endif
                             </td>
                             <td class="px-5 py-4 text-zinc-400">{{ $event->sessions_count ? $event->sessions_count . ' Pertemuan' : '-' }}</td>

@@ -55,17 +55,17 @@
                                 <td class="px-6 py-4">
                                     @if($submission->status === 'pending')
                                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                                            <span class="w-1.5 h-1.5 rounded bg-amber-400"></span>
                                             Pending
                                         </span>
                                     @elseif($submission->status === 'approved')
                                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                                            <span class="w-1.5 h-1.5 rounded bg-emerald-400"></span>
                                             Approved
                                         </span>
                                     @elseif($submission->status === 'rejected')
                                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+                                            <span class="w-1.5 h-1.5 rounded bg-rose-400"></span>
                                             Rejected
                                         </span>
                                     @endif

@@ -19,7 +19,7 @@
         @endif
 
         <div class="space-y-3">
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-zinc-800 text-zinc-200">
+            <span class="inline-block px-3 py-1 rounded text-xs font-semibold bg-zinc-800 text-zinc-200">
                 {{ $project->category ?? 'UKM Project' }}
             </span>
             <h1 class="text-2xl font-bold text-zinc-100 tracking-tight">{{ $project->title }}</h1>
@@ -43,7 +43,7 @@
                     <div class="flex items-center gap-2">
                         @foreach($project->members as $pm)
                             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-950 border border-zinc-800 rounded-md text-xs text-zinc-300">
-                                <span class="w-4 h-4 rounded-full bg-zinc-700 inline-flex items-center justify-center text-[9px] font-bold text-zinc-100">
+                                <span class="w-4 h-4 rounded bg-zinc-700 inline-flex items-center justify-center text-[9px] font-bold text-zinc-100">
                                     {{ strtoupper(substr($pm->user->name ?? 'U', 0, 1)) }}
                                 </span>
                                 {{ $pm->user->name ?? 'Member' }}

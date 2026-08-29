@@ -48,9 +48,9 @@
                 @auth
                     <div class="flex items-center gap-3">
                         @if(Auth::user()->avatar_url)
-                            <img src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}" class="w-8 h-8 rounded-full object-cover border border-zinc-700 shadow-sm" />
+                            <img src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}" class="w-8 h-8 rounded object-cover border border-zinc-700 shadow-sm" />
                         @else
-                            <div class="w-8 h-8 rounded-full bg-zinc-700 border border-zinc-600 inline-flex items-center justify-center text-xs font-semibold text-zinc-100">
+                            <div class="w-8 h-8 rounded bg-zinc-700 border border-zinc-600 inline-flex items-center justify-center text-xs font-semibold text-zinc-100">
                                 {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                             </div>
                         @endif

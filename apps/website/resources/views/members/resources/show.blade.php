@@ -19,7 +19,7 @@
         @endif
 
         <div class="space-y-3">
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-zinc-800 text-zinc-200 capitalize">
+            <span class="inline-block px-3 py-1 rounded text-xs font-semibold bg-zinc-800 text-zinc-200 capitalize">
                 {{ $resource->type ?? 'Modul' }}
             </span>
             <h1 class="text-2xl font-bold text-zinc-100 tracking-tight">{{ $resource->title }}</h1>
