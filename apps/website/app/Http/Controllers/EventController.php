@@ -123,6 +123,8 @@ class EventController extends Controller
             }
         }
 
+        $event->recalculateProgress();
+
         return redirect()->route('admin.events.index')->with('success', 'Event berhasil diperbarui.');
     }
 

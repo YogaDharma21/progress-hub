@@ -22,6 +22,29 @@ class Event extends Model
         'created_by',
     ];
 
+    protected static function booted(): void
+    {
+        static::saved(function (Event $event) {
+            $event->recalculateProgress();
+        });
+    }
+
+    public function recalculateProgress(): void
+    {
+        $sessions = $this->sessions_count ?? 0;
+        if ($sessions <= 0) {
+            return;
+        }
+
+        $topicsCount = $this->topics()->count();
+        $progress = (int) round(($topicsCount / $sessions) * 100);
+        $progress = min($progress, 100);
+
+        if ($this->progress_percentage !== $progress) {
+            $this->updateQuietly(['progress_percentage' => $progress]);
+        }
+    }
+
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
