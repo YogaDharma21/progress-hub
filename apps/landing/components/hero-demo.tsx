@@ -5,7 +5,7 @@ export default function HeroDemo() {
         <>
             {/* Main dashboard panel (left/laptop) */}
             <div className="w-2/3 pt-6 lg:pt-16">
-                <div className="ring-foreground/6.5 bg-card relative h-full overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring">
+                <div className="bg-card relative h-full overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring-1 ring-black/10">
                     <div className="bg-zinc-950 p-4 lg:p-6 min-h-[300px] lg:min-h-[420px]">
                         {/* Sidebar */}
                         <div className="flex gap-4 lg:gap-6">
@@ -102,7 +102,7 @@ export default function HeroDemo() {
             </div>
 
             {/* Analytics panel (right/overlapping) */}
-            <div className="ring-foreground/6.5 bg-card relative h-full w-2/3 overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring">
+            <div className="bg-card relative h-full w-2/3 overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring-1 ring-black/10">
                 <div className="bg-zinc-950 p-4 lg:p-6 min-h-[300px] lg:min-h-[420px]">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-4">

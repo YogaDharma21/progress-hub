@@ -32,8 +32,8 @@ export default function HeroSection() {
                             </div>
                         </div>
 
-                        <div className="relative mt-16 overflow-hidden rounded-2xl max-lg:-mx-4">
-                            <div className="aspect-3/2 relative z-10 mx-auto flex max-w-5xl -space-x-12 sm:aspect-video lg:-space-x-56">
+                        <div className="relative mt-16 max-lg:-mx-4">
+                            <div className="relative z-10 mx-auto flex max-w-5xl -space-x-12 lg:-space-x-56">
                                 <HeroDemo />
                             </div>
                         </div>
