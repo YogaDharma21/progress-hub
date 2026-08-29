@@ -17,17 +17,6 @@ class EventTopic extends Model
         'order',
     ];
 
-    protected static function booted(): void
-    {
-        static::saved(function (EventTopic $topic) {
-            $topic->event->recalculateProgress();
-        });
-
-        static::deleted(function (EventTopic $topic) {
-            $topic->event->recalculateProgress();
-        });
-    }
-
     public function event(): BelongsTo
     {
         return $this->belongsTo(Event::class);

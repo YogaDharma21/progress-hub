@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="w-full bg-zinc-950 h-1.5 rounded-full overflow-hidden mb-4">
-                        <div class="{{ $progressColor }} h-full rounded-full" style="width: {{ $event->progress_percentage ?? 0 }}%"></div>
+                        <div class="{{ $progressColor }} h-full rounded-full" style="width: {{ $event->computed_progress }}%"></div>
                     </div>
                 </div>
 

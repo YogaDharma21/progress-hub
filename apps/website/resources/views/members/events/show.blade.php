@@ -42,7 +42,7 @@
         </div>
 
         <div class="w-full bg-zinc-950 h-2 rounded-full overflow-hidden">
-            <div class="{{ $progressColor }} h-full rounded-full" style="width: {{ $event->progress_percentage ?? 0 }}%"></div>
+                        <div class="{{ $progressColor }} h-full rounded-full" style="width: {{ $event->computed_progress }}%"></div>
         </div>
 
         <div class="pt-4 border-t border-zinc-800 flex flex-wrap items-center justify-between gap-4 text-xs text-zinc-400">
