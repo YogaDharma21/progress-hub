@@ -63,7 +63,7 @@ export default function EventCardDemo() {
                                 <h4 className="text-xs font-semibold text-zinc-100 truncate">{event.title}</h4>
                                 <p className="text-[10px] text-zinc-500 mt-0.5 line-clamp-1">{event.description}</p>
                             </div>
-                            <span className={`shrink-0 px-2 py-0.5 rounded-full text-[9px] font-medium border ${event.statusColor}`}>
+                            <span className={`shrink-0 px-2 py-0.5 rounded text-[9px] font-medium border ${event.statusColor}`}>
                                 {event.status}
                             </span>
                         </div>
@@ -82,7 +82,7 @@ export default function EventCardDemo() {
                                 {event.avatars.map((a, i) => (
                                     <div
                                         key={i}
-                                        className="w-5 h-5 rounded-full bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[8px] font-semibold text-zinc-200">
+                                        className="w-5 h-5 rounded bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[8px] font-semibold text-zinc-200">
                                         {a}
                                     </div>
                                 ))}

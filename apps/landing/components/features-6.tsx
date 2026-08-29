@@ -89,7 +89,7 @@ export default function FeaturesSection() {
                                             <h4 className="text-[11px] font-semibold text-zinc-100 truncate">{event.title}</h4>
                                             <p className="text-[9px] text-zinc-500 mt-0.5 line-clamp-1">{event.description}</p>
                                         </div>
-                                        <span className={`shrink-0 px-2 py-0.5 rounded-full text-[9px] font-medium border ${event.statusColor}`}>
+                                        <span className={`shrink-0 px-2 py-0.5 rounded text-[9px] font-medium border ${event.statusColor}`}>
                                             {event.status}
                                         </span>
                                     </div>
@@ -100,7 +100,7 @@ export default function FeaturesSection() {
                                         </div>
                                         <div className="flex -space-x-1">
                                             {event.avatars.map((a, i) => (
-                                                <div key={i} className="w-5 h-5 rounded-full bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] font-semibold text-zinc-200">{a}</div>
+                                                <div key={i} className="w-5 h-5 rounded bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] font-semibold text-zinc-200">{a}</div>
                                             ))}
                                         </div>
                                     </div>
@@ -167,7 +167,7 @@ export default function FeaturesSection() {
                                         { user: 'Maya S.', action: 'mengunggah', target: 'Smart Attendance', time: '15m' },
                                     ].map((item, i) => (
                                         <div key={i} className="flex items-center gap-2">
-                                            <div className="w-5 h-5 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-300 shrink-0">{item.user[0]}</div>
+                                            <div className="w-5 h-5 rounded bg-zinc-800 border border-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-300 shrink-0">{item.user[0]}</div>
                                             <p className="text-[9px] text-zinc-500 min-w-0 flex-1">
                                                 <span className="text-zinc-300 font-medium">{item.user}</span>{' '}
                                                 <span className="text-zinc-600">{item.action}</span>{' '}

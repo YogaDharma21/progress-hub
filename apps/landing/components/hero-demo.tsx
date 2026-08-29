@@ -21,7 +21,7 @@ export default function HeroDemo() {
                                 ))}
                             </div>
                             <div className="flex items-center gap-2">
-                                <div className="w-5 h-5 rounded-full bg-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-200">A</div>
+                                <div className="w-5 h-5 rounded bg-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-200">A</div>
                             </div>
                         </div>
 
@@ -107,7 +107,7 @@ export default function HeroDemo() {
                             ))}
                         </div>
                         <div className="flex items-center gap-2">
-                            <div className="w-5 h-5 rounded-full bg-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-200">M</div>
+                            <div className="w-5 h-5 rounded bg-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-200">M</div>
                         </div>
                     </div>
 
@@ -158,7 +158,7 @@ export default function HeroDemo() {
                                                 <h4 className="text-[10px] font-semibold text-zinc-100 truncate">{e.title}</h4>
                                                 <p className="text-[8px] text-zinc-500 mt-0.5 line-clamp-1">{e.desc}</p>
                                             </div>
-                                            <span className={`shrink-0 px-2 py-0.5 rounded-full text-[8px] font-medium border ${e.sc}`}>{e.status}</span>
+                                            <span className={`shrink-0 px-2 py-0.5 rounded text-[8px] font-medium border ${e.sc}`}>{e.status}</span>
                                         </div>
                                         <div className="flex items-center justify-between text-[8px] text-zinc-500">
                                             <div className="flex items-center gap-2">
@@ -167,7 +167,7 @@ export default function HeroDemo() {
                                             </div>
                                             <div className="flex -space-x-1">
                                                 {e.av.map((a, i) => (
-                                                    <div key={i} className="w-4 h-4 rounded-full bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] font-semibold text-zinc-200">{a}</div>
+                                                    <div key={i} className="w-4 h-4 rounded bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] font-semibold text-zinc-200">{a}</div>
                                                 ))}
                                             </div>
                                         </div>
