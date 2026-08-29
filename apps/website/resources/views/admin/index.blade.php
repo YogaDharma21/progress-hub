@@ -45,7 +45,7 @@
         <!-- Activity Chart -->
         <div class="lg:col-span-3 bg-zinc-900 border border-zinc-800 rounded-xl p-5">
             <h3 class="text-sm font-semibold text-zinc-100 mb-4">Aktivitas 7 Hari</h3>
-            <div class="flex items-end gap-2 h-40">
+            <div class="flex items-end gap-2 h-28">
                 @foreach($days as $day)
                     <div class="group/bar relative flex-1 flex flex-col items-center gap-1">
                         {{-- Tooltip --}}
@@ -57,7 +57,7 @@
                                 <div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-sm bg-zinc-400"></span> Resources: {{ $day['resources'] }}</div>
                             </div>
                         </div>
-                        <div class="w-full flex flex-col justify-end gap-0.5" style="height: 110px;">
+                        <div class="w-full flex flex-col justify-end gap-0.5" style="height: 80px;">
                             @if($day['events'] > 0)
                                 <div class="w-full rounded-t-sm bg-zinc-600 transition-all group-hover/bar:brightness-125" style="height: {{ ($day['events'] / $maxActivity) * 100 }}%; min-height: 8px;"></div>
                             @endif
