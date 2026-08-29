@@ -7,6 +7,7 @@ use App\Models\EventParticipant;
 use App\Models\Project;
 use App\Models\Resource;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
@@ -18,28 +19,56 @@ class AdminDashboardController extends Controller
             'projects' => Project::count(),
             'resources' => Resource::count(),
             'users' => User::count(),
-            'participants' => EventParticipant::count(),
-            'totalViews' => Resource::sum('views_count'),
         ];
 
-        $recentEvents = Event::withCount('participants')->latest()->take(5)->get();
-        $recentProjects = Project::withCount('members')->latest()->take(5)->get();
-        $recentResources = Resource::latest()->take(5)->get();
-        $recentUsers = User::latest()->take(5)->get();
+        // Activity per day for last 7 days
+        $days = collect();
+        for ($i = 6; $i >= 0; $i--) {
+            $date = Carbon::now()->subDays($i);
+            $days->push([
+                'label' => $date->format('D'),
+                'events' => Event::whereDate('created_at', $date)->count(),
+                'projects' => Project::whereDate('created_at', $date)->count(),
+                'resources' => Resource::whereDate('created_at', $date)->count(),
+            ]);
+        }
+        $maxActivity = max($days->pluck('events')->merge($days->pluck('projects'))->merge($days->pluck('resources'))->max(), 1);
 
-        $statusCounts = [
-            'berlangsung' => Event::where('status', 'berlangsung')->count(),
-            'mendatang' => Event::where('status', 'mendatang')->count(),
-            'registration' => Event::where('status', 'registration')->count(),
-        ];
+        // Recent activity (latest 8 items across all types)
+        $recentEvents = Event::latest()->take(4)->get()->map(fn ($e) => [
+            'type' => 'event',
+            'title' => $e->title,
+            'subtitle' => $e->status ?? '—',
+            'created_at' => $e->created_at,
+            'route' => route('admin.events.index'),
+        ]);
+
+        $recentProjects = Project::latest()->take(4)->get()->map(fn ($p) => [
+            'type' => 'project',
+            'title' => $p->title,
+            'subtitle' => $p->category ?? '—',
+            'created_at' => $p->created_at,
+            'route' => route('admin.projects.index'),
+        ]);
+
+        $recentResources = Resource::latest()->take(4)->get()->map(fn ($r) => [
+            'type' => 'resource',
+            'title' => $r->title,
+            'subtitle' => $r->type ?? '—',
+            'created_at' => $r->created_at,
+            'route' => route('admin.resources.index'),
+        ]);
+
+        $recentActivity = $recentEvents->merge($recentProjects)->merge($recentResources)
+            ->sortByDesc('created_at')
+            ->take(8)
+            ->values();
 
         return view('admin.index', compact(
             'stats',
-            'recentEvents',
-            'recentProjects',
-            'recentResources',
-            'recentUsers',
-            'statusCounts',
+            'days',
+            'maxActivity',
+            'recentActivity',
         ));
     }
 }
