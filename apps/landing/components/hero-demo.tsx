@@ -118,13 +118,13 @@ export default function HeroDemo() {
                     {/* Metrics row */}
                     <div className="grid grid-cols-4 gap-2 mb-4">
                         {[
-                            { label: 'Page Views', value: '2.7K', color: 'text-cyan-400' },
-                            { label: 'Bounce Rate', value: '40.6%', color: 'text-rose-400' },
-                            { label: 'Sessions', value: '479K', color: 'text-emerald-400' },
-                            { label: 'Avg. Duration', value: '17m', color: 'text-amber-400' },
+                            { label: 'Page Views', value: '2.7K' },
+                            { label: 'Bounce Rate', value: '40.6%' },
+                            { label: 'Sessions', value: '479K' },
+                            { label: 'Avg. Duration', value: '17m' },
                         ].map((m) => (
                             <div key={m.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-2 lg:p-2.5">
-                                <div className={`text-xs lg:text-sm font-bold ${m.color}`}>{m.value}</div>
+                                <div className="text-xs lg:text-sm font-bold text-zinc-100">{m.value}</div>
                                 <div className="text-[7px] lg:text-[8px] text-zinc-500 mt-0.5">{m.label}</div>
                             </div>
                         ))}
@@ -136,11 +136,11 @@ export default function HeroDemo() {
                             <span className="text-[10px] lg:text-xs font-semibold text-zinc-200">Page Load vs Bounce Rate</span>
                             <div className="flex items-center gap-3">
                                 <span className="flex items-center gap-1 text-[7px] lg:text-[8px] text-zinc-500">
-                                    <div className="w-2 h-0.5 bg-cyan-400 rounded" />
+                                    <div className="w-2 h-0.5 bg-zinc-500 rounded" />
                                     Load Time
                                 </span>
                                 <span className="flex items-center gap-1 text-[7px] lg:text-[8px] text-zinc-500">
-                                    <div className="w-2 h-0.5 bg-rose-400 rounded" />
+                                    <div className="w-2 h-0.5 bg-zinc-400 rounded" />
                                     Bounce
                                 </span>
                             </div>
@@ -150,13 +150,13 @@ export default function HeroDemo() {
                             <div className="absolute inset-0 flex items-end gap-1">
                                 {[30, 45, 60, 50, 70, 55, 80, 65, 75, 85, 60, 70].map((h, i) => (
                                     <div key={i} className="flex-1 flex flex-col justify-end">
-                                        <div className="w-full rounded-t-sm bg-cyan-400/60" style={{ height: `${h}%` }} />
+                                        <div className="w-full rounded-t-sm bg-zinc-700" style={{ height: `${h}%` }} />
                                     </div>
                                 ))}
                             </div>
                             {/* Line overlay */}
                             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                <path d="M0,70 Q10,65 20,55 T40,50 T60,45 T80,40 T100,35" fill="none" stroke="rgb(251,113,133)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+                                <path d="M0,70 Q10,65 20,55 T40,50 T60,45 T80,40 T100,35" fill="none" stroke="rgb(161,161,170)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
                             </svg>
                         </div>
                     </div>
@@ -172,7 +172,7 @@ export default function HeroDemo() {
                                     <div key={r} className="flex items-center justify-between">
                                         <span className="text-[8px] lg:text-[9px] text-zinc-400">{r}</span>
                                         <div className="flex items-center gap-1">
-                                            <div className="h-1 rounded-full bg-cyan-400/60" style={{ width: `${[80, 60, 45][i]}px` }} />
+                                            <div className="h-1 rounded-full bg-zinc-600" style={{ width: `${[80, 60, 45][i]}px` }} />
                                         </div>
                                     </div>
                                 ))}
@@ -184,7 +184,7 @@ export default function HeroDemo() {
                             </div>
                             <div className="flex items-center gap-1 mb-2">
                                 <div className="text-lg lg:text-xl font-bold text-zinc-100">128</div>
-                                <span className="text-[8px] lg:text-[9px] text-emerald-400 font-medium flex items-center gap-0.5 mt-1">
+                                <span className="text-[8px] lg:text-[9px] text-zinc-400 font-medium flex items-center gap-0.5 mt-1">
                                     <TrendingUp className="size-2.5" />
                                     +12%
                                 </span>
