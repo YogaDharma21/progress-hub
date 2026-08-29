@@ -193,20 +193,16 @@ export default function FeaturesSection() {
                     <div className="absolute -bottom-8 -right-4 lg:-bottom-12 lg:-right-8 z-20 w-64 lg:w-80 bg-zinc-950 border border-zinc-800/60 rounded-2xl p-4 lg:p-5 shadow-2xl shadow-black/50">
                         <div className="flex items-center justify-between mb-3">
                             <span className="text-[10px] lg:text-xs font-semibold text-zinc-100">Analytics</span>
-                            <div className="flex items-center gap-1">
-                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                                <span className="text-[8px] text-zinc-500">Live</span>
-                            </div>
                         </div>
                         <div className="grid grid-cols-2 gap-2 mb-3">
                             {[
-                                { label: 'Page Views', value: '2.7K', color: 'text-cyan-400' },
-                                { label: 'Sessions', value: '479K', color: 'text-emerald-400' },
-                                { label: 'Bounce Rate', value: '40.6%', color: 'text-rose-400' },
-                                { label: 'Duration', value: '17m', color: 'text-amber-400' },
+                                { label: 'Page Views', value: '2.7K' },
+                                { label: 'Sessions', value: '479K' },
+                                { label: 'Bounce Rate', value: '40.6%' },
+                                { label: 'Duration', value: '17m' },
                             ].map((m) => (
                                 <div key={m.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-2">
-                                    <div className={`text-xs font-bold ${m.color}`}>{m.value}</div>
+                                    <div className="text-xs font-bold text-zinc-100">{m.value}</div>
                                     <div className="text-[8px] text-zinc-500">{m.label}</div>
                                 </div>
                             ))}
@@ -214,15 +210,15 @@ export default function FeaturesSection() {
                         <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
                             <div className="flex items-end gap-0.5 h-12">
                                 {[30, 45, 55, 40, 65, 50, 70, 60, 75, 80, 55, 65].map((h, i) => (
-                                    <div key={i} className="flex-1 rounded-t-sm bg-cyan-400/50" style={{ height: `${h}%` }} />
+                                    <div key={i} className="flex-1 rounded-t-sm bg-zinc-700" style={{ height: `${h}%` }} />
                                 ))}
                             </div>
                             <div className="flex items-center gap-3 mt-2">
                                 <span className="flex items-center gap-1 text-[7px] text-zinc-500">
-                                    <div className="w-1.5 h-0.5 bg-cyan-400 rounded" /> Load
+                                    <div className="w-1.5 h-0.5 bg-zinc-500 rounded" /> Load
                                 </span>
                                 <span className="flex items-center gap-1 text-[7px] text-zinc-500">
-                                    <div className="w-1.5 h-0.5 bg-rose-400 rounded" /> Bounce
+                                    <div className="w-1.5 h-0.5 bg-zinc-400 rounded" /> Bounce
                                 </span>
                             </div>
                         </div>
