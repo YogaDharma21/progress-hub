@@ -23,9 +23,7 @@
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <a href="/admin" class="flex items-center gap-3 font-semibold text-lg text-zinc-100 hover:text-white transition">
-                    <div class="w-8 h-8 bg-zinc-100 text-zinc-950 rounded-lg flex items-center justify-center font-bold text-sm">
-                        P
-                    </div>
+                    <img src="/icon-192.png" alt="Progress Hub" class="w-8 h-8 rounded-lg" />
                     Progress Hub
                 </a>
                 <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30">

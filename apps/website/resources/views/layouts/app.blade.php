@@ -22,9 +22,7 @@
     <header class="bg-zinc-900 border-b border-zinc-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="/members" class="flex items-center gap-3 font-semibold text-lg text-zinc-100 hover:text-white transition">
-                <div class="w-8 h-8 bg-zinc-100 text-zinc-950 rounded-lg flex items-center justify-center font-bold text-sm">
-                    P
-                </div>
+                <img src="/icon-192.png" alt="Progress Hub" class="w-8 h-8 rounded-lg" />
                 Progress Hub
             </a>
 
