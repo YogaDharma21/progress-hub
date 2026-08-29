@@ -1,68 +1,87 @@
-# Starter Kit
+# Progress Hub
 
-A **polyglot monorepo** template for managing multiple independent projects in various languages and frameworks.
-
-## Philosophy
-
-- **No shared code** - Each app is completely independent
-- **Each app lives alone** - Self-contained with own dependencies, build system, and configuration
-- **Language agnostic** - Use any framework or language per app
+A **polyglot monorepo** for managing the Progress Hub platform — a community platform for UKM (student organization) events, projects, and learning resources.
 
 ## Project Structure
 
 ```
-apps/           # All projects (web, mobile, desktop, backend, cli)
-├── web/        # Frontend applications
-├── mobile/     # Mobile applications
-├── desktop/    # Desktop applications
-├── backend/    # Backend services
-└── cli/        # Command-line tools
-
-docker/         # Docker configurations
-docs/           # Architecture documentation
-scripts/        # Utility scripts
-.github/        # CI/CD workflows
+progress-hub/
+├── apps/
+│   ├── landing/        # Marketing & landing page (Next.js 16 + Tailwind CSS v4)
+│   └── website/        # Main application (Laravel 13 + Tailwind CSS v4)
+├── docker/             # Docker configurations
+├── docs/               # Documentation & ERD
+├── scripts/            # Utility scripts
+└── .github/            # CI/CD workflows
 ```
+
+## Tech Stack
+
+| App | Stack |
+|---|---|
+| **Landing** | Next.js 16, React 19, Tailwind CSS v4, shadcn/ui, Framer Motion |
+| **Website** | Laravel 13, PHP 8.3+, Blade Templates, Tailwind CSS v4, Vite, MySQL |
+
+## Entity Relationship Diagram
+
+![Progress Hub ERD](docs/ERD.png)
+
+### Database Tables
+
+- **`users`** — Member and admin accounts (`role: 'admin' | 'member'`)
+- **`events`** — Workshops, classes, hackathons, and seminars
+- **`event_topics`** — Syllabus outline per event (1:N)
+- **`event_participants`** — Member registration tracking (M:N pivot)
+- **`projects`** — Student, UKM, and community projects
+- **`project_members`** — Team member roles per project (M:N pivot)
+- **`project_features`** — Key features per project (1:N)
+- **`resources`** — Educational materials, articles, and tools
+- **`resource_chapters`** — Chapter breakdown per resource (1:N)
+- **`submissions`** — Member content submissions for admin approval (polymorphic)
 
 ## Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (for JS/TS projects)
-- [Docker](https://www.docker.com/) (for containerization)
-- [Python](https://www.python.org/) (for Python projects)
-- [Go](https://go.dev/) (for Go projects)
-- [Rust](https://www.rust-lang.org/) (for Rust projects)
+- [PHP](https://php.net/) >= 8.3
+- [Composer](https://getcomposer.org/) >= 2.x
+- [Node.js](https://nodejs.org/) >= 18.x
+- MySQL
 
-### Creating a New App
-
-1. Navigate to the appropriate folder under `apps/`
-2. Initialize your project:
+### Setup
 
 ```bash
-# Example: Creating a new web app
-cd apps/web
-npm create vite@latest my-app -- --template react
+# Clone the repository
+git clone <repository-url>
+cd progress-hub
+
+# Website setup
+cd apps/website
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+composer run dev
+
+# Landing setup
+cd ../landing
+npm install
+npm run dev
 ```
 
-3. Update the CI workflow in `.github/workflows/ci.yml` if needed
+### Default Accounts
 
-### Running with Docker
-
-```bash
-# Start all services
-docker-compose -f docker/docker-compose.yml up
-
-# Start specific service
-docker-compose -f docker/docker-compose.yml up web
-```
+| Role | Email | Password |
+|---|---|---|
+| Admin | `admin@progresshub.com` | `password` |
+| Member | `ahmadfauzi@example.com` | `password` |
 
 ## CI/CD
 
-This repository uses GitHub Actions with path-based filtering:
-- Changes to `apps/web/**` trigger web app builds
-- Changes to `apps/backend/**` trigger backend builds
-- Each app category has its own job
+GitHub Actions with path-based filtering:
+- Changes to `apps/website/**` trigger website builds
+- Changes to `apps/landing/**` trigger landing builds
 
 ## License
 
