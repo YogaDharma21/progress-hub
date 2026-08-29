@@ -22,6 +22,19 @@ class Event extends Model
         'created_by',
     ];
 
+    public function getComputedProgressAttribute(): int
+    {
+        $sessions = $this->sessions_count ?? 0;
+        if ($sessions <= 0) {
+            return $this->progress_percentage ?? 0;
+        }
+
+        $topicsCount = $this->topics()->count();
+        $progress = (int) round(($topicsCount / $sessions) * 100);
+
+        return min($progress, 100);
+    }
+
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');

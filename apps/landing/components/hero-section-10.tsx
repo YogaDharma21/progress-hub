@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button'
-import { ArrowRight } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
+import Image from 'next/image'
 import { HeroHeader } from '@/components/hero-section-10-header'
+import HeroDemo from '@/components/hero-demo'
 
 export default function HeroSection() {
     return (
@@ -21,12 +21,6 @@ export default function HeroSection() {
                                     <Button
                                         className="w-fit"
                                         nativeButton={false}
-                                        render={<Link href="/login">Login</Link>}
-                                    />
-                                    <Button
-                                        variant="outline"
-                                        className="w-fit"
-                                        nativeButton={false}
                                         render={<Link href="https://progress-stikombali.org">Lihat-lihat Dulu</Link>}
                                     />
                                 </div>
@@ -34,31 +28,12 @@ export default function HeroSection() {
                         </div>
 
                         <div className="bg-muted relative mt-16 overflow-hidden rounded-xl px-4 pt-6 max-lg:-mx-4 md:px-6 lg:px-8 lg:pt-16">
-                            <div className="aspect-3/2 relative z-10 mx-auto flex max-w-5xl -space-x-12 sm:aspect-video lg:-space-x-56">
-                                <div className="w-2/3 pt-6 lg:pt-16">
-                                    <div className="ring-foreground/6.5 bg-card relative h-full overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring">
-                                        <Image
-                                            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                            alt="dashboard preview"
-                                            fill
-                                            className="object-cover object-top"
-                                            sizes="(max-width: 768px) 66vw, 40vw"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="ring-foreground/6.5 bg-card relative h-full w-2/3 overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring">
-                                    <Image
-                                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                            alt="analytics preview"
-                                            fill
-                                            className="object-cover object-top"
-                                            sizes="(max-width: 768px) 66vw, 40vw"
-                                        />
-                                </div>
+                            <div className="aspect-3/2 relative z-10 mx-auto flex items-end max-w-5xl -space-x-12 sm:aspect-video lg:-space-x-56">
+                                <HeroDemo />
                             </div>
 
                             <Image
-                                src="https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                src="/hero-bg.jpg"
                                 alt="landscape image"
                                 width={2215}
                                 height={1477}

@@ -11,8 +11,9 @@
         </div>
     @endif
 
-    <a href="{{ route('members.events.index') }}" class="inline-flex items-center gap-2 text-xs font-medium text-zinc-400 hover:text-zinc-100 transition">
-        &larr; Kembali ke Events
+    <a href="{{ route('members.events.index') }}" class="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-zinc-100 transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        Kembali ke Events
     </a>
 
     @php
@@ -21,12 +22,6 @@
             'mendatang' => 'bg-amber-500/10 text-amber-400 border-amber-500/30',
             'registration' => 'bg-blue-500/10 text-blue-400 border-blue-500/30',
             default => 'bg-zinc-800 text-zinc-300 border-zinc-700',
-        };
-        $progressColor = match(strtolower($event->status)) {
-            'berlangsung' => 'bg-emerald-500',
-            'mendatang' => 'bg-amber-500',
-            'registration' => 'bg-blue-500',
-            default => 'bg-zinc-600',
         };
     @endphp
 
@@ -39,10 +34,6 @@
             <p class="text-sm text-zinc-400 leading-relaxed">
                 {{ $event->description }}
             </p>
-        </div>
-
-        <div class="w-full bg-zinc-950 h-2 rounded-full overflow-hidden">
-            <div class="{{ $progressColor }} h-full rounded-full" style="width: {{ $event->progress_percentage ?? 0 }}%"></div>
         </div>
 
         <div class="pt-4 border-t border-zinc-800 flex flex-wrap items-center justify-between gap-4 text-xs text-zinc-400">

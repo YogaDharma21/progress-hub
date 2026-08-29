@@ -27,12 +27,6 @@
                     'registration' => 'bg-blue-500/10 text-blue-400 border-blue-500/30',
                     default => 'bg-zinc-800 text-zinc-300 border-zinc-700',
                 };
-                $progressColor = match(strtolower($event->status)) {
-                    'berlangsung' => 'bg-emerald-500',
-                    'mendatang' => 'bg-amber-500',
-                    'registration' => 'bg-blue-500',
-                    default => 'bg-zinc-600',
-                };
             @endphp
             <div class="event-card group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition hover:-translate-y-0.5 cursor-pointer flex flex-col justify-between" onclick="location.href='{{ route('members.events.show', $event) }}'" data-type="{{ strtolower($event->type ?? 'class') }}">
                 <div>
@@ -44,10 +38,6 @@
                         <span class="shrink-0 px-2.5 py-0.5 rounded-full text-xs font-medium border {{ $statusClass }}">
                             {{ $event->status ?? 'Aktif' }}
                         </span>
-                    </div>
-
-                    <div class="w-full bg-zinc-950 h-1.5 rounded-full overflow-hidden mb-4">
-                        <div class="{{ $progressColor }} h-full rounded-full" style="width: {{ $event->progress_percentage ?? 0 }}%"></div>
                     </div>
                 </div>
 
