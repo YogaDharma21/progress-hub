@@ -114,7 +114,7 @@ export default function FeaturesSection() {
                                 sectionRefs.current['events'] = element
                             }}
                             id="events"
-                            className="grid scroll-mt-32 gap-6 sm:grid-cols-2 md:grid-cols-5 lg:gap-12">
+                            className="grid scroll-mt-32 gap-8 md:grid-cols-5 lg:gap-12">
                             <div className="flex flex-col justify-between pb-4 md:col-span-2">
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Program Kerja & Kelas</h3>
@@ -124,8 +124,8 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.events} />
                             </div>
-                            <div className="border-border/50 bg-foreground/2 relative flex aspect-square items-center justify-center rounded-3xl border p-6 md:col-span-3">
-                                <div className="w-full max-w-sm">
+                            <div className="border-border/50 bg-foreground/2 relative flex aspect-auto min-h-[340px] sm:min-h-[400px] md:aspect-square items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
+                                <div className="w-full max-w-sm sm:max-w-md mx-auto">
                                     <EventCardDemo />
                                 </div>
                             </div>
@@ -136,7 +136,7 @@ export default function FeaturesSection() {
                                 sectionRefs.current.projects = element
                             }}
                             id="projects"
-                            className="grid scroll-mt-32 gap-6 sm:grid-cols-2 md:grid-cols-5 lg:gap-12">
+                            className="grid scroll-mt-32 gap-8 md:grid-cols-5 lg:gap-12">
                             <div className="flex flex-col justify-between pb-4 md:col-span-2">
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Portofolio Proyek</h3>
@@ -146,8 +146,8 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.projects} />
                             </div>
-                            <div className="border-border/50 bg-foreground/2 relative flex aspect-square items-center justify-center rounded-3xl border p-6 md:col-span-3">
-                                <div className="w-full max-w-sm">
+                            <div className="border-border/50 bg-foreground/2 relative flex aspect-auto min-h-[340px] sm:min-h-[400px] md:aspect-square items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
+                                <div className="w-full max-w-sm sm:max-w-md mx-auto">
                                     <ProjectCardDemo />
                                 </div>
                             </div>
@@ -158,7 +158,7 @@ export default function FeaturesSection() {
                                 sectionRefs.current.resources = element
                             }}
                             id="resources"
-                            className="grid scroll-mt-32 gap-6 sm:grid-cols-2 md:grid-cols-5 lg:gap-12">
+                            className="grid scroll-mt-32 gap-8 md:grid-cols-5 lg:gap-12">
                             <div className="flex flex-col justify-between pb-4 md:col-span-2">
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Repositori Pembelajaran</h3>
@@ -168,8 +168,8 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.resources} />
                             </div>
-                            <div className="border-border/50 bg-foreground/2 relative flex aspect-square items-center justify-center rounded-3xl border p-6 md:col-span-3">
-                                <div className="w-full max-w-sm">
+                            <div className="border-border/50 bg-foreground/2 relative flex aspect-auto min-h-[340px] sm:min-h-[400px] md:aspect-square items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
+                                <div className="w-full max-w-sm sm:max-w-md mx-auto">
                                     <ResourceCardDemo />
                                 </div>
                             </div>
@@ -180,7 +180,7 @@ export default function FeaturesSection() {
                                 sectionRefs.current.platform = element
                             }}
                             id="platform"
-                            className="grid scroll-mt-32 gap-6 sm:grid-cols-2 md:grid-cols-5 lg:gap-12">
+                            className="grid scroll-mt-32 gap-8 md:grid-cols-5 lg:gap-12">
                             <div className="flex flex-col justify-between pb-4 md:col-span-2">
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Platform Terpadu</h3>
@@ -190,8 +190,8 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.platform} />
                             </div>
-                            <div className="border-border/50 bg-foreground/2 relative flex aspect-square items-center justify-center rounded-3xl border p-6 md:col-span-3">
-                                <div className="w-full max-w-sm">
+                            <div className="border-border/50 bg-foreground/2 relative flex aspect-auto min-h-[340px] sm:min-h-[400px] md:aspect-square items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
+                                <div className="w-full max-w-sm sm:max-w-md mx-auto">
                                     <PlatformDemo />
                                 </div>
                             </div>

@@ -14,25 +14,25 @@ const activity = [
 
 export default function PlatformDemo() {
     return (
-        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-5 w-full max-w-md">
+        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full max-w-md">
             <div className="flex items-center justify-between mb-4">
                 <h4 className="text-xs font-semibold text-zinc-100">Dashboard</h4>
                 <span className="text-[9px] text-zinc-600">UKM Progress</span>
             </div>
-            <div className="grid grid-cols-3 gap-2 mb-4">
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                 {stats.map((stat) => (
-                    <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-3">
-                        <div className="w-7 h-7 rounded-lg bg-zinc-950 flex items-center justify-center mb-2">
-                            <stat.icon className={`size-3.5 ${stat.color}`} />
+                    <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-2 sm:p-3">
+                        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-zinc-950 flex items-center justify-center mb-1.5 sm:mb-2">
+                            <stat.icon className={`size-3 sm:size-3.5 ${stat.color}`} />
                         </div>
-                        <div className="text-base font-bold text-zinc-100">{stat.value}</div>
-                        <div className="text-[9px] text-zinc-500">{stat.label}</div>
+                        <div className="text-sm sm:text-base font-bold text-zinc-100">{stat.value}</div>
+                        <div className="text-[7px] sm:text-[9px] text-zinc-500 truncate">{stat.label}</div>
                     </div>
                 ))}
             </div>
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3">
+            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 sm:p-3.5">
                 <h5 className="text-[10px] font-semibold text-zinc-400 mb-2.5">Aktivitas Terkini</h5>
-                <div className="space-y-2.5">
+                <div className="space-y-2 sm:space-y-2.5">
                     {activity.map((item, i) => (
                         <div key={i} className="flex items-start gap-2">
                             <div className="w-5 h-5 rounded bg-zinc-800 border border-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-300 shrink-0 mt-0.5">
