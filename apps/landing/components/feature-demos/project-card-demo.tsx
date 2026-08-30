@@ -23,11 +23,11 @@ const projects = [
 
 export default function ProjectCardDemo() {
     return (
-        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-5 w-full max-w-md">
+        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full max-w-md">
             <div className="space-y-3">
                 {projects.map((project) => (
-                    <div key={project.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-                        <div className={`w-full h-32 bg-gradient-to-br ${project.gradient} rounded-lg border border-zinc-800 mb-3 flex items-center justify-center`}>
+                    <div key={project.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 sm:p-4">
+                        <div className={`w-full h-28 sm:h-32 bg-gradient-to-br ${project.gradient} rounded-lg border border-zinc-800 mb-2.5 sm:mb-3 flex items-center justify-center`}>
                             <Image src="/icon-192.png" alt="" width={24} height={24} className="rounded opacity-30" />
                         </div>
                         <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-semibold bg-zinc-800 text-zinc-300 mb-1.5">

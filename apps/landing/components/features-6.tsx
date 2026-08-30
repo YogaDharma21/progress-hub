@@ -1,11 +1,5 @@
-'use client'
-
 import { Calendar, FolderGit2, BookOpen, Clock, Users, Eye } from 'lucide-react'
 import Image from 'next/image'
-import { useState } from 'react'
-
-const tabs = ['Semua', 'Kelas', 'Hackathon', 'Sharing'] as const
-type Tab = (typeof tabs)[number]
 
 const events = [
     {
@@ -51,9 +45,6 @@ const events = [
 ]
 
 export default function FeaturesSection() {
-    const [activeTab, setActiveTab] = useState<Tab>('Semua')
-    const filtered = activeTab === 'Semua' ? events : events.filter((e) => e.type === activeTab)
-
     return (
         <section className="py-16 md:py-20">
             <div className="mx-auto max-w-7xl space-y-12 px-6">
@@ -65,24 +56,12 @@ export default function FeaturesSection() {
 
                     {/* Main dashboard panel */}
                     <div className="relative z-10 bg-zinc-950 border border-zinc-800/60 rounded-2xl p-5 lg:p-6 shadow-2xl shadow-black/40">
-                        <div className="flex items-center justify-between mb-5">
-                            <div className="flex items-center gap-2">
-                                <Calendar className="size-4 text-zinc-400" />
-                                <span className="text-xs font-semibold text-zinc-100">Program Kerja & Kegiatan</span>
-                            </div>
-                            <div className="flex gap-1">
-                                {tabs.map((tab) => (
-                                    <button
-                                        key={tab}
-                                        onClick={() => setActiveTab(tab)}
-                                        className={`px-2.5 py-1 text-[10px] font-medium rounded-md transition-colors cursor-pointer ${activeTab === tab ? 'bg-zinc-800 text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'}`}>
-                                        {tab}
-                                    </button>
-                                ))}
-                            </div>
+                        <div className="flex items-center gap-2 mb-5">
+                            <Calendar className="size-4 text-zinc-400" />
+                            <span className="text-xs font-semibold text-zinc-100">Program & Kegiatan</span>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4 mb-5">
-                            {filtered.map((event) => (
+                            {events.map((event) => (
                                 <div key={event.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
                                     <div className="flex items-start justify-between gap-2 mb-2.5">
                                         <div className="min-w-0 flex-1">
@@ -106,13 +85,10 @@ export default function FeaturesSection() {
                                     </div>
                                 </div>
                             ))}
-                            {filtered.length === 0 && (
-                                <div className="col-span-full text-center text-[11px] text-zinc-600 py-8">Belum ada event di kategori ini.</div>
-                            )}
                         </div>
 
                         {/* Bottom row: projects + resources + stats */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4">
                             {/* Project card */}
                             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
                                 <div className="w-full h-32 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-lg border border-zinc-800 mb-3 flex items-center justify-center">
@@ -181,7 +157,7 @@ export default function FeaturesSection() {
                     </div>
 
                     {/* Overlapping dashboard card */}
-                    <div className="absolute -bottom-8 -right-4 lg:-bottom-12 lg:-right-8 z-20 w-64 lg:w-80 bg-zinc-950 border border-zinc-800/60 rounded-2xl p-4 lg:p-5 shadow-2xl shadow-black/50">
+                    <div className="hidden sm:block absolute -bottom-8 right-0 sm:-right-4 lg:-bottom-12 lg:-right-8 z-20 w-64 lg:w-80 bg-zinc-950 border border-zinc-800/60 rounded-2xl p-4 lg:p-5 shadow-2xl shadow-black/50">
                         {/* Stats */}
                         <div className="grid grid-cols-4 gap-2 mb-3">
                             {[

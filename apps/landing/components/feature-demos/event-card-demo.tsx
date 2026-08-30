@@ -44,8 +44,8 @@ export default function EventCardDemo() {
     const filtered = activeTab === 'Semua' ? events : events.filter((e) => e.type === activeTab)
 
     return (
-        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-5 w-full max-w-md">
-            <div className="flex gap-1.5 mb-4">
+        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full max-w-md">
+            <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-4">
                 {tabs.map((tab) => (
                     <button
                         key={tab}
@@ -57,7 +57,7 @@ export default function EventCardDemo() {
             </div>
             <div className="space-y-3">
                 {filtered.map((event) => (
-                    <div key={event.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+                    <div key={event.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 sm:p-4">
                         <div className="flex items-start justify-between gap-2 mb-2">
                             <div className="min-w-0 flex-1">
                                 <h4 className="text-xs font-semibold text-zinc-100 truncate">{event.title}</h4>
@@ -67,8 +67,8 @@ export default function EventCardDemo() {
                                 {event.status}
                             </span>
                         </div>
-                        <div className="flex items-center justify-between text-[10px] text-zinc-500">
-                            <div className="flex items-center gap-2.5">
+                        <div className="flex flex-wrap items-center justify-between gap-2 text-[9px] sm:text-[10px] text-zinc-500">
+                            <div className="flex items-center gap-2 sm:gap-2.5">
                                 <span className="flex items-center gap-1">
                                     <Clock className="size-3" />
                                     {event.sessions} Pertemuan

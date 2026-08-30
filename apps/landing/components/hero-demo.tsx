@@ -5,7 +5,7 @@ export default function HeroDemo() {
     return (
         <>
             {/* Admin dashboard panel (left/behind) */}
-            <div className="w-2/3 pt-6 lg:pt-16">
+            <div className="hidden md:block w-2/3 pt-6 lg:pt-16">
                 <div className="bg-card relative overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring-1 ring-black/10">
                     <div className="bg-zinc-950">
                         {/* Navbar */}
@@ -93,8 +93,8 @@ export default function HeroDemo() {
             </div>
 
             {/* Member dashboard panel (right/front) */}
-            <div className="bg-card relative h-full w-2/3 overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring-1 ring-black/10">
-                <div className="bg-zinc-950 min-h-[300px] lg:min-h-[420px]">
+            <div className="bg-card relative h-full w-full max-w-sm sm:max-w-md md:w-2/3 overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring-1 ring-black/10">
+                <div className="bg-zinc-950 min-h-[360px] sm:min-h-[400px] lg:min-h-[420px]">
                     {/* Navbar */}
                     <div className="flex items-center justify-between px-4 lg:px-5 py-3 border-b border-zinc-800/60">
                         <div className="flex items-center gap-2">
@@ -116,19 +116,19 @@ export default function HeroDemo() {
                         <p className="text-[9px] lg:text-[10px] text-zinc-500 mt-0.5">Ringkasan Program Kerja, Proyek, dan Repositori Pembelajaran UKM</p>
 
                         {/* Stats */}
-                        <div className="grid grid-cols-3 gap-2 mt-3">
+                        <div className="grid grid-cols-3 gap-1.5 sm:gap-2 mt-3">
                             {[
                                 { icon: Calendar, label: 'Program Aktif', value: '4' },
                                 { icon: FolderGit2, label: 'Proyek Showcase', value: '2' },
                                 { icon: BookOpen, label: 'Artikel & Modul', value: '2' },
                             ].map((stat) => (
-                                <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-2.5 lg:p-3 flex items-center gap-3">
-                                    <div className="w-7 h-7 rounded-lg bg-zinc-950 flex items-center justify-center shrink-0">
-                                        <stat.icon className="size-3.5 text-zinc-400" />
+                                <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-2 sm:p-2.5 lg:p-3 flex items-center gap-2 sm:gap-3">
+                                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-zinc-950 flex items-center justify-center shrink-0">
+                                        <stat.icon className="size-3 sm:size-3.5 text-zinc-400" />
                                     </div>
-                                    <div>
-                                        <div className="text-sm lg:text-base font-bold text-zinc-100">{stat.value}</div>
-                                        <div className="text-[8px] text-zinc-500">{stat.label}</div>
+                                    <div className="min-w-0">
+                                        <div className="text-xs sm:text-sm lg:text-base font-bold text-zinc-100">{stat.value}</div>
+                                        <div className="text-[7px] sm:text-[8px] text-zinc-500 truncate">{stat.label}</div>
                                     </div>
                                 </div>
                             ))}
@@ -147,7 +147,7 @@ export default function HeroDemo() {
                                     ))}
                                 </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-2">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                 {[
                                     { title: 'Hackathon Sprint', desc: 'Build solutions in 48h.', status: 'Berlangsung', sc: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30', s: 8, pa: 24, av: ['A', 'R', '+12'] },
                                     { title: 'React Deep Dive', desc: 'Master React patterns.', status: 'Berlangsung', sc: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30', s: 4, pa: 18, av: ['M', 'S', '+8'] },
@@ -185,7 +185,7 @@ export default function HeroDemo() {
                                 </div>
                                 <span className="text-[8px] text-zinc-500 underline">Lihat Semua</span>
                             </div>
-                            <div className="grid grid-cols-2 gap-2">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                 {[
                                     { title: 'Progress Hub', cat: 'UKM Project', desc: 'Platform manajemen UKM.', tech: ['Laravel', 'React'], creator: 'Ahmad F.', time: '2 hari lalu' },
                                     { title: 'Smart Attendance', cat: 'Member Project', desc: 'Sistem presensi QR code.', tech: ['Flutter', 'Firebase'], creator: 'Maya S.', time: '5 hari lalu' },
@@ -220,7 +220,7 @@ export default function HeroDemo() {
                                 </div>
                                 <span className="text-[8px] text-zinc-500 underline">Browse Semua</span>
                             </div>
-                            <div className="grid grid-cols-2 gap-2">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                 {[
                                     { type: 'Modul', tags: ['JavaScript'], title: 'Modul Web Dev', desc: 'Panduan belajar web dev.', views: 342, time: '3 hari lalu' },
                                     { type: 'Artikel', tags: ['Career'], title: 'Tips Tech Interview', desc: 'Strategi technical interview.', views: 218, time: '1 minggu lalu' },
