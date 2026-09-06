@@ -34,14 +34,14 @@ jobs:
         with:
           php-version: '8.3'
           extensions: mbstring, xml, ctype, json, bcmath, dom, zip
+      - name: Install Dependencies
+        run: composer install --no-progress
+        working-directory: apps/website
       - name: Copy Environment File
         run: cp .env.example .env
         working-directory: apps/website
       - name: Generate Application Key
         run: php artisan key:generate
-        working-directory: apps/website
-      - name: Install Dependencies
-        run: composer install --no-progress
         working-directory: apps/website
       - name: Run Tests
         run: vendor/bin/pest
