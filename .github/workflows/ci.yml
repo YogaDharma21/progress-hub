@@ -10,23 +10,51 @@ jobs:
   detect-changes:
     runs-on: ubuntu-latest
     outputs:
-      web: ${{ steps.filter.outputs.web }}
+      website: ${{ steps.filter.outputs.website }}
+      landing: ${{ steps.filter.outputs.landing }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: |
-            web:
-              - 'apps/web/**'
+            website:
+              - 'apps/website/**'
+            landing:
+              - 'apps/landing/**'
 
-  build-web:
+  build-website:
     needs: detect-changes
-    if: needs.detect-changes.outputs.web == 'true'
+    if: needs.detect-changes.outputs.website == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build Web App
-        run: echo "Building web app"
-      - name: Test Web App
-        run: echo "Testing web app"
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, xml, ctype, json, bcmath, dom, zip
+      - name: Install Dependencies
+        run: composer install --no-progress
+        working-directory: apps/website
+      - name: Run Tests
+        run: vendor/bin/pest
+        working-directory: apps/website
+
+  build-landing:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.landing == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: apps/landing/package-lock.json
+      - name: Install Dependencies
+        run: npm ci
+        working-directory: apps/landing
+      - name: Build
+        run: npm run build
+        working-directory: apps/landing
