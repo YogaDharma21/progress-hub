@@ -34,8 +34,19 @@ jobs:
         with:
           php-version: '8.3'
           extensions: mbstring, xml, ctype, json, bcmath, dom, zip
-      - name: Install Dependencies
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: apps/website/package-lock.json
+      - name: Install PHP Dependencies
         run: composer install --no-progress
+        working-directory: apps/website
+      - name: Install Node Dependencies
+        run: npm ci
+        working-directory: apps/website
+      - name: Build Frontend
+        run: npm run build
         working-directory: apps/website
       - name: Copy Environment File
         run: cp .env.example .env
@@ -56,10 +67,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
-          cache-dependency-path: apps/landing/package-lock.json
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
         working-directory: apps/landing
       - name: Build
         run: npm run build
