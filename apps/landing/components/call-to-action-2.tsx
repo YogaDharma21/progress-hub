@@ -12,13 +12,13 @@ export default function CallToAction() {
                         <Button
                             size="lg"
                             nativeButton={false}
-                            render={<Link href="https://progress-hub.laravel.cloud/register">Daftar Akun Sekarang</Link>}
+                            render={<Link href="https://app.progress-hub.my.id/register">Daftar Akun Sekarang</Link>}
                         />
                         <Button
                             size="lg"
                             variant="outline"
                             nativeButton={false}
-                            render={<Link href="https://progress-hub.laravel.cloud/login">Login Akun</Link>}
+                            render={<Link href="https://app.progress-hub.my.id/login">Login Akun</Link>}
                         />
                     </div>
                 </div>

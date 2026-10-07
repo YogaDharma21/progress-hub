@@ -26,7 +26,7 @@ export default function HeroSection() {
                                     <Button
                                         className="w-fit"
                                         nativeButton={false}
-                                        render={<Link href="https://progress-stikombali.org">Lihat-lihat Dulu</Link>}
+                                        render={<Link href="https://progress-stikombali.org" target="_blank" rel="noopener noreferrer">Lihat-lihat Dulu</Link>}
                                     />
                                 </div>
                             </div>

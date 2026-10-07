@@ -5,12 +5,6 @@ import { X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import React from 'react'
 
-const menuItems = [
-    { name: 'Events', href: '#events' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Resources', href: '#resources' },
-]
-
 export const HeroHeader = () => {
     const [menuState, setMenuState] = React.useState(false)
 
@@ -63,45 +57,17 @@ export const HeroHeader = () => {
 
                                 <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 translate-x-[-3px] -rotate-180 scale-0 opacity-0 duration-200" />
                             </button>
-
-                            <div className="max-lg:hidden">
-                                <ul className="flex gap-4 text-sm">
-                                    {menuItems.map((item, index) => (
-                                        <li key={index}>
-                                            <Link
-                                                href={item.href}
-                                                className="text-muted-foreground hover:text-foreground relative py-1.5 px-3 rounded hover:bg-muted/50 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 block"
-                                            >
-                                                <span>{item.name}</span>
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
                         </div>
 
+
                         <div className="in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end max-lg:space-y-8 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6">
-                            <div className="lg:hidden">
-                                <ul>
-                                    {menuItems.map((item, index) => (
-                                        <li key={index}>
-                                            <Link
-                                                href={item.href}
-                                                className="text-foreground block py-3 text-2xl font-medium"
-                                            >
-                                                <span>{item.name}</span>
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 <Button
                                     variant="outline"
                                     size="sm"
                                     nativeButton={false}
                                     render={
-                                        <Link href="/login">
+                                        <Link href="https://app.progress-hub.my.id/login">
                                             <span>Login</span>
                                         </Link>
                                     }
@@ -110,7 +76,7 @@ export const HeroHeader = () => {
                                     size="sm"
                                     nativeButton={false}
                                     render={
-                                        <Link href="/register">
+                                        <Link href="https://app.progress-hub.my.id/register">
                                             <span>Register</span>
                                         </Link>
                                     }

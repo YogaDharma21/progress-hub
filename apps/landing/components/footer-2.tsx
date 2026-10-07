@@ -3,18 +3,10 @@ import { Logo } from '@/components/logo'
 
 const footerLinks = [
     {
-        name: 'Platform',
-        links: [
-            { href: 'https://progress-hub.laravel.cloud/members', label: 'Events' },
-            { href: 'https://progress-hub.laravel.cloud/members/projects', label: 'Projects' },
-            { href: 'https://progress-hub.laravel.cloud/members/resources', label: 'Resources' },
-        ],
-    },
-    {
         name: 'Akun',
         links: [
-            { href: 'https://progress-hub.laravel.cloud/login', label: 'Login' },
-            { href: 'https://progress-hub.laravel.cloud/register', label: 'Register' },
+            { href: 'https://app.progress-hub.my.id/login', label: 'Login' },
+            { href: 'https://app.progress-hub.my.id/register', label: 'Register' },
         ],
     },
 ]
