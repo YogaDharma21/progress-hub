@@ -3,12 +3,12 @@
   "private": true,
   "description": "Progress Hub Monorepo",
   "scripts": {
-    "dev": "npx concurrently -k -n \"landing,laravel,vite\" -c \"cyan,magenta,blue\" \"npm --prefix apps/landing run dev\" \"php apps/website/artisan serve\" \"npm --prefix apps/website run dev\"",
+    "dev": "npx concurrently -k -n \"landing,laravel,vite\" -c \"cyan,magenta,blue\" \"npm --prefix apps/landing run dev\" \"cd apps/website && php artisan serve\" \"npm --prefix apps/website run dev\"",
     "dev:landing": "npm --prefix apps/landing run dev",
-    "dev:web": "npx concurrently -k -n \"laravel,vite\" -c \"magenta,blue\" \"php apps/website/artisan serve\" \"npm --prefix apps/website run dev\"",
-    "serve:web": "php apps/website/artisan serve",
+    "dev:web": "npx concurrently -k -n \"laravel,vite\" -c \"magenta,blue\" \"cd apps/website && php artisan serve\" \"npm --prefix apps/website run dev\"",
+    "serve:web": "cd apps/website && php artisan serve",
     "build": "npm --prefix apps/landing run build && npm --prefix apps/website run build",
-    "test:web": "php apps/website/artisan test"
+    "test:web": "cd apps/website && php artisan test"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
