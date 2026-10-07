@@ -11,19 +11,21 @@
     <!-- Projects Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         @forelse($projects as $project)
-            <div class="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 transition hover:-translate-y-0.5 cursor-pointer flex flex-col justify-between" onclick="location.href='{{ route('members.projects.show', $project) }}'">
+            <div class="card-spring group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-5 shadow-sm cursor-pointer flex flex-col justify-between" onclick="location.href='{{ route('members.projects.show', $project) }}'">
                 <div>
                     @if($project->image_path)
-                        <img src="{{ Storage::url($project->image_path) }}" alt="{{ $project->title }}" class="w-full h-36 object-cover rounded-lg border border-zinc-800 mb-4" />
+                        <div class="overflow-hidden rounded-lg border border-zinc-800 mb-4">
+                            <img src="{{ Storage::url($project->image_path) }}" alt="{{ $project->title }}" class="w-full h-36 object-cover transition-transform duration-300 group-hover:scale-105" />
+                        </div>
                     @else
                         <div class="w-full h-36 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg border border-zinc-800 mb-4 flex items-center justify-center text-xs text-zinc-500 font-medium">
                             {{ $project->title }}
                         </div>
                     @endif
-                    <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-200 mb-2">
+                    <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-semibold bg-zinc-800 text-zinc-200 mb-2 transition-transform duration-200 group-hover:scale-105">
                         {{ $project->category ?? 'UKM Project' }}
                     </span>
-                    <h3 class="font-semibold text-sm text-zinc-100 group-hover:text-white">{{ $project->title }}</h3>
+                    <h3 class="font-semibold text-sm text-zinc-100 group-hover:text-white transition-colors">{{ $project->title }}</h3>
                     <p class="text-xs text-zinc-400 line-clamp-2 mt-1">{{ $project->description }}</p>
                     
                     @if($project->technologies)

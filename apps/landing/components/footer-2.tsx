@@ -41,7 +41,7 @@ export default function Footer() {
                                     <li key={index}>
                                         <Link
                                             href={link.href}
-                                            className="hover:text-primary text-muted-foreground text-sm duration-150"
+                                            className="hover:text-foreground text-muted-foreground text-sm inline-block transition-transform duration-150 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:translate-x-1"
                                         >
                                             {link.label}
                                         </Link>

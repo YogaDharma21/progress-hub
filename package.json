@@ -1,0 +1,16 @@
+{
+  "name": "progress-hub",
+  "private": true,
+  "description": "Progress Hub Monorepo",
+  "scripts": {
+    "dev": "npx concurrently -k -n \"landing,laravel,vite\" -c \"cyan,magenta,blue\" \"npm --prefix apps/landing run dev\" \"php apps/website/artisan serve\" \"npm --prefix apps/website run dev\"",
+    "dev:landing": "npm --prefix apps/landing run dev",
+    "dev:web": "npx concurrently -k -n \"laravel,vite\" -c \"magenta,blue\" \"php apps/website/artisan serve\" \"npm --prefix apps/website run dev\"",
+    "serve:web": "php apps/website/artisan serve",
+    "build": "npm --prefix apps/landing run build && npm --prefix apps/website run build",
+    "test:web": "php apps/website/artisan test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

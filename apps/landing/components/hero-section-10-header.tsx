@@ -43,7 +43,7 @@ export const HeroHeader = () => {
                             <Link
                                 href="/"
                                 aria-label="home"
-                                className="flex items-center space-x-2"
+                                className="flex items-center space-x-2 transition-transform duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-105 active:scale-95"
                             >
                                 <Logo uniColor />
                             </Link>
@@ -51,7 +51,7 @@ export const HeroHeader = () => {
                             <button
                                 onClick={() => setMenuState(!menuState)}
                                 aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
-                                className="relative z-20 block cursor-pointer after:absolute after:-inset-4 lg:hidden"
+                                className="relative z-20 block cursor-pointer after:absolute after:-inset-4 lg:hidden transition-transform duration-150 active:scale-90"
                             >
                                 <div
                                     aria-hidden
@@ -65,12 +65,12 @@ export const HeroHeader = () => {
                             </button>
 
                             <div className="max-lg:hidden">
-                                <ul className="flex gap-8 text-sm">
+                                <ul className="flex gap-4 text-sm">
                                     {menuItems.map((item, index) => (
                                         <li key={index}>
                                             <Link
                                                 href={item.href}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                                                className="text-muted-foreground hover:text-foreground relative py-1.5 px-3 rounded hover:bg-muted/50 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 block"
                                             >
                                                 <span>{item.name}</span>
                                             </Link>

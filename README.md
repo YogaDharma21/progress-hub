@@ -43,31 +43,42 @@ progress-hub/
 
 ### Prerequisites
 
-- [PHP](https://php.net/) >= 8.3
+- [PHP](https://php.net/) >= 8.3 with SQLite extension
 - [Composer](https://getcomposer.org/) >= 2.x
 - [Node.js](https://nodejs.org/) >= 18.x
-- MySQL
 
-### Setup
+### Quick Start (Run Both Simultaneously)
+
+From the monorepo root:
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd progress-hub
-
-# Website setup
-cd apps/website
-composer install
-npm install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate --seed
-composer run dev
-
-# Landing setup
-cd ../landing
-npm install
+# Start both Landing (port 3000) and Website (port 8000)
 npm run dev
+
+# Or on Windows PowerShell:
+.\dev.ps1
+
+# Or double-click dev.bat
+```
+
+### Running Individually
+
+```bash
+# Landing Page only (http://localhost:3000)
+npm run dev:landing
+
+# Website (Laravel + Vite) only (http://localhost:8000)
+npm run dev:web
+```
+
+### Database Note (SQLite)
+
+The website backend is configured to use **SQLite** by default (`database/database.sqlite`). You do not need to install or run a MySQL server.
+
+To re-seed or reset the database at any time:
+```bash
+cd apps/website
+php artisan migrate:fresh --seed
 ```
 
 ### Default Accounts

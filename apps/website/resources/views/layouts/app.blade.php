@@ -21,25 +21,25 @@
 
     <header class="bg-zinc-900 border-b border-zinc-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="/members" class="flex items-center gap-3 font-semibold text-lg text-zinc-100 hover:text-white transition">
-                <img src="/icon-192.png" alt="Progress Hub" class="w-8 h-8 rounded-lg" />
+            <a href="/members" class="btn-spring flex items-center gap-3 font-semibold text-lg text-zinc-100 hover:text-white">
+                <img src="/icon-192.png" alt="Progress Hub" class="w-8 h-8 rounded-lg shadow-sm transition-transform duration-200 group-hover:scale-105" />
                 Progress Hub
             </a>
 
-            <nav class="hidden md:flex items-center gap-1">
-                <a href="/members" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('members') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+            <nav class="hidden md:flex items-center gap-1.5">
+                <a href="/members" class="pill-spring px-4 py-2 rounded-lg text-sm font-medium {{ request()->is('members') ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                     Dashboard
                 </a>
-                <a href="/members/events" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('members/events*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                <a href="/members/events" class="pill-spring px-4 py-2 rounded-lg text-sm font-medium {{ request()->is('members/events*') ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                     Events
                 </a>
-                <a href="/members/projects" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('members/projects*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                <a href="/members/projects" class="pill-spring px-4 py-2 rounded-lg text-sm font-medium {{ request()->is('members/projects*') ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                     Projects
                 </a>
-                <a href="/members/resources" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('members/resources*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                <a href="/members/resources" class="pill-spring px-4 py-2 rounded-lg text-sm font-medium {{ request()->is('members/resources*') ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                     Resources
                 </a>
-                <a href="{{ route('members.dashboard') }}#submissions" class="px-4 py-2 rounded-lg text-sm font-medium transition {{ request()->is('members/submissions*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
+                <a href="{{ route('members.dashboard') }}#submissions" class="pill-spring px-4 py-2 rounded-lg text-sm font-medium {{ request()->is('members/submissions*') ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                     Submit
                 </a>
             </nav>
@@ -48,22 +48,22 @@
                 @auth
                     <div class="flex items-center gap-3">
                         @if(Auth::user()->avatar_url)
-                            <img src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}" class="w-8 h-8 rounded object-cover border border-zinc-700 shadow-sm" />
+                            <img src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}" class="w-8 h-8 rounded object-cover border border-zinc-700 shadow-sm transition-transform duration-200 hover:scale-105" />
                         @else
-                            <div class="w-8 h-8 rounded bg-zinc-700 border border-zinc-600 inline-flex items-center justify-center text-xs font-semibold text-zinc-100">
+                            <div class="w-8 h-8 rounded bg-zinc-700 border border-zinc-600 inline-flex items-center justify-center text-xs font-semibold text-zinc-100 shadow-sm transition-transform duration-200 hover:scale-105">
                                 {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                             </div>
                         @endif
                         <span class="text-xs font-medium text-zinc-300 hidden sm:inline">{{ Auth::user()->name }}</span>
                         <form action="{{ route('logout') }}" method="POST" class="inline">
                             @csrf
-                            <button type="submit" class="px-2.5 py-1 text-xs font-medium text-zinc-400 hover:text-white bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700 rounded-md transition cursor-pointer">
+                            <button type="submit" class="btn-spring px-2.5 py-1 text-xs font-medium text-zinc-400 hover:text-white bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700 rounded-md cursor-pointer">
                                 Logout
                             </button>
                         </form>
                     </div>
                 @else
-                    <a href="/login" class="text-xs font-medium text-zinc-300 hover:text-white">Login</a>
+                    <a href="/login" class="btn-spring text-xs font-medium text-zinc-300 hover:text-white px-3 py-1.5 rounded-lg bg-zinc-800 border border-zinc-700">Login</a>
                 @endauth
             </div>
         </div>
