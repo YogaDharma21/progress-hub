@@ -37,8 +37,8 @@ export default function HeroDemo() {
                                     { label: 'Resources', value: '2' },
                                     { label: 'Users', value: '8' },
                                 ].map((stat) => (
-                                    <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-2.5">
-                                        <div className="text-sm font-bold text-zinc-100">{stat.value}</div>
+                                    <div key={stat.label} className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-2.5 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                                        <div className="text-sm font-bold text-zinc-100 group-hover:text-white">{stat.value}</div>
                                         <div className="text-[8px] text-zinc-500">{stat.label}</div>
                                     </div>
                                 ))}
@@ -122,12 +122,12 @@ export default function HeroDemo() {
                                 { icon: FolderGit2, label: 'Proyek Showcase', value: '2' },
                                 { icon: BookOpen, label: 'Artikel & Modul', value: '2' },
                             ].map((stat) => (
-                                <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-2 sm:p-2.5 lg:p-3 flex items-center gap-2 sm:gap-3">
-                                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-zinc-950 flex items-center justify-center shrink-0">
-                                        <stat.icon className="size-3 sm:size-3.5 text-zinc-400" />
+                                <div key={stat.label} className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-2 sm:p-2.5 lg:p-3 flex items-center gap-2 sm:gap-3 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-zinc-950 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
+                                        <stat.icon className="size-3 sm:size-3.5 text-zinc-400 group-hover:text-zinc-200" />
                                     </div>
                                     <div className="min-w-0">
-                                        <div className="text-xs sm:text-sm lg:text-base font-bold text-zinc-100">{stat.value}</div>
+                                        <div className="text-xs sm:text-sm lg:text-base font-bold text-zinc-100 group-hover:text-white">{stat.value}</div>
                                         <div className="text-[7px] sm:text-[8px] text-zinc-500 truncate">{stat.label}</div>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@ export default function HeroDemo() {
                                 </div>
                                 <div className="flex gap-1">
                                     {['Semua', 'Kelas', 'Hackathon', 'Sharing'].map((tab, i) => (
-                                        <div key={tab} className={`px-2 py-0.5 text-[8px] font-medium rounded ${i === 0 ? 'bg-zinc-800 text-zinc-100' : 'text-zinc-600'}`}>{tab}</div>
+                                        <div key={tab} className={`px-2 py-0.5 text-[8px] font-medium rounded transition-all duration-150 cursor-pointer ${i === 0 ? 'bg-zinc-800 text-zinc-100' : 'text-zinc-600 hover:text-zinc-300'}`}>{tab}</div>
                                     ))}
                                 </div>
                             </div>
@@ -152,22 +152,22 @@ export default function HeroDemo() {
                                     { title: 'Hackathon Sprint', desc: 'Build solutions in 48h.', status: 'Berlangsung', sc: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30', s: 8, pa: 24, av: ['A', 'R', '+12'] },
                                     { title: 'React Deep Dive', desc: 'Master React patterns.', status: 'Berlangsung', sc: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30', s: 4, pa: 18, av: ['M', 'S', '+8'] },
                                 ].map((e) => (
-                                    <div key={e.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-3">
+                                    <div key={e.title} className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-3 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
                                         <div className="flex items-start justify-between gap-2 mb-2">
                                             <div className="min-w-0 flex-1">
-                                                <h4 className="text-[10px] font-semibold text-zinc-100 truncate">{e.title}</h4>
+                                                <h4 className="text-[10px] font-semibold text-zinc-100 truncate group-hover:text-white">{e.title}</h4>
                                                 <p className="text-[8px] text-zinc-500 mt-0.5 line-clamp-1">{e.desc}</p>
                                             </div>
-                                            <span className={`shrink-0 px-2 py-0.5 rounded text-[8px] font-medium border ${e.sc}`}>{e.status}</span>
+                                            <span className={`shrink-0 px-2 py-0.5 rounded text-[8px] font-medium border transition-transform duration-200 group-hover:scale-105 ${e.sc}`}>{e.status}</span>
                                         </div>
                                         <div className="flex items-center justify-between text-[8px] text-zinc-500">
                                             <div className="flex items-center gap-2">
-                                                <span className="flex items-center gap-1"><Clock className="size-2.5" /> {e.s} Pertemuan</span>
-                                                <span className="flex items-center gap-1"><Users className="size-2.5" /> {e.pa} Peserta</span>
+                                                <span className="flex items-center gap-1"><Clock className="size-2.5 transition-transform duration-200 group-hover:rotate-12" /> {e.s} Pertemuan</span>
+                                                <span className="flex items-center gap-1"><Users className="size-2.5 transition-transform duration-200 group-hover:scale-110" /> {e.pa} Peserta</span>
                                             </div>
                                             <div className="flex -space-x-1">
                                                 {e.av.map((a, i) => (
-                                                    <div key={i} className="w-4 h-4 rounded bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] font-semibold text-zinc-200">{a}</div>
+                                                    <div key={i} className="w-4 h-4 rounded bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] font-semibold text-zinc-200 transition-transform duration-200 group-hover:-translate-y-0.5">{a}</div>
                                                 ))}
                                             </div>
                                         </div>

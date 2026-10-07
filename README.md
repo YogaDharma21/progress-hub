@@ -43,19 +43,14 @@ progress-hub/
 
 ### Prerequisites
 
-- [PHP](https://php.net/) >= 8.3
+- [PHP](https://php.net/) >= 8.3 with SQLite extension
 - [Composer](https://getcomposer.org/) >= 2.x
 - [Node.js](https://nodejs.org/) >= 18.x
-- MySQL
 
-### Setup
+### Setup & Running
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd progress-hub
-
-# Website setup
+# Website (Laravel + SQLite)
 cd apps/website
 composer install
 npm install
@@ -64,10 +59,20 @@ php artisan key:generate
 php artisan migrate --seed
 composer run dev
 
-# Landing setup
-cd ../landing
+# Landing Page (Next.js)
+cd apps/landing
 npm install
 npm run dev
+```
+
+### Database Note (SQLite)
+
+The website backend is configured to use **SQLite** by default (`database/database.sqlite`). You do not need to install or run a MySQL server.
+
+To re-seed or reset the database at any time:
+```bash
+cd apps/website
+php artisan migrate:fresh --seed
 ```
 
 ### Default Accounts

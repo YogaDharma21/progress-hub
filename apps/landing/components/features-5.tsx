@@ -44,9 +44,9 @@ function FeatureList({ items }: { items: { icon: LucideIcon; label: string }[] }
     return (
         <ul className="text-muted-foreground mt-8 divide-y *:flex *:items-center *:gap-3 *:py-3">
             {items.map(({ icon: Icon, label }) => (
-                <li key={label}>
-                    <Icon className="size-4" />
-                    {label}
+                <li key={label} className="group transition-colors duration-200 hover:text-foreground">
+                    <Icon className="size-4 transition-transform duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-125 group-hover:rotate-6 text-zinc-400 group-hover:text-zinc-100" />
+                    <span>{label}</span>
                 </li>
             ))}
         </ul>
@@ -102,7 +102,7 @@ export default function FeaturesSection() {
                                     variant="ghost"
                                     data-state={activeId === feature.id ? 'active' : undefined}
                                     onClick={() => scrollToFeature(feature.id)}
-                                    className="not-data-[state=active]:text-muted-foreground hover:bg-transparent">
+                                    className="not-data-[state=active]:text-muted-foreground data-[state=active]:font-semibold data-[state=active]:translate-x-1.5 transition-all duration-200 hover:bg-transparent">
                                     {feature.label}
                                 </Button>
                             ))}

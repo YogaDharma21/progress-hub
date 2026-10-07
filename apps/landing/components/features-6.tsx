@@ -62,24 +62,24 @@ export default function FeaturesSection() {
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4 mb-5">
                             {events.map((event) => (
-                                <div key={event.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+                                <div key={event.title} className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-4 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20 active:scale-[0.98] cursor-pointer">
                                     <div className="flex items-start justify-between gap-2 mb-2.5">
                                         <div className="min-w-0 flex-1">
-                                            <h4 className="text-[11px] font-semibold text-zinc-100 truncate">{event.title}</h4>
+                                            <h4 className="text-[11px] font-semibold text-zinc-100 truncate group-hover:text-white transition-colors">{event.title}</h4>
                                             <p className="text-[9px] text-zinc-500 mt-0.5 line-clamp-1">{event.description}</p>
                                         </div>
-                                        <span className={`shrink-0 px-2 py-0.5 rounded text-[9px] font-medium border ${event.statusColor}`}>
+                                        <span className={`shrink-0 px-2 py-0.5 rounded text-[9px] font-medium border transition-transform duration-200 group-hover:scale-105 ${event.statusColor}`}>
                                             {event.status}
                                         </span>
                                     </div>
                                     <div className="flex items-center justify-between text-[9px] text-zinc-500">
                                         <div className="flex items-center gap-3">
-                                            <span className="flex items-center gap-1"><Clock className="size-3" /> {event.sessions} Pertemuan</span>
-                                            <span className="flex items-center gap-1"><Users className="size-3" /> {event.participants} Peserta</span>
+                                            <span className="flex items-center gap-1"><Clock className="size-3 transition-transform duration-200 group-hover:rotate-12" /> {event.sessions} Pertemuan</span>
+                                            <span className="flex items-center gap-1"><Users className="size-3 transition-transform duration-200 group-hover:scale-110" /> {event.participants} Peserta</span>
                                         </div>
                                         <div className="flex -space-x-1">
                                             {event.avatars.map((a, i) => (
-                                                <div key={i} className="w-5 h-5 rounded bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] font-semibold text-zinc-200">{a}</div>
+                                                <div key={i} className="w-5 h-5 rounded bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] font-semibold text-zinc-200 transition-transform duration-200 group-hover:-translate-y-0.5">{a}</div>
                                             ))}
                                         </div>
                                     </div>
@@ -90,16 +90,16 @@ export default function FeaturesSection() {
                         {/* Bottom row: projects + resources + stats */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4">
                             {/* Project card */}
-                            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-                                <div className="w-full h-32 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-lg border border-zinc-800 mb-3 flex items-center justify-center">
-                                    <Image src="/icon-192.png" alt="" width={24} height={24} className="rounded opacity-30" />
+                            <div className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-4 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20 active:scale-[0.98] cursor-pointer">
+                                <div className="w-full h-32 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-lg border border-zinc-800 mb-3 flex items-center justify-center overflow-hidden">
+                                    <Image src="/icon-192.png" alt="" width={24} height={24} className="rounded opacity-30 transition-all duration-300 group-hover:opacity-60 group-hover:scale-110" />
                                 </div>
-                                <span className="px-2 py-0.5 rounded text-[9px] font-semibold bg-zinc-800 text-zinc-300">Web App</span>
-                                <h4 className="text-[11px] font-semibold text-zinc-100 mt-1.5">Progress Hub</h4>
+                                <span className="inline-block px-2 py-0.5 rounded text-[9px] font-semibold bg-zinc-800 text-zinc-300 transition-transform duration-200 group-hover:scale-105">Web App</span>
+                                <h4 className="text-[11px] font-semibold text-zinc-100 mt-1.5 group-hover:text-white transition-colors">Progress Hub</h4>
                                 <p className="text-[9px] text-zinc-500 line-clamp-1 mt-0.5">Platform manajemen kegiatan UKM.</p>
                                 <div className="flex flex-wrap gap-1 mt-2">
                                     {['Laravel', 'React', 'Tailwind'].map((t) => (
-                                        <span key={t} className="px-1.5 py-0.5 rounded text-[8px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800">{t}</span>
+                                        <span key={t} className="px-1.5 py-0.5 rounded text-[8px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800 transition-colors group-hover:border-zinc-700">{t}</span>
                                     ))}
                                 </div>
                                 <div className="flex items-center justify-between text-[9px] text-zinc-600 mt-3 pt-2 border-t border-zinc-800/60">
@@ -108,17 +108,17 @@ export default function FeaturesSection() {
                                 </div>
                             </div>
                             {/* Resource card */}
-                            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+                            <div className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-4 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20 active:scale-[0.98] cursor-pointer">
                                 <div className="flex items-center gap-1.5 mb-2">
-                                    <span className="px-2 py-0.5 rounded text-[9px] font-semibold bg-zinc-800 text-zinc-300">Modul</span>
-                                    <span className="px-1.5 py-0.5 rounded text-[8px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800">JavaScript</span>
-                                    <span className="px-1.5 py-0.5 rounded text-[8px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800">React</span>
+                                    <span className="px-2 py-0.5 rounded text-[9px] font-semibold bg-zinc-800 text-zinc-300 transition-transform duration-200 group-hover:scale-105">Modul</span>
+                                    <span className="px-1.5 py-0.5 rounded text-[8px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800 transition-colors group-hover:border-zinc-700">JavaScript</span>
+                                    <span className="px-1.5 py-0.5 rounded text-[8px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800 transition-colors group-hover:border-zinc-700">React</span>
                                 </div>
-                                <h4 className="text-[11px] font-semibold text-zinc-100">Modul Praktikum Web Dev</h4>
+                                <h4 className="text-[11px] font-semibold text-zinc-100 group-hover:text-white transition-colors">Modul Praktikum Web Dev</h4>
                                 <p className="text-[9px] text-zinc-500 line-clamp-2 mt-1">Panduan lengkap belajar web development dari dasar hingga mahir.</p>
                                 <div className="flex items-center justify-between text-[9px] text-zinc-600 mt-3 pt-2 border-t border-zinc-800/60">
                                     <span>3 hari lalu</span>
-                                    <span className="flex items-center gap-1"><Eye className="size-3" /> 342 views</span>
+                                    <span className="flex items-center gap-1"><Eye className="size-3 transition-transform duration-200 group-hover:scale-110" /> 342 views</span>
                                 </div>
                             </div>
                             {/* Stats + activity */}
@@ -129,9 +129,9 @@ export default function FeaturesSection() {
                                         { icon: FolderGit2, label: 'Proyek', value: '28' },
                                         { icon: BookOpen, label: 'Modul', value: '45' },
                                     ].map((s) => (
-                                        <div key={s.label} className="bg-zinc-950 border border-zinc-800 rounded-lg p-2 text-center">
-                                            <s.icon className="size-3 text-zinc-500 mx-auto mb-1" />
-                                            <div className="text-xs font-bold text-zinc-100">{s.value}</div>
+                                        <div key={s.label} className="group bg-zinc-950 border border-zinc-800 hover:border-zinc-700 rounded-lg p-2 text-center transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 hover:shadow-sm active:scale-95 cursor-pointer">
+                                            <s.icon className="size-3 text-zinc-500 mx-auto mb-1 transition-transform duration-200 group-hover:scale-125 group-hover:rotate-6 group-hover:text-zinc-300" />
+                                            <div className="text-xs font-bold text-zinc-100 group-hover:text-white">{s.value}</div>
                                             <div className="text-[7px] text-zinc-600">{s.label}</div>
                                         </div>
                                     ))}
@@ -166,7 +166,7 @@ export default function FeaturesSection() {
                                 { label: 'Resources', value: '2' },
                                 { label: 'Users', value: '8' },
                             ].map((m) => (
-                                <div key={m.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-2">
+                                <div key={m.label} className="bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-lg p-2 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 cursor-pointer">
                                     <div className="text-xs font-bold text-zinc-100">{m.value}</div>
                                     <div className="text-[7px] text-zinc-500">{m.label}</div>
                                 </div>

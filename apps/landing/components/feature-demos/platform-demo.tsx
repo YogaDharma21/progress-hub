@@ -21,11 +21,13 @@ export default function PlatformDemo() {
             </div>
             <div className="grid grid-cols-3 gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                 {stats.map((stat) => (
-                    <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-2 sm:p-3">
-                        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-zinc-950 flex items-center justify-center mb-1.5 sm:mb-2">
-                            <stat.icon className={`size-3 sm:size-3.5 ${stat.color}`} />
+                    <div
+                        key={stat.label}
+                        className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-2 sm:p-3 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:shadow-md hover:shadow-black/20 active:scale-95 cursor-pointer">
+                        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-zinc-950 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform duration-200 group-hover:scale-110 group-hover:rotate-6">
+                            <stat.icon className={`size-3 sm:size-3.5 ${stat.color} transition-colors group-hover:text-zinc-200`} />
                         </div>
-                        <div className="text-sm sm:text-base font-bold text-zinc-100">{stat.value}</div>
+                        <div className="text-sm sm:text-base font-bold text-zinc-100 group-hover:text-white">{stat.value}</div>
                         <div className="text-[7px] sm:text-[9px] text-zinc-500 truncate">{stat.label}</div>
                     </div>
                 ))}
@@ -34,8 +36,8 @@ export default function PlatformDemo() {
                 <h5 className="text-[10px] font-semibold text-zinc-400 mb-2.5">Aktivitas Terkini</h5>
                 <div className="space-y-2 sm:space-y-2.5">
                     {activity.map((item, i) => (
-                        <div key={i} className="flex items-start gap-2">
-                            <div className="w-5 h-5 rounded bg-zinc-800 border border-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-300 shrink-0 mt-0.5">
+                        <div key={i} className="group flex items-start gap-2 p-1 -m-1 rounded-lg transition-colors hover:bg-zinc-800/40">
+                            <div className="w-5 h-5 rounded bg-zinc-800 border border-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-300 shrink-0 mt-0.5 transition-transform duration-200 group-hover:scale-110">
                                 {item.user[0]}
                             </div>
                             <div className="min-w-0 flex-1">
