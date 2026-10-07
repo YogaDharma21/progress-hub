@@ -47,28 +47,22 @@ progress-hub/
 - [Composer](https://getcomposer.org/) >= 2.x
 - [Node.js](https://nodejs.org/) >= 18.x
 
-### Quick Start (Run Both Simultaneously)
-
-From the monorepo root:
+### Setup & Running
 
 ```bash
-# Start both Landing (port 3000) and Website (port 8000)
+# Website (Laravel + SQLite)
+cd apps/website
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+composer run dev
+
+# Landing Page (Next.js)
+cd apps/landing
+npm install
 npm run dev
-
-# Or on Windows PowerShell:
-.\dev.ps1
-
-# Or double-click dev.bat
-```
-
-### Running Individually
-
-```bash
-# Landing Page only (http://localhost:3000)
-npm run dev:landing
-
-# Website (Laravel + Vite) only (http://localhost:8000)
-npm run dev:web
 ```
 
 ### Database Note (SQLite)
