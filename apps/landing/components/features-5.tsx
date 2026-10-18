@@ -1,12 +1,13 @@
 'use client'
 
 import { BookOpen, Code2, GraduationCap, Layout, Lightbulb, Users, FolderGit2, FileText, type LucideIcon } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type RefObject } from 'react'
 import { Button } from '@/components/ui/button'
 import EventCardDemo from '@/components/feature-demos/event-card-demo'
 import ProjectCardDemo from '@/components/feature-demos/project-card-demo'
 import ResourceCardDemo from '@/components/feature-demos/resource-card-demo'
 import PlatformDemo from '@/components/feature-demos/platform-demo'
+import { getLenisInstance } from '@/lib/lenis'
 
 const features = [
     { id: 'events', label: 'Program Kerja & Kelas' },
@@ -53,12 +54,23 @@ function FeatureList({ items }: { items: { icon: LucideIcon; label: string }[] }
     )
 }
 
-export default function FeaturesSection() {
+type FeatureRefs = Partial<Record<FeatureId, HTMLDivElement | null>>
+
+// Kept out of FeaturesSection so the observer updating activeId re-renders four
+// buttons instead of the four demo panels below them.
+function FeatureNav({ sectionRefs }: { sectionRefs: RefObject<FeatureRefs> }) {
     const [activeId, setActiveId] = useState<FeatureId>('events')
-    const sectionRefs = useRef<Partial<Record<FeatureId, HTMLDivElement | null>>>({})
 
     const scrollToFeature = (id: FeatureId) => {
-        sectionRefs.current[id]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        const section = sectionRefs.current[id]
+        const lenis = getLenisInstance()
+
+        if (section && lenis) {
+            lenis.scrollTo(section, { offset: -128 })
+        } else {
+            section?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+
         setActiveId(id)
     }
 
@@ -83,31 +95,39 @@ export default function FeaturesSection() {
         sections.forEach((section) => observer.observe(section))
 
         return () => observer.disconnect()
-    }, [])
+    }, [sectionRefs])
+
+    return (
+        <div className="sticky top-24 h-fit w-56 max-lg:hidden">
+            <div className="text-muted-foreground text-sm">Fitur</div>
+            <div className="-ml-4 mt-4 flex flex-col *:justify-start">
+                {features.map((feature) => (
+                    <Button
+                        key={feature.id}
+                        type="button"
+                        variant="ghost"
+                        data-state={activeId === feature.id ? 'active' : undefined}
+                        onClick={() => scrollToFeature(feature.id)}
+                        className="not-data-[state=active]:text-muted-foreground data-[state=active]:font-semibold data-[state=active]:translate-x-1.5 transition-all duration-200 hover:bg-transparent">
+                        {feature.label}
+                    </Button>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+export default function FeaturesSection() {
+    const sectionRefs = useRef<FeatureRefs>({})
 
     return (
         <section className="py-16 md:py-20">
             <div className="mx-auto max-w-7xl px-6">
-                <h2 className="text-muted-foreground max-w-4xl text-balance text-4xl font-medium tracking-tight">
+                <h2 data-reveal className="text-muted-foreground max-w-4xl text-balance text-4xl font-medium tracking-tight">
                     <span className="text-foreground">Yang bikin Progress Hub seru.</span> <br /> Fitur-fitur yang bikin coding jadi nggak sendirian.
                 </h2>
                 <div className="mt-16 grid gap-6 md:mt-32 lg:grid-cols-[auto_1fr]">
-                    <div className="sticky top-24 h-fit w-56 max-lg:hidden">
-                        <div className="text-muted-foreground text-sm">Fitur</div>
-                        <div className="-ml-4 mt-4 flex flex-col *:justify-start">
-                            {features.map((feature) => (
-                                <Button
-                                    key={feature.id}
-                                    type="button"
-                                    variant="ghost"
-                                    data-state={activeId === feature.id ? 'active' : undefined}
-                                    onClick={() => scrollToFeature(feature.id)}
-                                    className="not-data-[state=active]:text-muted-foreground data-[state=active]:font-semibold data-[state=active]:translate-x-1.5 transition-all duration-200 hover:bg-transparent">
-                                    {feature.label}
-                                </Button>
-                            ))}
-                        </div>
-                    </div>
+                    <FeatureNav sectionRefs={sectionRefs} />
                     <div className="flex flex-col gap-16 md:gap-32">
                         <div
                             ref={(element) => {
@@ -115,7 +135,7 @@ export default function FeaturesSection() {
                             }}
                             id="events"
                             className="grid scroll-mt-32 gap-8 md:grid-cols-5 lg:gap-12">
-                            <div className="flex flex-col justify-between pb-4 md:col-span-2">
+                            <div data-reveal className="flex flex-col justify-between pb-4 md:col-span-2">
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Program Kerja & Kelas</h3>
                                     <p className="text-muted-foreground text-balance text-lg font-medium">
@@ -124,7 +144,7 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.events} />
                             </div>
-                            <div className="border-border/50 bg-foreground/2 relative flex aspect-auto min-h-[340px] sm:min-h-[400px] md:aspect-square items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
+                            <div data-reveal className="border-border/50 bg-foreground/2 relative flex aspect-auto min-h-[340px] sm:min-h-[400px] md:aspect-square items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
                                 <div className="w-full max-w-sm sm:max-w-md mx-auto">
                                     <EventCardDemo />
                                 </div>
@@ -137,7 +157,7 @@ export default function FeaturesSection() {
                             }}
                             id="projects"
                             className="grid scroll-mt-32 gap-8 md:grid-cols-5 lg:gap-12">
-                            <div className="flex flex-col justify-between pb-4 md:col-span-2">
+                            <div data-reveal className="flex flex-col justify-between pb-4 md:col-span-2">
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Portofolio Proyek</h3>
                                     <p className="text-muted-foreground text-balance text-lg font-medium">
@@ -146,7 +166,7 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.projects} />
                             </div>
-                            <div className="border-border/50 bg-foreground/2 relative flex aspect-auto min-h-[340px] sm:min-h-[400px] md:aspect-square items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
+                            <div data-reveal className="border-border/50 bg-foreground/2 relative flex aspect-auto min-h-[340px] sm:min-h-[400px] md:aspect-square items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
                                 <div className="w-full max-w-sm sm:max-w-md mx-auto">
                                     <ProjectCardDemo />
                                 </div>
@@ -159,7 +179,7 @@ export default function FeaturesSection() {
                             }}
                             id="resources"
                             className="grid scroll-mt-32 gap-8 md:grid-cols-5 lg:gap-12">
-                            <div className="flex flex-col justify-between pb-4 md:col-span-2">
+                            <div data-reveal className="flex flex-col justify-between pb-4 md:col-span-2">
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Repositori Pembelajaran</h3>
                                     <p className="text-muted-foreground text-balance text-lg font-medium">
@@ -168,7 +188,7 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.resources} />
                             </div>
-                            <div className="border-border/50 bg-foreground/2 relative flex aspect-auto min-h-[340px] sm:min-h-[400px] md:aspect-square items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
+                            <div data-reveal className="border-border/50 bg-foreground/2 relative flex aspect-auto min-h-[340px] sm:min-h-[400px] md:aspect-square items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
                                 <div className="w-full max-w-sm sm:max-w-md mx-auto">
                                     <ResourceCardDemo />
                                 </div>
@@ -181,7 +201,7 @@ export default function FeaturesSection() {
                             }}
                             id="platform"
                             className="grid scroll-mt-32 gap-8 md:grid-cols-5 lg:gap-12">
-                            <div className="flex flex-col justify-between pb-4 md:col-span-2">
+                            <div data-reveal className="flex flex-col justify-between pb-4 md:col-span-2">
                                 <div className="md:pr-6 lg:pr-0">
                                     <h3 className="text-muted-foreground mb-6 text-sm font-medium">Platform Terpadu</h3>
                                     <p className="text-muted-foreground text-balance text-lg font-medium">
@@ -190,7 +210,7 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.platform} />
                             </div>
-                            <div className="border-border/50 bg-foreground/2 relative flex aspect-auto min-h-[340px] sm:min-h-[400px] md:aspect-square items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
+                            <div data-reveal className="border-border/50 bg-foreground/2 relative flex aspect-auto min-h-[340px] sm:min-h-[400px] md:aspect-square items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
                                 <div className="w-full max-w-sm sm:max-w-md mx-auto">
                                     <PlatformDemo />
                                 </div>

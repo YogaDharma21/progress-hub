@@ -6,7 +6,7 @@ Marketing and landing page for **Progress Hub** — built with Next.js 16, React
 
 - **Framework**: [Next.js 16](https://nextjs.org) (App Router)
 - **UI**: [shadcn/ui](https://ui.shadcn.com) + [Tailwind CSS v4](https://tailwindcss.com)
-- **Animation**: [Framer Motion](https://www.framer.com/motion/)
+- **Animation**: [GSAP](https://gsap.com) (ScrollTrigger) + [Lenis](https://github.com/darkroomengineering/lenis) smooth scrolling, [Motion](https://motion.dev) for micro-interactions
 - **Language**: TypeScript
 
 ## Getting Started
