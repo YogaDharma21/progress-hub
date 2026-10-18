@@ -182,25 +182,41 @@
 }
 
 /* Animated content stays hidden from the first paint so it never flashes.
-   app/layout.tsx adds .motion while parsing and reveals in-view content after
-   REVEAL_GUARD_MS. ScrollAnimations marks what it animates with data-motion-shown. */
-html.motion [data-hero-intro]:not([data-motion-forced]):not([data-motion-shown]),
-html.motion [data-reveal]:not([data-motion-forced]):not([data-motion-shown]) {
+   The inline script in app/layout.tsx adds .motion while parsing, then it and the
+   scroll batches in scroll-animations.tsx reveal elements by adding the markers.
+
+   The reveal is a keyframe animation, not a transition. Transitions are skipped
+   when the style change lands before the element has been painted, which made the
+   first paint inconsistent, and keyframes keep running even if the main thread is
+   busy because opacity and transform are composited. */
+html.motion [data-hero-intro]:not([data-motion-shown]):not([data-motion-instant]),
+html.motion [data-reveal]:not([data-motion-shown]):not([data-motion-instant]) {
   opacity: 0;
   visibility: hidden;
   transform: translateY(18px);
 }
 
-html.motion [data-motion-forced] {
+html.motion [data-motion-shown]:not([data-motion-instant]) {
+  visibility: visible;
+  animation: motion-reveal 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Emergency path: show at once instead of animating dozens of elements together. */
+html.motion [data-motion-instant] {
   opacity: 1;
   visibility: visible;
   transform: none;
-  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-html.motion [data-motion-shown] {
-  opacity: 1;
-  visibility: visible;
+@keyframes motion-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Lenis smooth scroll, copied from lenis/dist/lenis.css */

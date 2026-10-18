@@ -4,24 +4,18 @@ import { useEffect, useLayoutEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { revealElements } from '@/lib/motion'
 
 // Prefer a layout effect so triggers exist before the first paint after hydration.
 // On the server it falls back to useEffect, since layout effects don't run there.
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect
 
-// Above-the-fold content is owned by the CSS entrance in globals.css, which the
-// guard in app/layout.tsx triggers. GSAP owns everything that reveals on scroll.
-// Both work on the same pending set: whatever one touches first wins.
-const REVEAL_SELECTOR = '[data-reveal]:not([data-motion-forced]):not([data-motion-shown])'
-
-// data-motion-shown stops the hidden CSS rule from re-hiding an element once GSAP
-// clears its inline styles at the end of a tween.
-function claim(elements: Element[]) {
-    elements.forEach((element) => element.setAttribute('data-motion-shown', ''))
-}
-
-const REVEAL_FROM = { y: 32, autoAlpha: 0 }
-const REVEAL_TO = { y: 0, autoAlpha: 1, duration: 1.1, ease: 'power2.out', stagger: 0.14, overwrite: true, clearProps: 'transform,opacity,visibility' }
+// Elements the inline script in app/layout.tsx has not revealed yet. That script
+// owns an IntersectionObserver that covers everything rendered on first load, so
+// this batch is the fallback path for elements added later, like after a client
+// navigation. Both go through window.__motionReveal, so they play the identical
+// animation.
+const REVEAL_SELECTOR = '[data-reveal]:not([data-motion-shown]):not([data-motion-instant])'
 
 export default function ScrollAnimations() {
     const pathname = usePathname()
@@ -31,17 +25,14 @@ export default function ScrollAnimations() {
 
         gsap.registerPlugin(ScrollTrigger)
 
-        // Tells the kill switch in app/layout.tsx that the animation library booted.
-        document.documentElement.dataset.motionActive = 'true'
-
         const context = gsap.context(() => {
+            // The reveal itself is a CSS keyframe animation (globals.css), which the
+            // browser can run on the compositor. ScrollTrigger only decides when,
+            // and the stagger comes from the animation-delay set per element.
             ScrollTrigger.batch(REVEAL_SELECTOR, {
                 start: 'top 90%',
                 once: true,
-                onEnter: (batch) => {
-                    claim(batch)
-                    gsap.fromTo(batch, REVEAL_FROM, REVEAL_TO)
-                },
+                onEnter: (batch) => revealElements(batch),
             })
 
             gsap.utils.toArray<HTMLElement>('[data-parallax]').forEach((element) => {

@@ -1,7 +1,7 @@
 'use client'
 
 import { BookOpen, Code2, GraduationCap, Layout, Lightbulb, Users, FolderGit2, FileText, type LucideIcon } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type RefObject } from 'react'
 import { Button } from '@/components/ui/button'
 import EventCardDemo from '@/components/feature-demos/event-card-demo'
 import ProjectCardDemo from '@/components/feature-demos/project-card-demo'
@@ -54,9 +54,12 @@ function FeatureList({ items }: { items: { icon: LucideIcon; label: string }[] }
     )
 }
 
-export default function FeaturesSection() {
+type FeatureRefs = Partial<Record<FeatureId, HTMLDivElement | null>>
+
+// Kept out of FeaturesSection so the observer updating activeId re-renders four
+// buttons instead of the four demo panels below them.
+function FeatureNav({ sectionRefs }: { sectionRefs: RefObject<FeatureRefs> }) {
     const [activeId, setActiveId] = useState<FeatureId>('events')
-    const sectionRefs = useRef<Partial<Record<FeatureId, HTMLDivElement | null>>>({})
 
     const scrollToFeature = (id: FeatureId) => {
         const section = sectionRefs.current[id]
@@ -92,7 +95,30 @@ export default function FeaturesSection() {
         sections.forEach((section) => observer.observe(section))
 
         return () => observer.disconnect()
-    }, [])
+    }, [sectionRefs])
+
+    return (
+        <div className="sticky top-24 h-fit w-56 max-lg:hidden">
+            <div className="text-muted-foreground text-sm">Fitur</div>
+            <div className="-ml-4 mt-4 flex flex-col *:justify-start">
+                {features.map((feature) => (
+                    <Button
+                        key={feature.id}
+                        type="button"
+                        variant="ghost"
+                        data-state={activeId === feature.id ? 'active' : undefined}
+                        onClick={() => scrollToFeature(feature.id)}
+                        className="not-data-[state=active]:text-muted-foreground data-[state=active]:font-semibold data-[state=active]:translate-x-1.5 transition-all duration-200 hover:bg-transparent">
+                        {feature.label}
+                    </Button>
+                ))}
+            </div>
+        </div>
+    )
+}
+
+export default function FeaturesSection() {
+    const sectionRefs = useRef<FeatureRefs>({})
 
     return (
         <section className="py-16 md:py-20">
@@ -101,22 +127,7 @@ export default function FeaturesSection() {
                     <span className="text-foreground">Yang bikin Progress Hub seru.</span> <br /> Fitur-fitur yang bikin coding jadi nggak sendirian.
                 </h2>
                 <div className="mt-16 grid gap-6 md:mt-32 lg:grid-cols-[auto_1fr]">
-                    <div className="sticky top-24 h-fit w-56 max-lg:hidden">
-                        <div className="text-muted-foreground text-sm">Fitur</div>
-                        <div className="-ml-4 mt-4 flex flex-col *:justify-start">
-                            {features.map((feature) => (
-                                <Button
-                                    key={feature.id}
-                                    type="button"
-                                    variant="ghost"
-                                    data-state={activeId === feature.id ? 'active' : undefined}
-                                    onClick={() => scrollToFeature(feature.id)}
-                                    className="not-data-[state=active]:text-muted-foreground data-[state=active]:font-semibold data-[state=active]:translate-x-1.5 transition-all duration-200 hover:bg-transparent">
-                                    {feature.label}
-                                </Button>
-                            ))}
-                        </div>
-                    </div>
+                    <FeatureNav sectionRefs={sectionRefs} />
                     <div className="flex flex-col gap-16 md:gap-32">
                         <div
                             ref={(element) => {

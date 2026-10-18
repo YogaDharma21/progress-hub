@@ -28,20 +28,25 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
-// Animated content is hidden by globals.css from the first paint. If GSAP has not
-// claimed it in time, the guard reveals whatever the user can currently see.
-// A beat after first paint, so the entrance reads as deliberate instead of a pop.
+// Content animated on first load is hidden by the .motion rules in globals.css.
+// Everything that reveals goes through the IntersectionObserver below, which lives
+// in this inline script on purpose: reveals then never depend on when React
+// hydrates, so every load plays the same animation at the same time.
+
+// A beat after the document is parsed, so the entrance reads as deliberate and the
+// fonts have settled.
 const REVEAL_GUARD_MS = 250
 
-// Stagger between in-view elements, capped so a tall viewport never queues a long wait.
+// Stagger between revealed elements, capped so a tall viewport never queues a wait.
 const REVEAL_STAGGER_MS = 90
 const REVEAL_STAGGER_MAX_STEPS = 5
 
-// Last resort. If the animation bundle never boots, reveal everything still hidden.
-const MOTION_KILL_SWITCH_MS = 3000
+// Last resort. If something the user can see is still hidden, show it with no
+// animation rather than leaving a blank page.
+const MOTION_RESCUE_MS = 3000
 
 // Runs while the HTML parses, before the first paint, so nothing flashes visible
-// and then hides. Only the in-view guard is allowed to skip the scroll reveal.
+// and then hides. Deliberately plain: it has to work before the bundle boots.
 const motionScript = `
 (function () {
   var root = document.documentElement
@@ -49,32 +54,68 @@ const motionScript = `
 
   root.classList.add('motion')
 
-  var pending = '[data-hero-intro]:not([data-motion-forced]):not([data-motion-shown]), [data-reveal]:not([data-motion-forced]):not([data-motion-shown])'
+  // Triggers 90% down the viewport, the same line the scroll batch in
+  // components/scroll-animations.tsx uses.
+  var LINE = 0.9
+  var pending = '[data-hero-intro]:not([data-motion-shown]):not([data-motion-instant]), [data-reveal]:not([data-motion-shown]):not([data-motion-instant])'
 
-  function reveal(targets, options) {
-    var viewport = window.innerHeight
-    targets.forEach(function (element, index) {
-      if (options.inViewOnly) {
-        var rect = element.getBoundingClientRect()
-        if (rect.bottom <= 0 || rect.top >= viewport) return
-      }
-      if (options.stagger) {
-        element.style.transitionDelay = (Math.min(index, ${REVEAL_STAGGER_MAX_STEPS}) * ${REVEAL_STAGGER_MS}) + 'ms'
+  function reveal(targets, stagger) {
+    var index = 0
+    targets.forEach(function (element) {
+      if (element.hasAttribute('data-motion-shown') || element.hasAttribute('data-motion-instant')) return
+      if (stagger) {
+        element.style.animationDelay = (Math.min(index, ${REVEAL_STAGGER_MAX_STEPS}) * ${REVEAL_STAGGER_MS}) + 'ms'
+        element.setAttribute('data-motion-shown', '')
+        index += 1
       } else {
-        element.style.transition = 'none'
+        element.setAttribute('data-motion-instant', '')
       }
-      element.setAttribute('data-motion-forced', '')
     })
   }
 
-  window.setTimeout(function () {
-    reveal(document.querySelectorAll(pending), { inViewOnly: true, stagger: true })
-  }, ${REVEAL_GUARD_MS})
+  // The scroll batch in the bundle calls this too, so both triggers play the
+  // identical animation.
+  window.__motionReveal = reveal
+
+  function visible(elements) {
+    var line = window.innerHeight * LINE
+    return Array.prototype.filter.call(elements, function (element) {
+      return element.getBoundingClientRect().top < line
+    })
+  }
+
+  function start() {
+    if (!('IntersectionObserver' in window)) {
+      reveal(document.querySelectorAll(pending), false)
+      return
+    }
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        var entered = entries
+          .filter(function (entry) { return entry.isIntersecting })
+          .map(function (entry) { return entry.target })
+        // Document order, so the stagger runs top to bottom.
+        entered.sort(function (a, b) { return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1 })
+        reveal(entered, true)
+        entered.forEach(function (element) { observer.unobserve(element) })
+      },
+      { rootMargin: '0px 0px -10% 0px' }
+    )
+
+    document.querySelectorAll(pending).forEach(function (element) { observer.observe(element) })
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { window.setTimeout(start, ${REVEAL_GUARD_MS}) }, { once: true })
+  } else {
+    window.setTimeout(start, ${REVEAL_GUARD_MS})
+  }
 
   window.setTimeout(function () {
-    if (root.dataset.motionActive) return
-    reveal(document.querySelectorAll(pending), { inViewOnly: false, stagger: false })
-  }, ${MOTION_KILL_SWITCH_MS})
+    var stuck = visible(document.querySelectorAll(pending))
+    if (stuck.length) reveal(stuck, false)
+  }, ${MOTION_RESCUE_MS})
 })()
 `
 
