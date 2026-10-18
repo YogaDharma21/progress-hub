@@ -30,7 +30,12 @@ const fontMono = Geist_Mono({
 
 // Animated content is hidden by globals.css from the first paint. If GSAP has not
 // claimed it in time, the guard reveals whatever the user can currently see.
-const REVEAL_GUARD_MS = 100
+// A beat after first paint, so the entrance reads as deliberate instead of a pop.
+const REVEAL_GUARD_MS = 250
+
+// Stagger between in-view elements, capped so a tall viewport never queues a long wait.
+const REVEAL_STAGGER_MS = 90
+const REVEAL_STAGGER_MAX_STEPS = 5
 
 // Last resort. If the animation bundle never boots, reveal everything still hidden.
 const MOTION_KILL_SWITCH_MS = 3000
@@ -46,25 +51,29 @@ const motionScript = `
 
   var pending = '[data-hero-intro]:not([data-motion-forced]):not([data-motion-shown]), [data-reveal]:not([data-motion-forced]):not([data-motion-shown])'
 
-  function reveal(targets, inViewOnly, stagger) {
+  function reveal(targets, options) {
     var viewport = window.innerHeight
     targets.forEach(function (element, index) {
-      if (inViewOnly) {
+      if (options.inViewOnly) {
         var rect = element.getBoundingClientRect()
         if (rect.bottom <= 0 || rect.top >= viewport) return
       }
-      if (stagger) element.style.transitionDelay = (index * 60) + 'ms'
+      if (options.stagger) {
+        element.style.transitionDelay = (Math.min(index, ${REVEAL_STAGGER_MAX_STEPS}) * ${REVEAL_STAGGER_MS}) + 'ms'
+      } else {
+        element.style.transition = 'none'
+      }
       element.setAttribute('data-motion-forced', '')
     })
   }
 
   window.setTimeout(function () {
-    reveal(document.querySelectorAll(pending), true, true)
+    reveal(document.querySelectorAll(pending), { inViewOnly: true, stagger: true })
   }, ${REVEAL_GUARD_MS})
 
   window.setTimeout(function () {
     if (root.dataset.motionActive) return
-    reveal(document.querySelectorAll(pending), false, false)
+    reveal(document.querySelectorAll(pending), { inViewOnly: false, stagger: false })
   }, ${MOTION_KILL_SWITCH_MS})
 })()
 `

@@ -5,13 +5,13 @@ import { usePathname } from 'next/navigation'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// A layout effect runs before the first paint, so GSAP can hide the hero before it shows.
+// Prefer a layout effect so triggers exist before the first paint after hydration.
 // On the server it falls back to useEffect, since layout effects don't run there.
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect
 
-// The guard in app/layout.tsx and GSAP both work on the pending set: whatever one
-// touches first wins, the other skips it.
-const INTRO_SELECTOR = '[data-hero-intro]:not([data-motion-forced]):not([data-motion-shown])'
+// Above-the-fold content is owned by the CSS entrance in globals.css, which the
+// guard in app/layout.tsx triggers. GSAP owns everything that reveals on scroll.
+// Both work on the same pending set: whatever one touches first wins.
 const REVEAL_SELECTOR = '[data-reveal]:not([data-motion-forced]):not([data-motion-shown])'
 
 // data-motion-shown stops the hidden CSS rule from re-hiding an element once GSAP
@@ -20,11 +20,8 @@ function claim(elements: Element[]) {
     elements.forEach((element) => element.setAttribute('data-motion-shown', ''))
 }
 
-const INTRO_FROM = { y: 24, autoAlpha: 0 }
-const INTRO_TO = { y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out', stagger: 0.12, delay: 0.1, clearProps: 'transform,opacity,visibility' }
-
-const REVEAL_FROM = { y: 28, autoAlpha: 0 }
-const REVEAL_TO = { y: 0, autoAlpha: 1, duration: 0.8, ease: 'power3.out', stagger: 0.1, overwrite: true, clearProps: 'transform,opacity,visibility' }
+const REVEAL_FROM = { y: 32, autoAlpha: 0 }
+const REVEAL_TO = { y: 0, autoAlpha: 1, duration: 1.1, ease: 'power2.out', stagger: 0.14, overwrite: true, clearProps: 'transform,opacity,visibility' }
 
 export default function ScrollAnimations() {
     const pathname = usePathname()
@@ -38,14 +35,8 @@ export default function ScrollAnimations() {
         document.documentElement.dataset.motionActive = 'true'
 
         const context = gsap.context(() => {
-            const intro = gsap.utils.toArray<HTMLElement>(INTRO_SELECTOR)
-            if (intro.length > 0) {
-                claim(intro)
-                gsap.fromTo(intro, INTRO_FROM, INTRO_TO)
-            }
-
             ScrollTrigger.batch(REVEAL_SELECTOR, {
-                start: 'top 88%',
+                start: 'top 90%',
                 once: true,
                 onEnter: (batch) => {
                     claim(batch)
