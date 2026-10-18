@@ -181,6 +181,28 @@
   }
 }
 
+/* Animated content stays hidden from the first paint so it never flashes.
+   app/layout.tsx adds .motion while parsing and reveals in-view content after
+   REVEAL_GUARD_MS. ScrollAnimations marks what it animates with data-motion-shown. */
+html.motion [data-hero-intro]:not([data-motion-forced]):not([data-motion-shown]),
+html.motion [data-reveal]:not([data-motion-forced]):not([data-motion-shown]) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+}
+
+html.motion [data-motion-forced] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 400ms ease, transform 400ms ease;
+}
+
+html.motion [data-motion-shown] {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* Lenis smooth scroll, copied from lenis/dist/lenis.css */
 html.lenis,
 html.lenis body {
