@@ -1,6 +1,37 @@
 // Progress Hub Tactile Micro-Interactions
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Floating navbar toggle. Registered before the reduced-motion guard so the menu still opens.
+    const floatingNav = document.querySelector('[data-nav]');
+    const navToggle = document.querySelector('[data-nav-toggle]');
+
+    if (floatingNav && navToggle) {
+        const setMenuOpen = (open) => {
+            floatingNav.toggleAttribute('data-open', open);
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        };
+
+        navToggle.addEventListener('click', () => {
+            setMenuOpen(!floatingNav.hasAttribute('data-open'));
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!floatingNav.contains(e.target)) setMenuOpen(false);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && floatingNav.hasAttribute('data-open')) {
+                setMenuOpen(false);
+                navToggle.focus();
+            }
+        });
+
+        const desktopQuery = window.matchMedia('(min-width: 1024px)');
+        desktopQuery.addEventListener('change', (e) => {
+            if (e.matches) setMenuOpen(false);
+        });
+    }
+
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
