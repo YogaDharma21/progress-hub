@@ -20,7 +20,7 @@
 <body class="bg-zinc-950 text-zinc-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
     <header data-nav class="group fixed inset-x-0 top-0 z-50 px-4 pt-3">
-        <nav class="relative mx-auto max-w-5xl rounded-full border border-zinc-800/70 bg-zinc-900/70 shadow-lg shadow-black/40 ring-1 ring-white/5 backdrop-blur-xl">
+        <nav class="relative mx-auto max-w-5xl rounded-full border border-zinc-800/70 bg-zinc-900 shadow-lg shadow-black/40 ring-1 ring-white/5 lg:bg-zinc-900/70 lg:backdrop-blur-xl">
             <div class="flex h-14 items-center justify-between gap-3 px-3 sm:px-4">
                 <a href="/members" class="btn-spring flex items-center gap-2.5 font-semibold text-zinc-100 hover:text-white">
                     <img src="/icon-192.png" alt="Progress Hub" class="w-8 h-8 rounded-lg shadow-sm" />
@@ -28,9 +28,6 @@
                 </a>
 
                 <div class="hidden lg:flex items-center gap-0.5">
-                    <a href="/members" class="pill-spring rounded-full px-4 py-2 text-sm font-medium {{ request()->is('members') ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
-                        Dashboard
-                    </a>
                     <a href="/members/events" class="pill-spring rounded-full px-4 py-2 text-sm font-medium {{ request()->is('members/events*') ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                         Events
                     </a>
@@ -39,9 +36,6 @@
                     </a>
                     <a href="/members/resources" class="pill-spring rounded-full px-4 py-2 text-sm font-medium {{ request()->is('members/resources*') ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                         Resources
-                    </a>
-                    <a href="{{ route('members.dashboard') }}#submissions" class="pill-spring rounded-full px-4 py-2 text-sm font-medium {{ request()->is('members/submissions*') ? 'bg-zinc-800 text-white shadow-sm' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
-                        Submit
                     </a>
                 </div>
 
@@ -80,11 +74,8 @@
                 </div>
             </div>
 
-            <div id="site-menu" class="pointer-events-none absolute inset-x-0 top-[calc(100%+0.5rem)] -translate-y-1 rounded-2xl border border-zinc-800/70 bg-zinc-950/80 p-2 opacity-0 shadow-xl shadow-black/40 ring-1 ring-white/5 backdrop-blur-xl transition duration-200 ease-out group-data-[open]:pointer-events-auto group-data-[open]:translate-y-0 group-data-[open]:opacity-100 lg:hidden">
+            <div id="site-menu" class="pointer-events-none absolute inset-x-0 top-[calc(100%+0.5rem)] -translate-y-1 rounded-2xl border border-zinc-800/70 bg-zinc-950 p-2 opacity-0 shadow-xl shadow-black/40 ring-1 ring-white/5 transition duration-200 ease-out group-data-[open]:pointer-events-auto group-data-[open]:translate-y-0 group-data-[open]:opacity-100 lg:hidden">
                 <div class="flex flex-col">
-                    <a href="/members" class="pill-spring rounded-full px-3 py-2.5 text-sm font-medium {{ request()->is('members') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
-                        Dashboard
-                    </a>
                     <a href="/members/events" class="pill-spring rounded-full px-3 py-2.5 text-sm font-medium {{ request()->is('members/events*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                         Events
                     </a>
@@ -93,9 +84,6 @@
                     </a>
                     <a href="/members/resources" class="pill-spring rounded-full px-3 py-2.5 text-sm font-medium {{ request()->is('members/resources*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
                         Resources
-                    </a>
-                    <a href="{{ route('members.dashboard') }}#submissions" class="pill-spring rounded-full px-3 py-2.5 text-sm font-medium {{ request()->is('members/submissions*') ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60' }}">
-                        Submit
                     </a>
                 </div>
 
