@@ -16,7 +16,7 @@ export default function Footer() {
         <footer>
             <div className="mx-auto max-w-7xl space-y-16 px-6 pb-6 pt-32">
                 <div className="grid grid-cols-2 gap-x-3 gap-y-12 sm:grid-cols-4 lg:grid-cols-6">
-                    <div className="col-span-full lg:col-span-3">
+                    <div data-reveal className="col-span-full lg:col-span-3">
                         <Link
                             href="/"
                             aria-label="go home"
@@ -26,7 +26,7 @@ export default function Footer() {
                     </div>
 
                     {footerLinks.map((linksGroup, index) => (
-                        <div key={index}>
+                        <div key={index} data-reveal>
                             <span className="text-foreground text-sm">{linksGroup.name}</span>
                             <ul className="mt-4 list-inside space-y-4">
                                 {linksGroup.links.map((link, index) => (
@@ -43,7 +43,7 @@ export default function Footer() {
                         </div>
                     ))}
                 </div>
-                <div className="mt-24 border-t pt-6">
+                <div data-reveal className="mt-24 border-t pt-6">
                     <span className="text-muted-foreground block text-sm">&copy; 2026 <a href="https://github.com/yogaDharma21/" className="hover:text-foreground underline underline-offset-4">Yoga Dharma</a> · <a href="https://github.com/YogaDharma21/progress-hub" className="hover:text-foreground underline underline-offset-4">Progress Hub</a></span>
                 </div>
             </div>

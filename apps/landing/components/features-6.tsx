@@ -48,14 +48,14 @@ export default function FeaturesSection() {
     return (
         <section className="py-16 md:py-20">
             <div className="mx-auto max-w-7xl space-y-12 px-6">
-                <h2 className="text-muted-foreground relative z-10 max-w-4xl text-balance text-4xl font-medium tracking-tight lg:text-5xl">
+                <h2 data-reveal className="text-muted-foreground relative z-10 max-w-4xl text-balance text-4xl font-medium tracking-tight lg:text-5xl">
                     <span className="text-foreground">Dukung developer UKM Progress jadi lebih keren.</span> <br /> Program, proyek, dan ilmu baru, semua ada di sini.
                 </h2>
                 <div className="relative mx-auto max-w-4xl">
                     <div className="mask-radial-at-top-left mask-radial-from-65% mask-radial-[100%_60%] z-1 absolute inset-3 size-64 rounded-tl-3xl border-l border-t md:size-96 lg:inset-4"></div>
 
                     {/* Main dashboard panel */}
-                    <div className="relative z-10 bg-zinc-950 border border-zinc-800/60 rounded-2xl p-5 lg:p-6 shadow-2xl shadow-black/40">
+                    <div data-reveal className="relative z-10 bg-zinc-950 border border-zinc-800/60 rounded-2xl p-5 lg:p-6 shadow-2xl shadow-black/40">
                         <div className="flex items-center gap-2 mb-5">
                             <Calendar className="size-4 text-zinc-400" />
                             <span className="text-xs font-semibold text-zinc-100">Program & Kegiatan</span>
@@ -157,7 +157,7 @@ export default function FeaturesSection() {
                     </div>
 
                     {/* Overlapping dashboard card */}
-                    <div className="hidden sm:block absolute -bottom-8 right-0 sm:-right-4 lg:-bottom-12 lg:-right-8 z-20 w-64 lg:w-80 bg-zinc-950 border border-zinc-800/60 rounded-2xl p-4 lg:p-5 shadow-2xl shadow-black/50">
+                    <div data-reveal className="hidden sm:block absolute -bottom-8 right-0 sm:-right-4 lg:-bottom-12 lg:-right-8 z-20 w-64 lg:w-80 bg-zinc-950 border border-zinc-800/60 rounded-2xl p-4 lg:p-5 shadow-2xl shadow-black/50">
                         {/* Stats */}
                         <div className="grid grid-cols-4 gap-2 mb-3">
                             {[

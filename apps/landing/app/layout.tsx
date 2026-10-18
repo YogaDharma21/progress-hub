@@ -3,6 +3,9 @@ import { Geist, Geist_Mono, Inter } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import SmoothScrollProvider from "@/components/smooth-scroll-provider"
+import ScrollAnimations from "@/components/scroll-animations"
+import ScrollProgress from "@/components/scroll-progress"
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -37,7 +40,13 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <SmoothScrollProvider>
+            <ScrollProgress />
+            {children}
+            <ScrollAnimations />
+          </SmoothScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
