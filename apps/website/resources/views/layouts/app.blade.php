@@ -19,9 +19,9 @@
 </head>
 <body class="bg-zinc-950 text-zinc-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <header data-nav class="group fixed inset-x-0 top-0 z-50 px-4 pt-3">
-        <nav class="relative mx-auto max-w-5xl rounded-full border border-zinc-800/70 bg-zinc-900 shadow-lg shadow-black/40 ring-1 ring-white/5 lg:bg-zinc-900/70 lg:backdrop-blur-xl">
-            <div class="flex h-14 items-center justify-between gap-3 px-3 sm:px-4">
+    <header data-nav class="group fixed inset-x-0 top-0 z-50 px-6 pt-3">
+        <nav class="relative mx-auto max-w-7xl rounded-full border border-zinc-800/70 bg-zinc-900 shadow-lg shadow-black/40 ring-1 ring-white/5 lg:bg-zinc-900/70 lg:backdrop-blur-xl">
+            <div class="flex h-14 items-center justify-between gap-3 px-3 sm:px-4 lg:px-6">
                 <a href="/members" class="btn-spring flex items-center gap-2.5 font-semibold text-zinc-100 hover:text-white">
                     <img src="/icon-192.png" alt="Progress Hub" class="w-8 h-8 rounded-lg shadow-sm" />
                     <span class="text-base tracking-tight">Progress Hub</span>

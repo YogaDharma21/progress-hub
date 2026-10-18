@@ -19,8 +19,8 @@
 </head>
 <body class="bg-zinc-950 text-zinc-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <header class="fixed inset-x-0 top-0 z-50 px-4 pt-3">
-        <nav class="mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 rounded-full border border-zinc-800/70 bg-zinc-900 px-3 shadow-lg shadow-black/40 ring-1 ring-white/5 lg:bg-zinc-900/70 lg:backdrop-blur-xl sm:px-4">
+    <header class="fixed inset-x-0 top-0 z-50 px-6 pt-3">
+        <nav class="mx-auto flex h-14 max-w-7xl items-center justify-between gap-3 rounded-full border border-zinc-800/70 bg-zinc-900 px-3 shadow-lg shadow-black/40 ring-1 ring-white/5 sm:px-4 lg:bg-zinc-900/70 lg:px-6 lg:backdrop-blur-xl">
             <a href="/" class="flex items-center gap-2.5 font-semibold text-zinc-100 hover:text-white transition">
                 <img src="/icon-192.png" alt="Progress Hub" class="w-8 h-8 rounded-lg" />
                 <span class="text-base tracking-tight">Progress Hub</span>
