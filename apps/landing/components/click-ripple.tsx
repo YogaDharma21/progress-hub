@@ -3,9 +3,9 @@
 import { useEffect, useRef } from "react"
 
 const RIPPLE_COLOR = "#ffffff"
-const RINGS_PER_CLICK = 3
+const RINGS_PER_CLICK = 2
 const RING_STAGGER = 0.15
-const RING_LIFE = 0.62
+const RING_LIFE = 0.4
 const RING_START_RADIUS = 5
 const RING_END_RADIUS = 40
 const RING_WIDTH = 1.5
