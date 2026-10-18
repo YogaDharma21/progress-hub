@@ -11,3 +11,10 @@ export function setLenisInstance(next: Lenis | null) {
 export function getLenisInstance() {
     return instance
 }
+
+// Lenis writes its animated position to the window every frame, so this is the
+// offset the user is actually looking at. Reading it costs no layout, unlike
+// measuring an element's rect.
+export function getScrollPosition() {
+    return instance ? instance.scroll : window.scrollY
+}

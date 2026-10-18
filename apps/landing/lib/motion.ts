@@ -1,6 +1,6 @@
 // The reveal animation itself lives in the inline script in app/layout.tsx, so it
 // also runs before the client bundle boots. This is the typed entry point for
-// client code that triggers a reveal, like the scroll batches.
+// client code that triggers a reveal, like the observer in scroll-animations.tsx.
 export function revealElements(targets: Iterable<Element>, stagger = true) {
     if (window.__motionReveal) {
         window.__motionReveal(targets, stagger)
