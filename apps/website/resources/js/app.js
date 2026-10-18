@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Click sparks: four-pointed stars burst from the pointer and fall with gravity
+    // Click sparks: a small burst of white stars, anchored by a quick ring at the pointer
     const sparkCanvas = document.createElement('canvas');
     sparkCanvas.setAttribute('aria-hidden', 'true');
     Object.assign(sparkCanvas.style, {
@@ -127,20 +127,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const sparkCtx = sparkCanvas.getContext('2d');
 
     if (sparkCtx) {
-        const SPARK_COLORS = ['#fff8dc', '#ffd166', '#ffb703', '#ffffff'];
-        const SPARKS_PER_CLICK = 12;
-        const MAX_SPARKS = 320;
+        const SPARK_COLOR = '#ffffff';
+        const SPARKS_PER_CLICK = 6;
+        const MAX_SPARKS = 240;
         const GRAVITY = 900;
         const DRAG = 2.1;
+        const TAU = Math.PI * 2;
 
         const sparks = [];
+        const flashes = [];
         let sparkFrame = 0;
         let sparkLastTime = 0;
+        let viewWidth = 0;
+        let viewHeight = 0;
 
         const sizeSparkCanvas = () => {
+            const rect = sparkCanvas.getBoundingClientRect();
+            const width = Math.min(rect.width, window.innerWidth);
+            const height = Math.min(rect.height, window.innerHeight);
+            if (width === viewWidth && height === viewHeight) return;
+
+            viewWidth = width;
+            viewHeight = height;
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
-            sparkCanvas.width = Math.floor(window.innerWidth * dpr);
-            sparkCanvas.height = Math.floor(window.innerHeight * dpr);
+            sparkCanvas.width = Math.max(1, Math.round(viewWidth * dpr));
+            sparkCanvas.height = Math.max(1, Math.round(viewHeight * dpr));
             sparkCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
         };
 
@@ -152,10 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
             sparkCtx.translate(spark.x, spark.y);
             sparkCtx.rotate(spark.rotation);
             sparkCtx.globalAlpha = Math.min(1, progress * 1.8);
-            sparkCtx.fillStyle = spark.color;
+            sparkCtx.fillStyle = SPARK_COLOR;
             sparkCtx.beginPath();
             for (let point = 0; point <= 4; point++) {
-                const angle = (point / 4) * Math.PI * 2 - Math.PI / 2;
+                const angle = (point / 4) * TAU - Math.PI / 2;
                 const px = Math.cos(angle) * radius;
                 const py = Math.sin(angle) * radius;
                 if (point === 0) sparkCtx.moveTo(px, py);
@@ -166,11 +177,34 @@ document.addEventListener('DOMContentLoaded', () => {
             sparkCtx.restore();
         };
 
+        const drawFlash = (flash) => {
+            const progress = flash.life / flash.maxLife;
+
+            sparkCtx.save();
+            sparkCtx.globalAlpha = progress * 0.5;
+            sparkCtx.strokeStyle = SPARK_COLOR;
+            sparkCtx.lineWidth = 1.5;
+            sparkCtx.beginPath();
+            sparkCtx.arc(flash.x, flash.y, 3 + (1 - progress) * 15, 0, TAU);
+            sparkCtx.stroke();
+            sparkCtx.restore();
+        };
+
         const tickSparks = (now) => {
             const dt = Math.min((now - sparkLastTime) / 1000, 0.05);
             sparkLastTime = now;
 
-            sparkCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+            sparkCtx.clearRect(0, 0, viewWidth, viewHeight);
+
+            for (let i = flashes.length - 1; i >= 0; i--) {
+                const flash = flashes[i];
+                flash.life -= dt;
+                if (flash.life <= 0) {
+                    flashes.splice(i, 1);
+                    continue;
+                }
+                drawFlash(flash);
+            }
 
             for (let i = sparks.length - 1; i >= 0; i--) {
                 const spark = sparks[i];
@@ -189,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 drawSpark(spark);
             }
 
-            if (sparks.length > 0) sparkFrame = requestAnimationFrame(tickSparks);
+            if (sparks.length > 0 || flashes.length > 0) sparkFrame = requestAnimationFrame(tickSparks);
             else sparkFrame = 0;
         };
 
@@ -197,23 +231,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const count = Math.min(SPARKS_PER_CLICK, Math.max(MAX_SPARKS - sparks.length, 0));
 
             for (let i = 0; i < count; i++) {
-                const angle = Math.random() * Math.PI * 2;
-                const speed = 90 + Math.random() * 330;
-                const maxLife = 0.5 + Math.random() * 0.5;
+                const angle = Math.random() * TAU;
+                const speed = 45 + Math.random() * 135;
+                const maxLife = 0.4 + Math.random() * 0.35;
 
                 sparks.push({
                     x,
                     y,
                     vx: Math.cos(angle) * speed,
-                    vy: Math.sin(angle) * speed - 60,
-                    size: 3.5 + Math.random() * 5.5,
-                    spin: (Math.random() - 0.5) * 12,
-                    rotation: Math.random() * Math.PI * 2,
+                    vy: Math.sin(angle) * speed - 40,
+                    size: 2.5 + Math.random() * 3.5,
+                    spin: (Math.random() - 0.5) * 8,
+                    rotation: Math.random() * TAU,
                     life: maxLife,
                     maxLife,
-                    color: SPARK_COLORS[Math.floor(Math.random() * SPARK_COLORS.length)],
                 });
             }
+
+            flashes.push({ x, y, life: 0.28, maxLife: 0.28 });
 
             if (!sparkFrame) {
                 sparkLastTime = performance.now();
@@ -222,11 +257,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         sizeSparkCanvas();
-        window.addEventListener('resize', sizeSparkCanvas);
+        new ResizeObserver(sizeSparkCanvas).observe(sparkCanvas);
 
         document.addEventListener('pointerdown', (e) => {
             if (e.pointerType === 'mouse' && e.button !== 0) return;
-            spawnSparks(e.clientX, e.clientY);
+            const rect = sparkCanvas.getBoundingClientRect();
+            spawnSparks(e.clientX - rect.left, e.clientY - rect.top);
         });
     }
 });
