@@ -6,10 +6,10 @@ const RIPPLE_COLOR = "#ffffff"
 const RINGS_PER_CLICK = 3
 const RING_STAGGER = 0.15
 const RING_LIFE = 0.62
-const RING_START_RADIUS = 7
-const RING_END_RADIUS = 62
-const RING_WIDTH = 2.5
-const RING_ALPHA = 0.65
+const RING_START_RADIUS = 6
+const RING_END_RADIUS = 48
+const RING_WIDTH = 2
+const RING_ALPHA = 0.4
 const MAX_RINGS = 90
 const TAU = Math.PI * 2
 
