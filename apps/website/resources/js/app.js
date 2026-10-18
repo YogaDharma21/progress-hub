@@ -110,4 +110,123 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => spark.remove(), 450);
         }
     };
+
+    // Click sparks: four-pointed stars burst from the pointer and fall with gravity
+    const sparkCanvas = document.createElement('canvas');
+    sparkCanvas.setAttribute('aria-hidden', 'true');
+    Object.assign(sparkCanvas.style, {
+        position: 'fixed',
+        inset: '0',
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: '9999',
+    });
+    document.body.appendChild(sparkCanvas);
+
+    const sparkCtx = sparkCanvas.getContext('2d');
+
+    if (sparkCtx) {
+        const SPARK_COLORS = ['#fff8dc', '#ffd166', '#ffb703', '#ffffff'];
+        const SPARKS_PER_CLICK = 12;
+        const MAX_SPARKS = 320;
+        const GRAVITY = 900;
+        const DRAG = 2.1;
+
+        const sparks = [];
+        let sparkFrame = 0;
+        let sparkLastTime = 0;
+
+        const sizeSparkCanvas = () => {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            sparkCanvas.width = Math.floor(window.innerWidth * dpr);
+            sparkCanvas.height = Math.floor(window.innerHeight * dpr);
+            sparkCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        };
+
+        const drawSpark = (spark) => {
+            const progress = spark.life / spark.maxLife;
+            const radius = spark.size * (0.35 + 0.65 * progress);
+
+            sparkCtx.save();
+            sparkCtx.translate(spark.x, spark.y);
+            sparkCtx.rotate(spark.rotation);
+            sparkCtx.globalAlpha = Math.min(1, progress * 1.8);
+            sparkCtx.fillStyle = spark.color;
+            sparkCtx.beginPath();
+            for (let point = 0; point <= 4; point++) {
+                const angle = (point / 4) * Math.PI * 2 - Math.PI / 2;
+                const px = Math.cos(angle) * radius;
+                const py = Math.sin(angle) * radius;
+                if (point === 0) sparkCtx.moveTo(px, py);
+                else sparkCtx.quadraticCurveTo(0, 0, px, py);
+            }
+            sparkCtx.closePath();
+            sparkCtx.fill();
+            sparkCtx.restore();
+        };
+
+        const tickSparks = (now) => {
+            const dt = Math.min((now - sparkLastTime) / 1000, 0.05);
+            sparkLastTime = now;
+
+            sparkCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+            for (let i = sparks.length - 1; i >= 0; i--) {
+                const spark = sparks[i];
+                spark.life -= dt;
+                if (spark.life <= 0) {
+                    sparks.splice(i, 1);
+                    continue;
+                }
+
+                const drag = Math.exp(-DRAG * dt);
+                spark.vx *= drag;
+                spark.vy = spark.vy * drag + GRAVITY * dt;
+                spark.x += spark.vx * dt;
+                spark.y += spark.vy * dt;
+                spark.rotation += spark.spin * dt;
+                drawSpark(spark);
+            }
+
+            if (sparks.length > 0) sparkFrame = requestAnimationFrame(tickSparks);
+            else sparkFrame = 0;
+        };
+
+        const spawnSparks = (x, y) => {
+            const count = Math.min(SPARKS_PER_CLICK, Math.max(MAX_SPARKS - sparks.length, 0));
+
+            for (let i = 0; i < count; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = 90 + Math.random() * 330;
+                const maxLife = 0.5 + Math.random() * 0.5;
+
+                sparks.push({
+                    x,
+                    y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 60,
+                    size: 3.5 + Math.random() * 5.5,
+                    spin: (Math.random() - 0.5) * 12,
+                    rotation: Math.random() * Math.PI * 2,
+                    life: maxLife,
+                    maxLife,
+                    color: SPARK_COLORS[Math.floor(Math.random() * SPARK_COLORS.length)],
+                });
+            }
+
+            if (!sparkFrame) {
+                sparkLastTime = performance.now();
+                sparkFrame = requestAnimationFrame(tickSparks);
+            }
+        };
+
+        sizeSparkCanvas();
+        window.addEventListener('resize', sizeSparkCanvas);
+
+        document.addEventListener('pointerdown', (e) => {
+            if (e.pointerType === 'mouse' && e.button !== 0) return;
+            spawnSparks(e.clientX, e.clientY);
+        });
+    }
 });
