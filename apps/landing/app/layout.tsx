@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { ClickRipple } from "@/components/click-ripple"
 import SmoothScrollProvider from "@/components/smooth-scroll-provider"
 import ScrollAnimations from "@/components/scroll-animations"
 import ScrollProgress from "@/components/scroll-progress"
@@ -138,6 +139,7 @@ export default function RootLayout({
             {children}
             <ScrollAnimations />
           </SmoothScrollProvider>
+          <ClickRipple />
         </ThemeProvider>
       </body>
     </html>
