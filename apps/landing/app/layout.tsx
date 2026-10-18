@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { ClickSpark } from "@/components/click-spark"
+import { ClickRipple } from "@/components/click-ripple"
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -40,7 +40,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           {children}
-          <ClickSpark />
+          <ClickRipple />
         </ThemeProvider>
       </body>
     </html>

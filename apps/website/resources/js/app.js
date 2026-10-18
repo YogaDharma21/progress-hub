@@ -111,10 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Click sparks: a small burst of white stars, anchored by a quick ring at the pointer
-    const sparkCanvas = document.createElement('canvas');
-    sparkCanvas.setAttribute('aria-hidden', 'true');
-    Object.assign(sparkCanvas.style, {
+    // Click ripple: white rings that expand from the pointer
+    const rippleCanvas = document.createElement('canvas');
+    rippleCanvas.setAttribute('aria-hidden', 'true');
+    Object.assign(rippleCanvas.style, {
         position: 'fixed',
         inset: '0',
         width: '100%',
@@ -122,27 +122,30 @@ document.addEventListener('DOMContentLoaded', () => {
         pointerEvents: 'none',
         zIndex: '9999',
     });
-    document.body.appendChild(sparkCanvas);
+    document.body.appendChild(rippleCanvas);
 
-    const sparkCtx = sparkCanvas.getContext('2d');
+    const rippleCtx = rippleCanvas.getContext('2d');
 
-    if (sparkCtx) {
-        const SPARK_COLOR = '#ffffff';
-        const SPARKS_PER_CLICK = 6;
-        const MAX_SPARKS = 240;
-        const GRAVITY = 900;
-        const DRAG = 2.1;
+    if (rippleCtx) {
+        const RIPPLE_COLOR = '#ffffff';
+        const RINGS_PER_CLICK = 3;
+        const RING_STAGGER = 0.15;
+        const RING_LIFE = 0.62;
+        const RING_START_RADIUS = 7;
+        const RING_END_RADIUS = 62;
+        const RING_WIDTH = 2.5;
+        const RING_ALPHA = 0.65;
+        const MAX_RINGS = 90;
         const TAU = Math.PI * 2;
 
-        const sparks = [];
-        const flashes = [];
-        let sparkFrame = 0;
-        let sparkLastTime = 0;
+        const rings = [];
+        let rippleFrame = 0;
+        let rippleLastTime = 0;
         let viewWidth = 0;
         let viewHeight = 0;
 
-        const sizeSparkCanvas = () => {
-            const rect = sparkCanvas.getBoundingClientRect();
+        const sizeRippleCanvas = () => {
+            const rect = rippleCanvas.getBoundingClientRect();
             const width = Math.min(rect.width, window.innerWidth);
             const height = Math.min(rect.height, window.innerHeight);
             if (width === viewWidth && height === viewHeight) return;
@@ -150,119 +153,64 @@ document.addEventListener('DOMContentLoaded', () => {
             viewWidth = width;
             viewHeight = height;
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
-            sparkCanvas.width = Math.max(1, Math.round(viewWidth * dpr));
-            sparkCanvas.height = Math.max(1, Math.round(viewHeight * dpr));
-            sparkCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            rippleCanvas.width = Math.max(1, Math.round(viewWidth * dpr));
+            rippleCanvas.height = Math.max(1, Math.round(viewHeight * dpr));
+            rippleCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
         };
 
-        const drawSpark = (spark) => {
-            const progress = spark.life / spark.maxLife;
-            const radius = spark.size * (0.35 + 0.65 * progress);
+        const drawRing = (ring) => {
+            const progress = Math.max(0, Math.min(1, (ring.age - ring.delay) / ring.life));
+            const radius = RING_START_RADIUS + (RING_END_RADIUS - RING_START_RADIUS) * progress;
 
-            sparkCtx.save();
-            sparkCtx.translate(spark.x, spark.y);
-            sparkCtx.rotate(spark.rotation);
-            sparkCtx.globalAlpha = Math.min(1, progress * 1.8);
-            sparkCtx.fillStyle = SPARK_COLOR;
-            sparkCtx.beginPath();
-            for (let point = 0; point <= 4; point++) {
-                const angle = (point / 4) * TAU - Math.PI / 2;
-                const px = Math.cos(angle) * radius;
-                const py = Math.sin(angle) * radius;
-                if (point === 0) sparkCtx.moveTo(px, py);
-                else sparkCtx.quadraticCurveTo(0, 0, px, py);
-            }
-            sparkCtx.closePath();
-            sparkCtx.fill();
-            sparkCtx.restore();
+            rippleCtx.save();
+            rippleCtx.globalAlpha = RING_ALPHA * (1 - progress * progress);
+            rippleCtx.strokeStyle = RIPPLE_COLOR;
+            rippleCtx.lineWidth = RING_WIDTH;
+            rippleCtx.beginPath();
+            rippleCtx.arc(ring.x, ring.y, radius, 0, TAU);
+            rippleCtx.stroke();
+            rippleCtx.restore();
         };
 
-        const drawFlash = (flash) => {
-            const progress = flash.life / flash.maxLife;
+        const tickRipples = (now) => {
+            const dt = Math.min((now - rippleLastTime) / 1000, 0.05);
+            rippleLastTime = now;
 
-            sparkCtx.save();
-            sparkCtx.globalAlpha = progress * 0.5;
-            sparkCtx.strokeStyle = SPARK_COLOR;
-            sparkCtx.lineWidth = 1.5;
-            sparkCtx.beginPath();
-            sparkCtx.arc(flash.x, flash.y, 3 + (1 - progress) * 15, 0, TAU);
-            sparkCtx.stroke();
-            sparkCtx.restore();
-        };
+            rippleCtx.clearRect(0, 0, viewWidth, viewHeight);
 
-        const tickSparks = (now) => {
-            const dt = Math.min((now - sparkLastTime) / 1000, 0.05);
-            sparkLastTime = now;
-
-            sparkCtx.clearRect(0, 0, viewWidth, viewHeight);
-
-            for (let i = flashes.length - 1; i >= 0; i--) {
-                const flash = flashes[i];
-                flash.life -= dt;
-                if (flash.life <= 0) {
-                    flashes.splice(i, 1);
+            for (let i = rings.length - 1; i >= 0; i--) {
+                const ring = rings[i];
+                ring.age += dt;
+                if (ring.age >= ring.delay + ring.life) {
+                    rings.splice(i, 1);
                     continue;
                 }
-                drawFlash(flash);
+                drawRing(ring);
             }
 
-            for (let i = sparks.length - 1; i >= 0; i--) {
-                const spark = sparks[i];
-                spark.life -= dt;
-                if (spark.life <= 0) {
-                    sparks.splice(i, 1);
-                    continue;
-                }
-
-                const drag = Math.exp(-DRAG * dt);
-                spark.vx *= drag;
-                spark.vy = spark.vy * drag + GRAVITY * dt;
-                spark.x += spark.vx * dt;
-                spark.y += spark.vy * dt;
-                spark.rotation += spark.spin * dt;
-                drawSpark(spark);
-            }
-
-            if (sparks.length > 0 || flashes.length > 0) sparkFrame = requestAnimationFrame(tickSparks);
-            else sparkFrame = 0;
+            if (rings.length > 0) rippleFrame = requestAnimationFrame(tickRipples);
+            else rippleFrame = 0;
         };
 
-        const spawnSparks = (x, y) => {
-            const count = Math.min(SPARKS_PER_CLICK, Math.max(MAX_SPARKS - sparks.length, 0));
-
-            for (let i = 0; i < count; i++) {
-                const angle = Math.random() * TAU;
-                const speed = 45 + Math.random() * 135;
-                const maxLife = 0.4 + Math.random() * 0.35;
-
-                sparks.push({
-                    x,
-                    y,
-                    vx: Math.cos(angle) * speed,
-                    vy: Math.sin(angle) * speed - 40,
-                    size: 2.5 + Math.random() * 3.5,
-                    spin: (Math.random() - 0.5) * 8,
-                    rotation: Math.random() * TAU,
-                    life: maxLife,
-                    maxLife,
-                });
+        const spawnRipples = (x, y) => {
+            for (let i = 0; i < RINGS_PER_CLICK; i++) {
+                if (rings.length >= MAX_RINGS) break;
+                rings.push({ x, y, age: 0, delay: i * RING_STAGGER, life: RING_LIFE });
             }
 
-            flashes.push({ x, y, life: 0.28, maxLife: 0.28 });
-
-            if (!sparkFrame) {
-                sparkLastTime = performance.now();
-                sparkFrame = requestAnimationFrame(tickSparks);
+            if (!rippleFrame) {
+                rippleLastTime = performance.now();
+                rippleFrame = requestAnimationFrame(tickRipples);
             }
         };
 
-        sizeSparkCanvas();
-        new ResizeObserver(sizeSparkCanvas).observe(sparkCanvas);
+        sizeRippleCanvas();
+        new ResizeObserver(sizeRippleCanvas).observe(rippleCanvas);
 
         document.addEventListener('pointerdown', (e) => {
             if (e.pointerType === 'mouse' && e.button !== 0) return;
-            const rect = sparkCanvas.getBoundingClientRect();
-            spawnSparks(e.clientX - rect.left, e.clientY - rect.top);
+            const rect = rippleCanvas.getBoundingClientRect();
+            spawnRipples(e.clientX - rect.left, e.clientY - rect.top);
         });
     }
 });
