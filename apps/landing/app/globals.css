@@ -181,6 +181,72 @@
   }
 }
 
+/* Animated content stays hidden from the first paint so it never flashes.
+   The inline script in app/layout.tsx adds .motion while parsing, then it and the
+   scroll batches in scroll-animations.tsx reveal elements by adding the markers.
+
+   The reveal is a keyframe animation, not a transition. Transitions are skipped
+   when the style change lands before the element has been painted, which made the
+   first paint inconsistent, and keyframes keep running even if the main thread is
+   busy because opacity and transform are composited. */
+html.motion [data-hero-intro]:not([data-motion-shown]):not([data-motion-instant]),
+html.motion [data-reveal]:not([data-motion-shown]):not([data-motion-instant]) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(18px);
+}
+
+html.motion [data-motion-shown]:not([data-motion-instant]) {
+  visibility: visible;
+  animation: motion-reveal 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Emergency path: show at once instead of animating dozens of elements together. */
+html.motion [data-motion-instant] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+@keyframes motion-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Lenis smooth scroll, copied from lenis/dist/lenis.css */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}
+
 @keyframes spring-pop {
   0% { transform: scale(0.85); opacity: 0; }
   65% { transform: scale(1.08); opacity: 1; }

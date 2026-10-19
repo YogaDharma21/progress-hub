@@ -1,6 +1,37 @@
 // Progress Hub Tactile Micro-Interactions
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Floating navbar toggle. Registered before the reduced-motion guard so the menu still opens.
+    const floatingNav = document.querySelector('[data-nav]');
+    const navToggle = document.querySelector('[data-nav-toggle]');
+
+    if (floatingNav && navToggle) {
+        const setMenuOpen = (open) => {
+            floatingNav.toggleAttribute('data-open', open);
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        };
+
+        navToggle.addEventListener('click', () => {
+            setMenuOpen(!floatingNav.hasAttribute('data-open'));
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!floatingNav.contains(e.target)) setMenuOpen(false);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && floatingNav.hasAttribute('data-open')) {
+                setMenuOpen(false);
+                navToggle.focus();
+            }
+        });
+
+        const desktopQuery = window.matchMedia('(min-width: 1024px)');
+        desktopQuery.addEventListener('change', (e) => {
+            if (e.matches) setMenuOpen(false);
+        });
+    }
+
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
@@ -79,4 +110,107 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => spark.remove(), 450);
         }
     };
+
+    // Click ripple: white rings that expand from the pointer
+    const rippleCanvas = document.createElement('canvas');
+    rippleCanvas.setAttribute('aria-hidden', 'true');
+    Object.assign(rippleCanvas.style, {
+        position: 'fixed',
+        inset: '0',
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: '9999',
+    });
+    document.body.appendChild(rippleCanvas);
+
+    const rippleCtx = rippleCanvas.getContext('2d');
+
+    if (rippleCtx) {
+        const RIPPLE_COLOR = '#ffffff';
+        const RINGS_PER_CLICK = 2;
+        const RING_STAGGER = 0.15;
+        const RING_LIFE = 0.4;
+        const RING_START_RADIUS = 5;
+        const RING_END_RADIUS = 40;
+        const RING_WIDTH = 1.5;
+        const RING_ALPHA = 0.25;
+        const MAX_RINGS = 90;
+        const TAU = Math.PI * 2;
+
+        const rings = [];
+        let rippleFrame = 0;
+        let rippleLastTime = 0;
+        let viewWidth = 0;
+        let viewHeight = 0;
+
+        const sizeRippleCanvas = () => {
+            const rect = rippleCanvas.getBoundingClientRect();
+            const width = Math.min(rect.width, window.innerWidth);
+            const height = Math.min(rect.height, window.innerHeight);
+            if (width === viewWidth && height === viewHeight) return;
+
+            viewWidth = width;
+            viewHeight = height;
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            rippleCanvas.width = Math.max(1, Math.round(viewWidth * dpr));
+            rippleCanvas.height = Math.max(1, Math.round(viewHeight * dpr));
+            rippleCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        };
+
+        const drawRing = (ring) => {
+            const progress = Math.max(0, Math.min(1, (ring.age - ring.delay) / ring.life));
+            const radius = RING_START_RADIUS + (RING_END_RADIUS - RING_START_RADIUS) * progress;
+
+            rippleCtx.save();
+            rippleCtx.globalAlpha = RING_ALPHA * (1 - progress * progress);
+            rippleCtx.strokeStyle = RIPPLE_COLOR;
+            rippleCtx.lineWidth = RING_WIDTH;
+            rippleCtx.beginPath();
+            rippleCtx.arc(ring.x, ring.y, radius, 0, TAU);
+            rippleCtx.stroke();
+            rippleCtx.restore();
+        };
+
+        const tickRipples = (now) => {
+            const dt = Math.min((now - rippleLastTime) / 1000, 0.05);
+            rippleLastTime = now;
+
+            rippleCtx.clearRect(0, 0, viewWidth, viewHeight);
+
+            for (let i = rings.length - 1; i >= 0; i--) {
+                const ring = rings[i];
+                ring.age += dt;
+                if (ring.age >= ring.delay + ring.life) {
+                    rings.splice(i, 1);
+                    continue;
+                }
+                drawRing(ring);
+            }
+
+            if (rings.length > 0) rippleFrame = requestAnimationFrame(tickRipples);
+            else rippleFrame = 0;
+        };
+
+        const spawnRipples = (x, y) => {
+            for (let i = 0; i < RINGS_PER_CLICK; i++) {
+                if (rings.length >= MAX_RINGS) break;
+                rings.push({ x, y, age: 0, delay: i * RING_STAGGER, life: RING_LIFE });
+            }
+
+            if (!rippleFrame) {
+                rippleLastTime = performance.now();
+                rippleFrame = requestAnimationFrame(tickRipples);
+            }
+        };
+
+        sizeRippleCanvas();
+        new ResizeObserver(sizeRippleCanvas).observe(rippleCanvas);
+
+        document.addEventListener('pointerdown', (e) => {
+            if (e.pointerType === 'mouse' && e.button !== 0) return;
+            const rect = rippleCanvas.getBoundingClientRect();
+            spawnRipples(e.clientX - rect.left, e.clientY - rect.top);
+        });
+    }
 });
