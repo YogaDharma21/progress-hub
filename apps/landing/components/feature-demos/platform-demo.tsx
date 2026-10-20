@@ -14,7 +14,7 @@ const activity = [
 
 export default function PlatformDemo() {
     return (
-        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full max-w-md">
+        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full">
             <div className="flex items-center justify-between mb-4">
                 <h4 className="text-xs font-semibold text-zinc-100">Dashboard</h4>
                 <span className="text-[9px] text-zinc-600">UKM Progress</span>

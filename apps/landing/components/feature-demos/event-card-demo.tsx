@@ -44,7 +44,7 @@ export default function EventCardDemo() {
     const filtered = activeTab === 'Semua' ? events : events.filter((e) => e.type === activeTab)
 
     return (
-        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full max-w-md">
+        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full">
             <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-4">
                 {tabs.map((tab) => (
                     <button

@@ -23,7 +23,7 @@ const projects = [
 
 export default function ProjectCardDemo() {
     return (
-        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full max-w-md">
+        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full">
             <div className="space-y-3">
                 {projects.map((project) => (
                     <div
