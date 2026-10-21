@@ -11,6 +11,9 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
 
         const lenis = new Lenis({
             duration: 1.1,
+            // Wheel and touch input stay native so the page tracks the device.
+            // Lenis only smooths programmatic jumps, like the feature nav.
+            smoothWheel: false,
             anchors: { offset: -80 },
             autoToggle: true,
             stopInertiaOnNavigate: true,
