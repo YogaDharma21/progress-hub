@@ -1,4 +1,10 @@
+'use client'
+
 import Image from 'next/image'
+import { AnimatePresence, motion } from 'motion/react'
+import { useRef } from 'react'
+import { useDemoTick } from '@/hooks/use-demo-tick'
+import { DEMO_ITEM_TRANSITION, demoWindow } from '@/lib/demo'
 
 const projects = [
     {
@@ -8,48 +14,84 @@ const projects = [
         tech: ['Laravel', 'React', 'Tailwind'],
         gradient: 'from-emerald-500/20 to-teal-500/20',
         creator: 'Arief N.',
-        time: '2 hari lalu',
     },
     {
         title: 'Smart Attendance',
         description: 'Sistem presensi otomatis berbasis QR code untuk kegiatan UKM.',
         category: 'Mobile',
         tech: ['Flutter', 'Firebase'],
-        gradient: 'from-emerald-500/20 to-teal-500/20',
+        gradient: 'from-sky-500/20 to-cyan-500/20',
         creator: 'Maya S.',
-        time: '5 hari lalu',
+    },
+    {
+        title: 'Study Buddy',
+        description: 'Pencari partner belajar dan jadwal sesi bareng anggota UKM.',
+        category: 'Web App',
+        tech: ['Next.js', 'Supabase'],
+        gradient: 'from-violet-500/20 to-fuchsia-500/20',
+        creator: 'Rizky P.',
+    },
+    {
+        title: 'Eventku',
+        description: 'Pendaftaran dan absensi acara kampus dalam satu dashboard.',
+        category: 'Web App',
+        tech: ['Laravel', 'Livewire'],
+        gradient: 'from-amber-500/20 to-orange-500/20',
+        creator: 'Dinda K.',
+    },
+    {
+        title: 'Portofolio Kit',
+        description: 'Template portofolio developer dengan studi kasus proyek UKM.',
+        category: 'Web App',
+        tech: ['Astro', 'Tailwind'],
+        gradient: 'from-zinc-500/20 to-zinc-400/10',
+        creator: 'Bagas W.',
     },
 ]
 
+// The newest card says "baru saja", the one below keeps the older label.
+const uploaded = ['baru saja', '2 hari lalu']
+
 export default function ProjectCardDemo() {
+    const panelRef = useRef<HTMLDivElement>(null)
+    const tick = useDemoTick(panelRef, 4500)
+    const visible = demoWindow(projects, tick, 2)
+
     return (
-        <div className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full">
+        <div ref={panelRef} className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full">
             <div className="space-y-3">
-                {projects.map((project) => (
-                    <div
-                        key={project.title}
-                        className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-3 sm:p-4 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20 active:scale-[0.98] cursor-pointer">
-                        <div className={`w-full h-28 sm:h-32 bg-gradient-to-br ${project.gradient} rounded-lg border border-zinc-800 mb-2.5 sm:mb-3 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]`}>
-                            <Image src="/icon-192.png" alt="" width={24} height={24} className="rounded opacity-30 transition-all duration-300 group-hover:opacity-60 group-hover:scale-110" />
-                        </div>
-                        <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-semibold bg-zinc-800 text-zinc-300 mb-1.5 transition-transform duration-200 group-hover:scale-105">
-                            {project.category}
-                        </span>
-                        <h4 className="text-xs font-semibold text-zinc-100 group-hover:text-white transition-colors">{project.title}</h4>
-                        <p className="text-[10px] text-zinc-500 line-clamp-1 mt-0.5">{project.description}</p>
-                        <div className="flex flex-wrap gap-1 mt-2">
-                            {project.tech.map((t) => (
-                                <span key={t} className="px-1.5 py-0.5 rounded text-[8px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800 transition-colors group-hover:border-zinc-700">
-                                    {t}
-                                </span>
-                            ))}
-                        </div>
-                        <div className="flex items-center justify-between text-[10px] text-zinc-600 mt-3 pt-2 border-t border-zinc-800/60">
-                            <span>oleh {project.creator}</span>
-                            <span>{project.time}</span>
-                        </div>
-                    </div>
-                ))}
+                <AnimatePresence initial={false} mode="popLayout">
+                    {visible.map((project, index) => (
+                        <motion.div
+                            key={project.title}
+                            layout
+                            initial={{ opacity: 0, y: -12, scale: 0.98 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 12, scale: 0.98 }}
+                            transition={DEMO_ITEM_TRANSITION}
+                            className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-3 sm:p-4 transition-colors duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20 active:scale-[0.98] cursor-pointer">
+                            <div className={`w-full h-28 sm:h-32 bg-gradient-to-br ${project.gradient} rounded-lg border border-zinc-800 mb-2.5 sm:mb-3 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]`}>
+                                <Image src="/icon-192.png" alt="" width={24} height={24} className="rounded opacity-30 transition-all duration-300 group-hover:opacity-60 group-hover:scale-110" />
+                            </div>
+                            <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-semibold bg-zinc-800 text-zinc-300 mb-1.5 transition-transform duration-200 group-hover:scale-105">
+                                {project.category}
+                            </span>
+                            <h4 className="text-xs font-semibold text-zinc-100 group-hover:text-white transition-colors">{project.title}</h4>
+                            <p className="text-[10px] text-zinc-500 line-clamp-1 mt-0.5">{project.description}</p>
+                            <div className="flex flex-wrap gap-1 mt-2">
+                                {project.tech.map((t) => (
+                                    <span key={t} className="px-1.5 py-0.5 rounded text-[8px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800 transition-colors group-hover:border-zinc-700">
+                                        {t}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className="flex items-center justify-between text-[10px] text-zinc-600 mt-3 pt-2 border-t border-zinc-800/60">
+                                <span>oleh {project.creator}</span>
+                                <span>{uploaded[index] ?? '5 hari lalu'}</span>
+                            </div>
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
             </div>
         </div>
     )
