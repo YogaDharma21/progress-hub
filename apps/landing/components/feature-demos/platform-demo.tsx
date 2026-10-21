@@ -53,7 +53,7 @@ export default function PlatformDemo() {
             </div>
             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 sm:p-3.5">
                 <h5 className="text-[10px] font-semibold text-zinc-400 mb-2.5">Aktivitas Terkini</h5>
-                <div className="space-y-2 sm:space-y-2.5">
+                <div className="flex flex-col gap-2 sm:gap-2.5">
                     <AnimatePresence initial={false} mode="popLayout">
                         {visible.map((item, index) => (
                             <motion.div

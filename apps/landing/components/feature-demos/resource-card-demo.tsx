@@ -92,7 +92,7 @@ export default function ResourceCardDemo() {
                     </button>
                 ))}
             </div>
-            <div className="space-y-2.5">
+            <div className="flex flex-col gap-2.5">
                 <AnimatePresence initial={false} mode="popLayout">
                     {filtered.map((resource, index) => (
                         <motion.div

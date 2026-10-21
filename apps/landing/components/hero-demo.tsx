@@ -244,7 +244,7 @@ export default function HeroDemo() {
                                 </div>
                                 <div className="col-span-2 bg-zinc-900 border border-zinc-800 rounded-xl p-3">
                                     <h4 className="text-[10px] font-semibold text-zinc-100 mb-2">Aktivitas Terbaru</h4>
-                                    <div className="space-y-2">
+                                    <div className="flex flex-col gap-2">
                                         <AnimatePresence initial={false} mode="popLayout">
                                             {adminFeed.map((item) => (
                                                 <motion.div

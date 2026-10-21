@@ -59,7 +59,7 @@ export default function ProjectCardDemo() {
 
     return (
         <div ref={panelRef} className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full">
-            <div className="space-y-3">
+            <div className="flex flex-col gap-3">
                 <AnimatePresence initial={false} mode="popLayout">
                     {visible.map((project, index) => (
                         <motion.div

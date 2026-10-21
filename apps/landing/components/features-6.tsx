@@ -266,7 +266,7 @@ export default function FeaturesSection() {
                                         </div>
                                     ))}
                                 </div>
-                                <div className="space-y-2">
+                                <div className="flex flex-col gap-2">
                                     <AnimatePresence initial={false} mode="popLayout">
                                         {visibleActivity.map((item, index) => (
                                             <motion.div
@@ -338,7 +338,7 @@ export default function FeaturesSection() {
                             </div>
                         </div>
                         {/* Activity */}
-                        <div className="space-y-1.5">
+                        <div className="flex flex-col gap-1.5">
                             <AnimatePresence initial={false} mode="popLayout">
                                 {visibleOverlay.map((item) => (
                                     <motion.div

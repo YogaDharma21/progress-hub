@@ -93,7 +93,7 @@ export default function EventCardDemo() {
                     </button>
                 ))}
             </div>
-            <div className="space-y-3">
+            <div className="flex flex-col gap-3">
                 <AnimatePresence initial={false} mode="popLayout">
                     {filtered.map((event) => (
                         <motion.div
