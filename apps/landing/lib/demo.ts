@@ -23,11 +23,11 @@ export function demoWindow<T>(items: readonly T[], tick: number, size: number): 
 }
 
 /**
- * How many matching entries have entered the newest slot after `tick` ticks.
- * The dashboard totals use this so a new activity row also moves its counter.
+ * Live dashboard count. The value drifts up and down around its base as the
+ * demo ticks. Bigger totals drift further, small totals stay in a tight range.
  */
-export function countIntroduced<T>(items: readonly T[], tick: number, match: (item: T) => boolean): number {
-    const perCycle = items.filter(match).length
+export function demoStat(base: number, tick: number, phase = 0): number {
+    const amplitude = base >= 10 ? 3.2 : 2
 
-    return Math.floor(tick / items.length) * perCycle + items.slice(0, tick % items.length).filter(match).length
+    return Math.max(1, base + Math.round(Math.sin((tick + phase) * 1.1) * amplitude))
 }

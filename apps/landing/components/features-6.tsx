@@ -5,7 +5,8 @@ import Image from 'next/image'
 import { AnimatePresence, motion } from 'motion/react'
 import { useRef } from 'react'
 import { useDemoTick } from '@/hooks/use-demo-tick'
-import { DEMO_CONTENT_TRANSITION, DEMO_ITEM_TRANSITION, countIntroduced, demoWindow } from '@/lib/demo'
+import { AnimatedNumber } from '@/components/ui/animated-number'
+import { DEMO_CONTENT_TRANSITION, DEMO_ITEM_TRANSITION, demoStat, demoWindow } from '@/lib/demo'
 
 const events = [
     {
@@ -96,12 +97,12 @@ const resourcePool = [
 ]
 
 const activity = [
-    { user: 'Arief N.', action: 'bergabung', target: 'Hackathon Sprint', stat: 'program' as const },
-    { user: 'Maya S.', action: 'mengunggah', target: 'Smart Attendance', stat: 'projects' as const },
-    { user: 'Rizky P.', action: 'menulis', target: 'React Best Practices', stat: 'articles' as const },
-    { user: 'Dinda K.', action: 'mendaftar', target: 'React Deep Dive', stat: 'program' as const },
-    { user: 'Bagas W.', action: 'mengunggah', target: 'Portofolio Kit', stat: 'projects' as const },
-    { user: 'Sinta A.', action: 'membagikan', target: 'Git & GitHub', stat: 'articles' as const },
+    { user: 'Arief N.', action: 'bergabung', target: 'Hackathon Sprint' },
+    { user: 'Maya S.', action: 'mengunggah', target: 'Smart Attendance' },
+    { user: 'Rizky P.', action: 'menulis', target: 'React Best Practices' },
+    { user: 'Dinda K.', action: 'mendaftar', target: 'React Deep Dive' },
+    { user: 'Bagas W.', action: 'mengunggah', target: 'Portofolio Kit' },
+    { user: 'Sinta A.', action: 'membagikan', target: 'Git & GitHub' },
 ]
 
 const overlayActivity = [
@@ -253,15 +254,13 @@ export default function FeaturesSection() {
                             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
                                 <div className="grid grid-cols-3 gap-2 mb-3">
                                     {[
-                                        { icon: Calendar, label: 'Program', base: 12, key: 'program' as const },
-                                        { icon: FolderGit2, label: 'Proyek', base: 28, key: 'projects' as const },
-                                        { icon: BookOpen, label: 'Modul', base: 45, key: 'articles' as const },
+                                        { icon: Calendar, label: 'Program', base: 12, phase: 0 },
+                                        { icon: FolderGit2, label: 'Proyek', base: 28, phase: 1.5 },
+                                        { icon: BookOpen, label: 'Modul', base: 45, phase: 3 },
                                     ].map((stat) => (
                                         <div key={stat.label} className="group bg-zinc-950 border border-zinc-800 hover:border-zinc-700 rounded-lg p-2 text-center transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 hover:shadow-sm active:scale-95 cursor-pointer">
                                             <stat.icon className="size-3 text-zinc-500 mx-auto mb-1 transition-transform duration-200 group-hover:scale-125 group-hover:rotate-6 group-hover:text-zinc-300" />
-                                            <div className="text-xs font-bold text-zinc-100 group-hover:text-white">
-                                                {stat.base + countIntroduced(activity, tick, (item) => item.stat === stat.key)}
-                                            </div>
+                                            <AnimatedNumber value={demoStat(stat.base, tick, stat.phase)} className="text-xs font-bold text-zinc-100 group-hover:text-white" />
                                             <div className="text-[7px] text-zinc-600">{stat.label}</div>
                                         </div>
                                     ))}
@@ -297,13 +296,13 @@ export default function FeaturesSection() {
                         {/* Stats */}
                         <div className="grid grid-cols-4 gap-2 mb-3">
                             {[
-                                { label: 'Events', value: '4' },
-                                { label: 'Projects', value: '2' },
-                                { label: 'Resources', value: '2' },
-                                { label: 'Users', value: '8' },
+                                { label: 'Events', value: demoStat(4, tick, 0) },
+                                { label: 'Projects', value: demoStat(2, tick, 1.5) },
+                                { label: 'Resources', value: demoStat(2, tick, 3) },
+                                { label: 'Users', value: demoStat(8, tick, 4.5) },
                             ].map((metric) => (
                                 <div key={metric.label} className="bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-lg p-2 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 cursor-pointer">
-                                    <div className="text-xs font-bold text-zinc-100">{metric.value}</div>
+                                    <AnimatedNumber value={metric.value} className="text-xs font-bold text-zinc-100" />
                                     <div className="text-[7px] text-zinc-500">{metric.label}</div>
                                 </div>
                             ))}

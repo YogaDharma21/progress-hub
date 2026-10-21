@@ -4,23 +4,22 @@ import { Calendar, FolderGit2, BookOpen } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useRef } from 'react'
 import { useDemoTick } from '@/hooks/use-demo-tick'
-import { DEMO_ITEM_TRANSITION, countIntroduced, demoWindow } from '@/lib/demo'
-
-type StatKey = 'program' | 'projects' | 'articles'
+import { AnimatedNumber } from '@/components/ui/animated-number'
+import { DEMO_ITEM_TRANSITION, demoStat, demoWindow } from '@/lib/demo'
 
 const activity = [
-    { user: 'Arief N.', action: 'bergabung ke', target: 'Hackathon Code Sprint', stat: 'program' as const },
-    { user: 'Maya S.', action: 'mengunggah proyek', target: 'Smart Attendance', stat: 'projects' as const },
-    { user: 'Rizky P.', action: 'menulis artikel', target: 'React Best Practices', stat: 'articles' as const },
-    { user: 'Dinda K.', action: 'mendaftar kelas', target: 'React Deep Dive', stat: 'program' as const },
-    { user: 'Bagas W.', action: 'mengunggah proyek', target: 'Portofolio Kit', stat: 'projects' as const },
-    { user: 'Sinta A.', action: 'membagikan modul', target: 'Git & GitHub', stat: 'articles' as const },
+    { user: 'Arief N.', action: 'bergabung ke', target: 'Hackathon Code Sprint' },
+    { user: 'Maya S.', action: 'mengunggah proyek', target: 'Smart Attendance' },
+    { user: 'Rizky P.', action: 'menulis artikel', target: 'React Best Practices' },
+    { user: 'Dinda K.', action: 'mendaftar kelas', target: 'React Deep Dive' },
+    { user: 'Bagas W.', action: 'mengunggah proyek', target: 'Portofolio Kit' },
+    { user: 'Sinta A.', action: 'membagikan modul', target: 'Git & GitHub' },
 ]
 
-const stats: { icon: typeof Calendar; label: string; base: number; key: StatKey }[] = [
-    { icon: Calendar, label: 'Program Aktif', base: 12, key: 'program' },
-    { icon: FolderGit2, label: 'Proyek Showcase', base: 28, key: 'projects' },
-    { icon: BookOpen, label: 'Artikel & Modul', base: 45, key: 'articles' },
+const stats: { icon: typeof Calendar; label: string; base: number; phase: number }[] = [
+    { icon: Calendar, label: 'Program Aktif', base: 12, phase: 0 },
+    { icon: FolderGit2, label: 'Proyek Showcase', base: 28, phase: 1.5 },
+    { icon: BookOpen, label: 'Artikel & Modul', base: 45, phase: 3 },
 ]
 
 const times = ['baru saja', '2m lalu', '15m lalu']
@@ -44,9 +43,7 @@ export default function PlatformDemo() {
                         <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-zinc-950 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform duration-200 group-hover:scale-110 group-hover:rotate-6">
                             <stat.icon className="size-3 sm:size-3.5 text-zinc-400 transition-colors group-hover:text-zinc-200" />
                         </div>
-                        <div className="text-sm sm:text-base font-bold text-zinc-100 group-hover:text-white">
-                            {stat.base + countIntroduced(activity, tick, (item) => item.stat === stat.key)}
-                        </div>
+                        <AnimatedNumber value={demoStat(stat.base, tick, stat.phase)} className="text-sm sm:text-base font-bold text-zinc-100 group-hover:text-white" />
                         <div className="text-[7px] sm:text-[9px] text-zinc-500 truncate">{stat.label}</div>
                     </div>
                 ))}

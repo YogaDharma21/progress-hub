@@ -5,7 +5,8 @@ import Image from 'next/image'
 import { AnimatePresence, motion } from 'motion/react'
 import { useRef } from 'react'
 import { useDemoTick } from '@/hooks/use-demo-tick'
-import { DEMO_ITEM_TRANSITION, demoWindow } from '@/lib/demo'
+import { AnimatedNumber } from '@/components/ui/animated-number'
+import { DEMO_ITEM_TRANSITION, demoStat, demoWindow } from '@/lib/demo'
 
 const adminActivity = [
     { type: 'Event', title: 'Hackathon Sprint', time: '2m' },
@@ -200,13 +201,13 @@ export default function HeroDemo() {
                             {/* Stats */}
                             <div className="grid grid-cols-4 gap-2 mt-3">
                                 {[
-                                    { label: 'Events', value: '4' },
-                                    { label: 'Projects', value: '2' },
-                                    { label: 'Resources', value: '2' },
-                                    { label: 'Users', value: '8' },
+                                    { label: 'Events', value: demoStat(4, adminTick, 0) },
+                                    { label: 'Projects', value: demoStat(2, adminTick, 1.5) },
+                                    { label: 'Resources', value: demoStat(2, adminTick, 3) },
+                                    { label: 'Users', value: demoStat(8, adminTick, 4.5) },
                                 ].map((stat) => (
                                     <div key={stat.label} className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-2.5 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
-                                        <div className="text-sm font-bold text-zinc-100 group-hover:text-white">{stat.value}</div>
+                                        <AnimatedNumber value={stat.value} className="text-sm font-bold text-zinc-100 group-hover:text-white" />
                                         <div className="text-[8px] text-zinc-500">{stat.label}</div>
                                     </div>
                                 ))}
@@ -299,16 +300,16 @@ export default function HeroDemo() {
                         {/* Stats */}
                         <div className="grid grid-cols-3 gap-1.5 sm:gap-2 mt-3">
                             {[
-                                { icon: Calendar, label: 'Program Aktif', value: String(programs.length) },
-                                { icon: FolderGit2, label: 'Proyek Showcase', value: String(projects.length) },
-                                { icon: BookOpen, label: 'Artikel & Modul', value: String(resources.length) },
+                                { icon: Calendar, label: 'Program Aktif', value: demoStat(programs.length, programTick, 0) },
+                                { icon: FolderGit2, label: 'Proyek Showcase', value: demoStat(projects.length, projectTick, 1.5) },
+                                { icon: BookOpen, label: 'Artikel & Modul', value: demoStat(resources.length, resourceTick, 3) },
                             ].map((stat) => (
                                 <div key={stat.label} className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-2 sm:p-2.5 lg:p-3 flex items-center gap-2 sm:gap-3 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
                                     <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-zinc-950 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
                                         <stat.icon className="size-3 sm:size-3.5 text-zinc-400 group-hover:text-zinc-200" />
                                     </div>
                                     <div className="min-w-0">
-                                        <div className="text-xs sm:text-sm lg:text-base font-bold text-zinc-100 group-hover:text-white">{stat.value}</div>
+                                        <AnimatedNumber value={stat.value} className="text-xs sm:text-sm lg:text-base font-bold text-zinc-100 group-hover:text-white" />
                                         <div className="text-[7px] sm:text-[8px] text-zinc-500 truncate">{stat.label}</div>
                                     </div>
                                 </div>
