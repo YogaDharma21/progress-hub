@@ -3,12 +3,12 @@
 // at the top. The window only wraps around the data; nothing is mutated.
 
 export const DEMO_ITEM_TRANSITION = {
-    duration: 0.4,
+    duration: 0.75,
     ease: [0.22, 1, 0.36, 1],
 } as const
 
 export const DEMO_CONTENT_TRANSITION = {
-    duration: 0.35,
+    duration: 0.65,
     ease: [0.22, 1, 0.36, 1],
 } as const
 

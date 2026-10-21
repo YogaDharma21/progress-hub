@@ -75,7 +75,7 @@ const added = ['baru saja', '3 hari lalu', '1 minggu lalu', '2 minggu lalu']
 export default function ResourceCardDemo() {
     const [activeTab, setActiveTab] = useState<Tab>('Semua')
     const panelRef = useRef<HTMLDivElement>(null)
-    const tick = useDemoTick(panelRef, 5000)
+    const tick = useDemoTick(panelRef, 3200)
 
     const visible = demoWindow(resources, tick, 4)
     const filtered = activeTab === 'Semua' ? visible : visible.filter((resource) => resource.type === activeTab)

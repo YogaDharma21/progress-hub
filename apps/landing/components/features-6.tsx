@@ -189,7 +189,7 @@ function FeaturedResource({ tick }: { tick: number }) {
 
 export default function FeaturesSection() {
     const sectionRef = useRef<HTMLDivElement>(null)
-    const tick = useDemoTick(sectionRef, 4200)
+    const tick = useDemoTick(sectionRef, 3000)
     const visibleEvents = demoWindow(events, tick, 4)
     const visibleActivity = demoWindow(activity, tick, 2)
     const visibleOverlay = demoWindow(overlayActivity, tick + 1, 3)
@@ -247,8 +247,8 @@ export default function FeaturesSection() {
 
                         {/* Bottom row: projects + resources + stats */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4">
-                            <FeaturedProject tick={Math.floor(tick / 2)} />
-                            <FeaturedResource tick={Math.floor(tick / 3)} />
+                            <FeaturedProject tick={tick} />
+                            <FeaturedResource tick={tick} />
                             {/* Stats + activity */}
                             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
                                 <div className="grid grid-cols-3 gap-2 mb-3">
@@ -313,7 +313,7 @@ export default function FeaturesSection() {
                             <span className="text-[9px] lg:text-[10px] font-semibold text-zinc-200">Aktivitas 7 Hari</span>
                             <div className="flex items-end gap-1 h-12 mt-2">
                                 {week.map((day, index) => {
-                                    const primary = index === week.length - 1 ? Math.min(90, day.primary + tick * 6) : day.primary
+                                    const primary = index === week.length - 1 ? day.primary + Math.round((Math.sin(tick * 0.9) + 1) * 9) : day.primary
 
                                     return (
                                         <div key={day.day} className="flex-1 flex flex-col items-center">

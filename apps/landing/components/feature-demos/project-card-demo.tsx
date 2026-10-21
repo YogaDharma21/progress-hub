@@ -54,7 +54,7 @@ const uploaded = ['baru saja', '2 hari lalu']
 
 export default function ProjectCardDemo() {
     const panelRef = useRef<HTMLDivElement>(null)
-    const tick = useDemoTick(panelRef, 4500)
+    const tick = useDemoTick(panelRef, 3000)
     const visible = demoWindow(projects, tick, 2)
 
     return (

@@ -75,7 +75,7 @@ const events = [
 export default function EventCardDemo() {
     const [activeTab, setActiveTab] = useState<Tab>('Semua')
     const panelRef = useRef<HTMLDivElement>(null)
-    const tick = useDemoTick(panelRef, 4000)
+    const tick = useDemoTick(panelRef, 2800)
 
     // Three events are on screen: one leaves, one arrives every tick.
     const visible = demoWindow(events, tick, 3)

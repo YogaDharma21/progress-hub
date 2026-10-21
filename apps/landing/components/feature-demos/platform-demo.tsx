@@ -27,7 +27,7 @@ const times = ['baru saja', '2m lalu', '15m lalu']
 
 export default function PlatformDemo() {
     const panelRef = useRef<HTMLDivElement>(null)
-    const tick = useDemoTick(panelRef, 3600)
+    const tick = useDemoTick(panelRef, 2400)
     const visible = demoWindow(activity, tick, 3)
 
     return (

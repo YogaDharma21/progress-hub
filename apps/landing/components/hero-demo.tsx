@@ -164,8 +164,10 @@ function ResourceCards({ tick }: { tick: number }) {
 export default function HeroDemo() {
     const adminRef = useRef<HTMLDivElement>(null)
     const memberRef = useRef<HTMLDivElement>(null)
-    const adminTick = useDemoTick(adminRef, 4200)
-    const memberTick = useDemoTick(memberRef, 4200)
+    const adminTick = useDemoTick(adminRef, 2800)
+    const programTick = useDemoTick(memberRef, 2800)
+    const projectTick = useDemoTick(memberRef, 3400)
+    const resourceTick = useDemoTick(memberRef, 4000)
     const adminFeed = demoWindow(adminActivity, adminTick, 3)
 
     return (
@@ -216,7 +218,7 @@ export default function HeroDemo() {
                                     <h4 className="text-[10px] font-semibold text-zinc-100 mb-2">Aktivitas 7 Hari</h4>
                                     <div className="flex items-end gap-1.5 h-20">
                                         {week.map((day, i) => {
-                                            const primary = i === week.length - 1 ? Math.min(88, day.primary + adminTick * 5) : day.primary
+                                            const primary = i === week.length - 1 ? day.primary + Math.round((Math.sin(adminTick * 0.9) + 1) * 8) : day.primary
 
                                             return (
                                                 <div key={day.day} className="flex-1 flex flex-col items-center gap-1">
@@ -326,7 +328,7 @@ export default function HeroDemo() {
                                     ))}
                                 </div>
                             </div>
-                            <ProgramCards tick={memberTick} />
+                            <ProgramCards tick={programTick} />
                         </div>
 
                         {/* Projects */}
@@ -338,7 +340,7 @@ export default function HeroDemo() {
                                 </div>
                                 <span className="text-[8px] text-zinc-500 underline">Lihat Semua</span>
                             </div>
-                            <ProjectCards tick={Math.floor(memberTick / 2)} />
+                            <ProjectCards tick={projectTick} />
                         </div>
 
                         {/* Resources */}
@@ -350,7 +352,7 @@ export default function HeroDemo() {
                                 </div>
                                 <span className="text-[8px] text-zinc-500 underline">Browse Semua</span>
                             </div>
-                            <ResourceCards tick={Math.floor(memberTick / 3)} />
+                            <ResourceCards tick={resourceTick} />
                         </div>
                     </div>
                 </div>
