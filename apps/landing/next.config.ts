@@ -1,6 +1,12 @@
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: process.cwd(),
+    resolveAlias: {
+      'framer-motion': './node_modules/framer-motion',
+    },
+  },
   images: {
     remotePatterns: [
       {

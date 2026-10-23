@@ -3,6 +3,13 @@ import { Logo } from '@/components/logo'
 
 const footerLinks = [
     {
+        name: 'Halaman',
+        links: [
+            { href: '/', label: 'Beranda' },
+            { href: '/demo', label: 'Live Demo' },
+        ],
+    },
+    {
         name: 'Akun',
         links: [
             { href: 'https://app.progress-hub.my.id/login', label: 'Login' },

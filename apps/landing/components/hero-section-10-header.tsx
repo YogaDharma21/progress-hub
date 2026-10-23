@@ -63,6 +63,16 @@ export const HeroHeader = () => {
                         <div className="in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end max-lg:space-y-8 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6">
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    nativeButton={false}
+                                    render={
+                                        <Link href="/demo">
+                                            <span>Demo</span>
+                                        </Link>
+                                    }
+                                />
+                                <Button
                                     variant="outline"
                                     size="sm"
                                     nativeButton={false}
