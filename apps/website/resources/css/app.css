@@ -3,22 +3,147 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+:root {
+    --background: #08090b;
+    --card: #121316;
+    --surface: #17181c;
+    --surface-inset: rgba(255, 255, 255, 0.035);
+    --popover: #15161a;
+    --border: rgba(255, 255, 255, 0.07);
+    --border-subtle: rgba(255, 255, 255, 0.04);
+    --foreground: #f4f4f2;
+    --muted-foreground: #8a8c92;
+    --subtle-foreground: #5f6065;
+    --primary: #f2f1ec;
+    --primary-foreground: #0a0a0b;
+
+    --accent-emerald: #a9bfa9;
+    --accent-emerald-tint: rgba(169, 191, 169, 0.12);
+    --accent-crimson: #c99a90;
+    --accent-crimson-tint: rgba(194, 133, 123, 0.13);
+    --accent-amber: #d2bd93;
+    --accent-amber-tint: rgba(210, 189, 147, 0.12);
+    --accent-blue: #a6b0bd;
+    --accent-blue-tint: rgba(166, 176, 189, 0.12);
+}
+
+.light {
+    --background: #f2f1ed;
+    --card: #faf9f6;
+    --surface: #e8e6e0;
+    --surface-inset: rgba(21, 21, 20, 0.035);
+    --popover: #faf9f6;
+    --border: rgba(21, 21, 20, 0.09);
+    --border-subtle: rgba(21, 21, 20, 0.05);
+    --foreground: #151514;
+    --muted-foreground: #6f6d67;
+    --subtle-foreground: #9a9890;
+    --primary: #171716;
+    --primary-foreground: #f6f4ef;
+
+    --accent-emerald: #4f7357;
+    --accent-emerald-tint: rgba(79, 115, 87, 0.12);
+    --accent-crimson: #a2544a;
+    --accent-crimson-tint: rgba(162, 84, 74, 0.13);
+    --accent-amber: #8a6b34;
+    --accent-amber-tint: rgba(138, 107, 52, 0.12);
+    --accent-blue: #5c6b7a;
+    --accent-blue-tint: rgba(92, 107, 122, 0.12);
+}
+
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 
-    --radius-sm: 0.45rem;
-    --radius-md: 0.45rem;
-    --radius-lg: 0.45rem;
-    --radius-xl: 0.45rem;
-    --radius-2xl: 0.45rem;
-    --radius-3xl: 0.45rem;
-    --radius-4xl: 0.45rem;
+    --radius-3xl: 24px;
+    --radius-2xl: 16px;
+    --radius-xl: 12px;
+    --radius-lg: 10px;
+    --radius-md: 8px;
+    --radius-sm: 6px;
+    --radius-full: 9999px;
+
+    --color-background: var(--background);
+    --color-card: var(--card);
+    --color-surface: var(--surface);
+    --color-surface-inset: var(--surface-inset);
+    --color-popover: var(--popover);
+    --color-border: var(--border);
+    --color-border-subtle: var(--border-subtle);
+    --color-foreground: var(--foreground);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-subtle-foreground: var(--subtle-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-accent-emerald: var(--accent-emerald);
+    --color-accent-emerald-tint: var(--accent-emerald-tint);
+    --color-accent-crimson: var(--accent-crimson);
+    --color-accent-crimson-tint: var(--accent-crimson-tint);
+    --color-accent-amber: var(--accent-amber);
+    --color-accent-amber-tint: var(--accent-amber-tint);
+    --color-accent-blue: var(--accent-blue);
+    --color-accent-blue-tint: var(--accent-blue-tint);
+
+    --color-zinc-950: #08090b;
+    --color-zinc-900: #121316;
+    --color-zinc-850: #17181c;
+    --color-zinc-800: rgba(255, 255, 255, 0.07);
+    --color-zinc-750: rgba(255, 255, 255, 0.04);
+    --color-zinc-700: rgba(255, 255, 255, 0.12);
+    --color-zinc-600: #5f6065;
+    --color-zinc-500: #8a8c92;
+    --color-zinc-400: #8a8c92;
+    --color-zinc-300: #d4d4d2;
+    --color-zinc-200: #e8e8e6;
+    --color-zinc-100: #f4f4f2;
 }
 
 @layer utilities {
-    .rounded {
-        border-radius: 0.45rem;
+    /* DESIGN.md card construction */
+    .card-surface {
+        background-color: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        box-shadow: 0 28px 56px -40px rgba(0, 0, 0, 0.9);
+    }
+
+    .surface-inset {
+        background-color: var(--surface-inset);
+        border-radius: 16px;
+    }
+
+    /* Border-free search input pill */
+    .search-pill {
+        border-radius: 9999px;
+        background-color: var(--surface-inset);
+        border: 0 !important;
+        outline: none !important;
+    }
+
+    /* Mineral accent badges */
+    .badge-mineral-emerald {
+        background-color: rgba(169, 191, 169, 0.12);
+        color: #a9bfa9;
+        border: 1px solid rgba(169, 191, 169, 0.25);
+    }
+
+    .badge-mineral-crimson {
+        background-color: rgba(194, 133, 123, 0.13);
+        color: #c99a90;
+        border: 1px solid rgba(194, 133, 123, 0.25);
+    }
+
+    .badge-mineral-amber {
+        background-color: rgba(210, 189, 147, 0.12);
+        color: #d2bd93;
+        border: 1px solid rgba(210, 189, 147, 0.25);
+    }
+
+    .badge-mineral-blue {
+        background-color: rgba(166, 176, 189, 0.12);
+        color: #a6b0bd;
+        border: 1px solid rgba(166, 176, 189, 0.25);
     }
 
     /* Tactile button spring interaction */

@@ -20,16 +20,16 @@
 <body class="bg-zinc-950 text-zinc-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
     <header class="fixed inset-x-0 top-0 z-50 px-6 pt-3">
-        <nav class="mx-auto flex h-14 max-w-7xl items-center justify-between gap-3 rounded-full border border-zinc-800/70 bg-zinc-900 px-3 shadow-lg shadow-black/40 ring-1 ring-white/5 sm:px-4 lg:bg-zinc-900/70 lg:px-6 lg:backdrop-blur-xl">
-            <a href="/" class="flex items-center gap-2.5 font-semibold text-zinc-100 hover:text-white transition">
+        <nav class="mx-auto flex h-14 max-w-7xl items-center justify-between gap-3 rounded-full border border-border bg-card px-3 shadow-lg shadow-black/40 ring-1 ring-white/5 sm:px-4 lg:bg-card/80 lg:px-6 lg:backdrop-blur-xl">
+            <a href="/" class="btn-spring flex items-center gap-2.5 font-semibold text-zinc-100 hover:text-white transition">
                 <img src="/icon-192.png" alt="Progress Hub" class="w-8 h-8 rounded-lg" />
                 <span class="text-base tracking-tight">Progress Hub</span>
             </a>
             <div class="flex items-center gap-2">
-                <a href="/login" class="inline-flex items-center justify-center rounded-full bg-zinc-100 px-3 py-1.5 text-xs font-medium text-zinc-950 transition hover:-translate-y-0.5 hover:bg-white sm:px-4 sm:py-2">
+                <a href="/login" class="pill-spring inline-flex items-center justify-center rounded-full bg-zinc-100 px-3.5 py-1.5 text-xs font-semibold text-zinc-950 transition hover:bg-white sm:px-4 sm:py-2">
                     Login
                 </a>
-                <a href="/register" class="inline-flex items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-xs font-medium text-zinc-100 transition hover:-translate-y-0.5 hover:bg-zinc-700 sm:px-4 sm:py-2">
+                <a href="/register" class="pill-spring inline-flex items-center justify-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium text-zinc-100 transition hover:bg-zinc-700 sm:px-4 sm:py-2">
                     Register
                 </a>
             </div>
