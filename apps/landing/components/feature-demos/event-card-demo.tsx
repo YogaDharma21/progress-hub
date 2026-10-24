@@ -15,7 +15,7 @@ const events = [
         description: 'Build innovative solutions in 48 hours with your team.',
         type: 'Hackathon' as const,
         status: 'Berlangsung',
-        statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+        statusColor: 'bg-accent-emerald-tint text-accent-emerald border-accent-emerald/30',
         sessions: 8,
         participants: 24,
         avatars: ['A', 'R', '+12'],
@@ -25,7 +25,7 @@ const events = [
         description: 'Master advanced React patterns and performance.',
         type: 'Kelas' as const,
         status: 'Mendatang',
-        statusColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+        statusColor: 'bg-accent-amber-tint text-accent-amber border-accent-amber/30',
         sessions: 4,
         participants: 18,
         avatars: ['M', 'S', '+8'],
@@ -35,7 +35,7 @@ const events = [
         description: 'Learn CI/CD pipelines with GitHub Actions.',
         type: 'Sharing' as const,
         status: 'Berlangsung',
-        statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+        statusColor: 'bg-accent-emerald-tint text-accent-emerald border-accent-emerald/30',
         sessions: 2,
         participants: 12,
         avatars: ['K', 'D', '+5'],
@@ -45,7 +45,7 @@ const events = [
         description: 'Rancang alur dan tampilan aplikasi kampus dalam tiga hari.',
         type: 'Hackathon' as const,
         status: 'Registrasi',
-        statusColor: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
+        statusColor: 'bg-accent-blue-tint text-accent-blue border-accent-blue/30',
         sessions: 3,
         participants: 16,
         avatars: ['D', 'N', '+9'],
@@ -55,7 +55,7 @@ const events = [
         description: 'Introduction to data analysis with Python and pandas.',
         type: 'Kelas' as const,
         status: 'Mendatang',
-        statusColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+        statusColor: 'bg-accent-amber-tint text-accent-amber border-accent-amber/30',
         sessions: 6,
         participants: 32,
         avatars: ['P', 'L', '+15'],
@@ -65,7 +65,7 @@ const events = [
         description: 'Cerita alumni soal magang, portofolio, dan interview.',
         type: 'Sharing' as const,
         status: 'Berlangsung',
-        statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+        statusColor: 'bg-accent-emerald-tint text-accent-emerald border-accent-emerald/30',
         sessions: 1,
         participants: 21,
         avatars: ['F', 'T', '+11'],
@@ -82,13 +82,13 @@ export default function EventCardDemo() {
     const filtered = activeTab === 'Semua' ? visible : visible.filter((event) => event.type === activeTab)
 
     return (
-        <div ref={panelRef} className="bg-zinc-950 border border-zinc-800/60 rounded-2xl p-3.5 sm:p-5 w-full">
-            <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-4">
+        <div ref={panelRef} className="bg-card border border-border rounded-3xl p-3.5 sm:p-5 w-full">
+            <div className="flex flex-wrap gap-1 p-1 bg-surface-inset rounded-full w-fit mb-4">
                 {tabs.map((tab) => (
                     <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={`px-2.5 py-1 text-[10px] font-medium rounded-md transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] active:scale-90 hover:-translate-y-0.5 cursor-pointer ${activeTab === tab ? 'bg-zinc-800 text-zinc-100 shadow-sm' : 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/60'}`}>
+                        className={`px-3 py-1 text-[10px] font-medium rounded-full transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] active:scale-90 hover:-translate-y-0.5 cursor-pointer ${activeTab === tab ? 'bg-surface text-zinc-100 border border-border shadow-sm' : 'text-zinc-400 hover:text-zinc-200'}`}>
                         {tab}
                     </button>
                 ))}
@@ -103,13 +103,13 @@ export default function EventCardDemo() {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 12, scale: 0.98 }}
                             transition={DEMO_ITEM_TRANSITION}
-                            className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-3 sm:p-4 transition-colors duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20 active:scale-[0.98] cursor-pointer">
+                            className="group bg-card border border-border hover:border-zinc-700 rounded-2xl p-3 sm:p-4 transition-colors duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20 active:scale-[0.98] cursor-pointer">
                             <div className="flex items-start justify-between gap-2 mb-2">
                                 <div className="min-w-0 flex-1">
                                     <h4 className="text-xs font-semibold text-zinc-100 truncate group-hover:text-white transition-colors">{event.title}</h4>
                                     <p className="text-[10px] text-zinc-500 mt-0.5 line-clamp-1">{event.description}</p>
                                 </div>
-                                <span className={`shrink-0 px-2 py-0.5 rounded text-[9px] font-medium border transition-transform duration-200 group-hover:scale-105 ${event.statusColor}`}>
+                                <span className={`shrink-0 px-2.5 py-0.5 rounded-full text-[9px] font-medium border transition-transform duration-200 group-hover:scale-105 ${event.statusColor}`}>
                                     {event.status}
                                 </span>
                             </div>
@@ -128,7 +128,7 @@ export default function EventCardDemo() {
                                     {event.avatars.map((a, i) => (
                                         <div
                                             key={i}
-                                            className="w-5 h-5 rounded bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[8px] font-semibold text-zinc-200 transition-transform duration-200 group-hover:-translate-y-0.5">
+                                            className="w-5 h-5 rounded-lg bg-surface border border-border flex items-center justify-center text-[7px] font-semibold text-zinc-200 transition-transform duration-200 group-hover:-translate-y-0.5">
                                             {a}
                                         </div>
                                     ))}

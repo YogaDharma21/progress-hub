@@ -144,7 +144,7 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.events} />
                             </div>
-                            <div data-reveal className="border-border/50 bg-foreground/2 relative flex min-h-[340px] sm:min-h-[400px] items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
+                            <div data-reveal className="bg-card border border-border relative flex min-h-[340px] sm:min-h-[400px] items-center justify-center rounded-3xl p-4 sm:p-6 md:col-span-3 w-full">
                                 <div className="w-full">
                                     <EventCardDemo />
                                 </div>
@@ -166,7 +166,7 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.projects} />
                             </div>
-                            <div data-reveal className="border-border/50 bg-foreground/2 relative flex min-h-[340px] sm:min-h-[400px] items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
+                            <div data-reveal className="bg-card border border-border relative flex min-h-[340px] sm:min-h-[400px] items-center justify-center rounded-3xl p-4 sm:p-6 md:col-span-3 w-full">
                                 <div className="w-full">
                                     <ProjectCardDemo />
                                 </div>
@@ -188,7 +188,7 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.resources} />
                             </div>
-                            <div data-reveal className="border-border/50 bg-foreground/2 relative flex min-h-[340px] sm:min-h-[400px] items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
+                            <div data-reveal className="bg-card border border-border relative flex min-h-[340px] sm:min-h-[400px] items-center justify-center rounded-3xl p-4 sm:p-6 md:col-span-3 w-full">
                                 <div className="w-full">
                                     <ResourceCardDemo />
                                 </div>
@@ -210,7 +210,7 @@ export default function FeaturesSection() {
                                 </div>
                                 <FeatureList items={featureHighlights.platform} />
                             </div>
-                            <div data-reveal className="border-border/50 bg-foreground/2 relative flex min-h-[340px] sm:min-h-[400px] items-center justify-center rounded-3xl border p-4 sm:p-6 md:col-span-3 w-full">
+                            <div data-reveal className="bg-card border border-border relative flex min-h-[340px] sm:min-h-[400px] items-center justify-center rounded-3xl p-4 sm:p-6 md:col-span-3 w-full">
                                 <div className="w-full">
                                     <PlatformDemo />
                                 </div>

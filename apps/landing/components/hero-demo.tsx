@@ -28,10 +28,10 @@ const week = [
 ]
 
 const programs = [
-    { title: 'Hackathon Sprint', desc: 'Build solutions in 48h.', status: 'Berlangsung', statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30', sessions: 8, participants: 24, avatars: ['A', 'R', '+12'] },
-    { title: 'React Deep Dive', desc: 'Master React patterns.', status: 'Berlangsung', statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30', sessions: 4, participants: 18, avatars: ['M', 'S', '+8'] },
-    { title: 'UI/UX Design Sprint', desc: 'Rancang alur aplikasi kampus.', status: 'Registrasi', statusColor: 'bg-blue-500/10 text-blue-400 border-blue-500/30', sessions: 3, participants: 16, avatars: ['D', 'N', '+9'] },
-    { title: 'Python for Data Science', desc: 'Analisis data dengan Python.', status: 'Mendatang', statusColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30', sessions: 6, participants: 32, avatars: ['P', 'L', '+15'] },
+    { title: 'Hackathon Sprint', desc: 'Build solutions in 48h.', status: 'Berlangsung', statusColor: 'bg-accent-emerald-tint text-accent-emerald border-accent-emerald/30', sessions: 8, participants: 24, avatars: ['A', 'R', '+12'] },
+    { title: 'React Deep Dive', desc: 'Master React patterns.', status: 'Berlangsung', statusColor: 'bg-accent-emerald-tint text-accent-emerald border-accent-emerald/30', sessions: 4, participants: 18, avatars: ['M', 'S', '+8'] },
+    { title: 'UI/UX Design Sprint', desc: 'Rancang alur aplikasi kampus.', status: 'Registrasi', statusColor: 'bg-accent-blue-tint text-accent-blue border-accent-blue/30', sessions: 3, participants: 16, avatars: ['D', 'N', '+9'] },
+    { title: 'Python for Data Science', desc: 'Analisis data dengan Python.', status: 'Mendatang', statusColor: 'bg-accent-amber-tint text-accent-amber border-accent-amber/30', sessions: 6, participants: 32, avatars: ['P', 'L', '+15'] },
 ]
 
 const projects = [
@@ -65,13 +65,13 @@ function ProgramCards({ tick }: { tick: number }) {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.98 }}
                         transition={DEMO_ITEM_TRANSITION}
-                        className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-3 transition-colors duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                        className="group bg-card border border-border hover:border-zinc-700 rounded-2xl p-3 transition-colors duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
                         <div className="flex items-start justify-between gap-2 mb-2">
                             <div className="min-w-0 flex-1">
                                 <h4 className="text-[10px] font-semibold text-zinc-100 truncate group-hover:text-white">{program.title}</h4>
                                 <p className="text-[8px] text-zinc-500 mt-0.5 line-clamp-1">{program.desc}</p>
                             </div>
-                            <span className={`shrink-0 px-2 py-0.5 rounded text-[8px] font-medium border transition-transform duration-200 group-hover:scale-105 ${program.statusColor}`}>{program.status}</span>
+                            <span className={`shrink-0 px-2 py-0.5 rounded-full text-[8px] font-medium border transition-transform duration-200 group-hover:scale-105 ${program.statusColor}`}>{program.status}</span>
                         </div>
                         <div className="flex items-center justify-between text-[8px] text-zinc-500">
                             <div className="flex items-center gap-2">
@@ -105,19 +105,19 @@ function ProjectCards({ tick }: { tick: number }) {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.98 }}
                         transition={DEMO_ITEM_TRANSITION}
-                        className="bg-zinc-900 border border-zinc-800 rounded-xl p-3">
-                        <div className="w-full h-24 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-lg border border-zinc-800 mb-2 flex items-center justify-center">
+                        className="bg-card border border-border rounded-2xl p-3">
+                        <div className="w-full h-24 bg-surface rounded-xl border border-border mb-2 flex items-center justify-center">
                             <Image src="/icon-192.png" alt="" width={20} height={20} className="rounded opacity-30" />
                         </div>
-                        <span className="px-1.5 py-0.5 rounded text-[8px] font-semibold bg-zinc-800 text-zinc-300">{project.cat}</span>
+                        <span className="px-2 py-0.5 rounded-full text-[8px] font-semibold bg-surface text-zinc-300 border border-border">{project.cat}</span>
                         <h4 className="text-[10px] font-semibold text-zinc-100 mt-1">{project.title}</h4>
                         <p className="text-[8px] text-zinc-500 line-clamp-1 mt-0.5">{project.desc}</p>
                         <div className="flex flex-wrap gap-1 mt-1.5">
                             {project.tech.map((t) => (
-                                <span key={t} className="px-1 py-0.5 rounded text-[7px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800">{t}</span>
+                                <span key={t} className="px-1.5 py-0.5 rounded-md text-[7px] font-medium bg-surface-inset text-zinc-400 border border-border">{t}</span>
                             ))}
                         </div>
-                        <div className="flex items-center justify-between text-[8px] text-zinc-600 mt-2 pt-1.5 border-t border-zinc-800/60">
+                        <div className="flex items-center justify-between text-[8px] text-zinc-500 mt-2 pt-1.5 border-t border-border">
                             <span>oleh {project.creator}</span>
                             <span>{uploaded[index] ?? '5 hari lalu'}</span>
                         </div>
@@ -142,16 +142,16 @@ function ResourceCards({ tick }: { tick: number }) {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.98 }}
                         transition={DEMO_ITEM_TRANSITION}
-                        className="bg-zinc-900 border border-zinc-800 rounded-xl p-3">
+                        className="bg-card border border-border rounded-2xl p-3">
                         <div className="flex items-center gap-1 mb-1.5">
-                            <span className="px-1.5 py-0.5 rounded text-[8px] font-semibold bg-zinc-800 text-zinc-300">{resource.type}</span>
+                            <span className="px-2 py-0.5 rounded-full text-[8px] font-semibold bg-surface text-zinc-300 border border-border">{resource.type}</span>
                             {resource.tags.map((t) => (
-                                <span key={t} className="px-1 py-0.5 rounded text-[7px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800">{t}</span>
+                                <span key={t} className="px-1.5 py-0.5 rounded-md text-[7px] font-medium bg-surface-inset text-zinc-400 border border-border">{t}</span>
                             ))}
                         </div>
                         <h4 className="text-[10px] font-semibold text-zinc-100">{resource.title}</h4>
                         <p className="text-[8px] text-zinc-500 line-clamp-1 mt-0.5">{resource.desc}</p>
-                        <div className="flex items-center justify-between text-[8px] text-zinc-600 mt-2 pt-1.5 border-t border-zinc-800/60">
+                        <div className="flex items-center justify-between text-[8px] text-zinc-500 mt-2 pt-1.5 border-t border-border">
                             <span>{added[index] ?? '1 minggu lalu'}</span>
                             <span className="flex items-center gap-1"><Eye className="size-2.5" /> {resource.views + tick}</span>
                         </div>
@@ -175,14 +175,14 @@ export default function HeroDemo() {
         <>
             {/* Admin dashboard panel (left/behind) */}
             <div ref={adminRef} className="hidden md:block w-2/3 pt-6 lg:pt-16">
-                <div className="bg-card relative overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring-1 ring-black/10">
-                    <div className="bg-zinc-950">
+                <div className="bg-card relative overflow-hidden rounded-t-3xl shadow-2xl shadow-black/35 border-t border-x border-border">
+                    <div className="bg-background">
                         {/* Navbar */}
-                        <div className="flex items-center justify-between px-4 lg:px-5 py-3 border-b border-zinc-800/60">
+                        <div className="flex items-center justify-between px-4 lg:px-5 py-3 border-b border-border">
                             <div className="flex items-center gap-2">
-                                <Image src="/icon-192.png" alt="Progress Hub" width={18} height={18} className="rounded" />
+                                <Image src="/icon-192.png" alt="Progress Hub" width={18} height={18} className="rounded-lg" />
                                 <span className="text-[11px] font-semibold text-zinc-100">Progress Hub</span>
-                                <span className="px-1.5 py-0.5 text-[8px] font-medium bg-amber-500/10 text-amber-400 border border-amber-500/30 rounded">Admin</span>
+                                <span className="px-2 py-0.5 text-[8px] font-medium bg-accent-amber-tint text-accent-amber border border-accent-amber/30 rounded-full">Admin</span>
                             </div>
                             <div className="hidden sm:flex items-center gap-5">
                                 {['Events', 'Projects', 'Resources'].map((item) => (
@@ -190,33 +190,33 @@ export default function HeroDemo() {
                                 ))}
                             </div>
                             <div className="flex items-center gap-2">
-                                <div className="w-5 h-5 rounded bg-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-200">A</div>
+                                <div className="w-5 h-5 rounded-lg bg-surface border border-border flex items-center justify-center text-[8px] font-semibold text-zinc-200">A</div>
                             </div>
                         </div>
 
                         <div className="p-4 lg:p-5">
-                            <h3 className="text-sm lg:text-base font-bold text-zinc-100 tracking-tight">Dashboard</h3>
+                            <h3 className="text-sm lg:text-base font-semibold text-zinc-100 tracking-tight">Dashboard</h3>
                             <p className="text-[9px] lg:text-[10px] text-zinc-500 mt-0.5">Ringkasan data Progress Hub.</p>
 
                             {/* Stats */}
                             <div className="grid grid-cols-4 gap-2 mt-3">
                                 {[
-                                    { label: 'Events', value: demoStat(4, adminTick, 0) },
-                                    { label: 'Projects', value: demoStat(2, adminTick, 1.5) },
-                                    { label: 'Resources', value: demoStat(2, adminTick, 3) },
-                                    { label: 'Users', value: demoStat(8, adminTick, 4.5) },
+                                    { label: 'EVENTS', value: demoStat(4, adminTick, 0) },
+                                    { label: 'PROJECTS', value: demoStat(2, adminTick, 1.5) },
+                                    { label: 'RESOURCES', value: demoStat(2, adminTick, 3) },
+                                    { label: 'USERS', value: demoStat(8, adminTick, 4.5) },
                                 ].map((stat) => (
-                                    <div key={stat.label} className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-2.5 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
-                                        <AnimatedNumber value={stat.value} className="text-sm font-bold text-zinc-100 group-hover:text-white" />
-                                        <div className="text-[8px] text-zinc-500">{stat.label}</div>
+                                    <div key={stat.label} className="group bg-card border border-border hover:border-zinc-700 rounded-2xl p-2.5 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                                        <div className="text-[7px] font-medium text-zinc-500 tracking-[0.16em] uppercase">{stat.label}</div>
+                                        <AnimatedNumber value={stat.value} className="text-sm font-medium tabular-nums tracking-tight text-zinc-100 group-hover:text-white" />
                                     </div>
                                 ))}
                             </div>
 
                             {/* Chart + Activity */}
                             <div className="grid grid-cols-5 gap-3 mt-4">
-                                <div className="col-span-3 bg-zinc-900 border border-zinc-800 rounded-xl p-3">
-                                    <h4 className="text-[10px] font-semibold text-zinc-100 mb-2">Aktivitas 7 Hari</h4>
+                                <div className="col-span-3 bg-card border border-border rounded-2xl p-3">
+                                    <h4 className="text-[10px] font-medium text-zinc-100 mb-2">Aktivitas 7 Hari</h4>
                                     <div className="flex items-end gap-1.5 h-20">
                                         {week.map((day, i) => {
                                             const primary = i === week.length - 1 ? day.primary + Math.round((Math.sin(adminTick * 0.9) + 1) * 8) : day.primary
@@ -275,12 +275,12 @@ export default function HeroDemo() {
             </div>
 
             {/* Member dashboard panel (right/front) */}
-            <div ref={memberRef} className="bg-card relative h-full w-full max-w-sm sm:max-w-md md:w-2/3 overflow-hidden rounded-t-2xl shadow-2xl shadow-black/35 ring-1 ring-black/10">
-                <div className="bg-zinc-950 min-h-[360px] sm:min-h-[400px] lg:min-h-[420px]">
+            <div ref={memberRef} className="bg-card relative h-full w-full max-w-sm sm:max-w-md md:w-2/3 overflow-hidden rounded-t-3xl shadow-2xl shadow-black/35 border-t border-x border-border">
+                <div className="bg-background min-h-[360px] sm:min-h-[400px] lg:min-h-[420px]">
                     {/* Navbar */}
-                    <div className="flex items-center justify-between px-4 lg:px-5 py-3 border-b border-zinc-800/60">
+                    <div className="flex items-center justify-between px-4 lg:px-5 py-3 border-b border-border">
                         <div className="flex items-center gap-2">
-                            <Image src="/icon-192.png" alt="Progress Hub" width={18} height={18} className="rounded" />
+                            <Image src="/icon-192.png" alt="Progress Hub" width={18} height={18} className="rounded-lg" />
                             <span className="text-[11px] font-semibold text-zinc-100">Progress Hub</span>
                         </div>
                         <div className="hidden sm:flex items-center gap-5">
@@ -289,28 +289,28 @@ export default function HeroDemo() {
                             ))}
                         </div>
                         <div className="flex items-center gap-2">
-                            <div className="w-5 h-5 rounded bg-zinc-700 flex items-center justify-center text-[8px] font-semibold text-zinc-200">M</div>
+                            <div className="w-5 h-5 rounded-lg bg-surface border border-border flex items-center justify-center text-[8px] font-semibold text-zinc-200">M</div>
                         </div>
                     </div>
 
                     <div className="p-4 lg:p-5">
-                        <h3 className="text-sm lg:text-base font-bold text-zinc-100 tracking-tight">Dashboard</h3>
+                        <h3 className="text-sm lg:text-base font-semibold text-zinc-100 tracking-tight">Dashboard</h3>
                         <p className="text-[9px] lg:text-[10px] text-zinc-500 mt-0.5">Ringkasan Program Kerja, Proyek, dan Repositori Pembelajaran UKM</p>
 
                         {/* Stats */}
                         <div className="grid grid-cols-3 gap-1.5 sm:gap-2 mt-3">
                             {[
-                                { icon: Calendar, label: 'Program Aktif', value: demoStat(programs.length, programTick, 0) },
-                                { icon: FolderGit2, label: 'Proyek Showcase', value: demoStat(projects.length, projectTick, 1.5) },
-                                { icon: BookOpen, label: 'Artikel & Modul', value: demoStat(resources.length, resourceTick, 3) },
+                                { icon: Calendar, label: 'PROGRAM AKTIF', value: demoStat(programs.length, programTick, 0) },
+                                { icon: FolderGit2, label: 'PROYEK SHOWCASE', value: demoStat(projects.length, projectTick, 1.5) },
+                                { icon: BookOpen, label: 'ARTIKEL & MODUL', value: demoStat(resources.length, resourceTick, 3) },
                             ].map((stat) => (
-                                <div key={stat.label} className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-2 sm:p-2.5 lg:p-3 flex items-center gap-2 sm:gap-3 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
-                                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-zinc-950 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
+                                <div key={stat.label} className="group bg-card border border-border hover:border-zinc-700 rounded-2xl p-2 sm:p-2.5 lg:p-3 flex items-center gap-2 sm:gap-3 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-surface border border-border flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
                                         <stat.icon className="size-3 sm:size-3.5 text-zinc-400 group-hover:text-zinc-200" />
                                     </div>
                                     <div className="min-w-0">
-                                        <AnimatedNumber value={stat.value} className="text-xs sm:text-sm lg:text-base font-bold text-zinc-100 group-hover:text-white" />
-                                        <div className="text-[7px] sm:text-[8px] text-zinc-500 truncate">{stat.label}</div>
+                                        <div className="text-[6px] sm:text-[7px] font-medium text-zinc-500 tracking-[0.16em] uppercase truncate">{stat.label}</div>
+                                        <AnimatedNumber value={stat.value} className="text-xs sm:text-sm lg:text-base font-medium tabular-nums tracking-tight text-zinc-100 group-hover:text-white" />
                                     </div>
                                 </div>
                             ))}
