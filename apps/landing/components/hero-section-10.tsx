@@ -32,7 +32,7 @@ export default function HeroSection() {
                             </div>
                         </div>
 
-                        <div data-hero-intro className="relative mt-16 overflow-hidden rounded-xl px-3 pt-6 sm:px-4 max-lg:-mx-4 md:px-6 lg:px-8 lg:pt-16" style={{ backgroundColor: '#D6D6D6' }}>
+                        <div data-hero-intro className="relative mt-16 overflow-hidden rounded-3xl border border-border shadow-2xl bg-card px-3 pt-6 sm:px-4 max-lg:-mx-4 md:px-6 lg:px-8 lg:pt-16">
                             <div className="relative z-10 mx-auto flex min-h-[380px] sm:min-h-[460px] md:min-h-0 md:aspect-video max-w-5xl items-end justify-center md:justify-start -space-x-0 md:-space-x-24 lg:-space-x-56">
                                 <HeroDemo />
                             </div>

@@ -13,7 +13,7 @@ const events = [
         title: 'Hackathon Code Sprint',
         description: 'Build innovative solutions in 48 hours.',
         status: 'Berlangsung',
-        statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+        statusColor: 'bg-accent-emerald-tint text-accent-emerald border-accent-emerald/30',
         sessions: 8,
         participants: 24,
         avatars: ['A', 'R', '+12'],
@@ -22,7 +22,7 @@ const events = [
         title: 'React Deep Dive',
         description: 'Master advanced React patterns.',
         status: 'Mendatang',
-        statusColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+        statusColor: 'bg-accent-amber-tint text-accent-amber border-accent-amber/30',
         sessions: 4,
         participants: 18,
         avatars: ['M', 'S', '+8'],
@@ -31,7 +31,7 @@ const events = [
         title: 'Sharing Session: CI/CD',
         description: 'Learn CI/CD pipelines with GitHub Actions.',
         status: 'Berlangsung',
-        statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+        statusColor: 'bg-accent-emerald-tint text-accent-emerald border-accent-emerald/30',
         sessions: 2,
         participants: 12,
         avatars: ['K', 'D', '+5'],
@@ -40,7 +40,7 @@ const events = [
         title: 'Python for Data Science',
         description: 'Introduction to data analysis with Python.',
         status: 'Registrasi',
-        statusColor: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
+        statusColor: 'bg-accent-blue-tint text-accent-blue border-accent-blue/30',
         sessions: 6,
         participants: 32,
         avatars: ['P', 'L', '+15'],
@@ -49,7 +49,7 @@ const events = [
         title: 'UI/UX Design Sprint',
         description: 'Rancang alur dan tampilan aplikasi kampus.',
         status: 'Registrasi',
-        statusColor: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
+        statusColor: 'bg-accent-blue-tint text-accent-blue border-accent-blue/30',
         sessions: 3,
         participants: 16,
         avatars: ['D', 'N', '+9'],
@@ -58,7 +58,7 @@ const events = [
         title: 'Git & GitHub Workshop',
         description: 'Alur branch, commit, dan pull request dari nol.',
         status: 'Mendatang',
-        statusColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+        statusColor: 'bg-accent-amber-tint text-accent-amber border-accent-amber/30',
         sessions: 2,
         participants: 26,
         avatars: ['G', 'H', '+14'],
@@ -67,7 +67,7 @@ const events = [
         title: 'Sharing Session: Karier',
         description: 'Cerita alumni soal magang dan interview.',
         status: 'Berlangsung',
-        statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+        statusColor: 'bg-accent-emerald-tint text-accent-emerald border-accent-emerald/30',
         sessions: 1,
         participants: 21,
         avatars: ['F', 'T', '+11'],
@@ -76,7 +76,7 @@ const events = [
         title: 'Data Science Bootcamp',
         description: 'Empat pekan belajar pandas dan visualisasi data.',
         status: 'Mendatang',
-        statusColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+        statusColor: 'bg-accent-amber-tint text-accent-amber border-accent-amber/30',
         sessions: 8,
         participants: 28,
         avatars: ['S', 'B', '+13'],
@@ -84,10 +84,10 @@ const events = [
 ]
 
 const projectPool = [
-    { title: 'Progress Hub', category: 'Web App', description: 'Platform manajemen kegiatan UKM.', tech: ['Laravel', 'React', 'Tailwind'], creator: 'Arief N.', gradient: 'from-emerald-500/20 to-teal-500/20' },
-    { title: 'Smart Attendance', category: 'Mobile', description: 'Sistem presensi QR code untuk kegiatan UKM.', tech: ['Flutter', 'Firebase'], creator: 'Maya S.', gradient: 'from-sky-500/20 to-cyan-500/20' },
-    { title: 'Study Buddy', category: 'Web App', description: 'Partner belajar dan jadwal sesi anggota.', tech: ['Next.js', 'Supabase'], creator: 'Rizky P.', gradient: 'from-violet-500/20 to-fuchsia-500/20' },
-    { title: 'Eventku', category: 'Web App', description: 'Pendaftaran acara kampus dalam satu dashboard.', tech: ['Laravel', 'Livewire'], creator: 'Dinda K.', gradient: 'from-amber-500/20 to-orange-500/20' },
+    { title: 'Progress Hub', category: 'Web App', description: 'Platform manajemen kegiatan UKM.', tech: ['Laravel', 'React', 'Tailwind'], creator: 'Arief N.' },
+    { title: 'Smart Attendance', category: 'Mobile', description: 'Sistem presensi QR code untuk kegiatan UKM.', tech: ['Flutter', 'Firebase'], creator: 'Maya S.' },
+    { title: 'Study Buddy', category: 'Web App', description: 'Partner belajar dan jadwal sesi anggota.', tech: ['Next.js', 'Supabase'], creator: 'Rizky P.' },
+    { title: 'Eventku', category: 'Web App', description: 'Pendaftaran acara kampus dalam satu dashboard.', tech: ['Laravel', 'Livewire'], creator: 'Dinda K.' },
 ]
 
 const resourcePool = [
@@ -129,7 +129,7 @@ function FeaturedProject({ tick }: { tick: number }) {
     const project = projectPool[tick % projectPool.length]!
 
     return (
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+        <div className="bg-card border border-border rounded-2xl p-4 overflow-hidden">
             <AnimatePresence initial={false} mode="wait">
                 <motion.div
                     key={project.title}
@@ -137,18 +137,18 @@ function FeaturedProject({ tick }: { tick: number }) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
                     transition={DEMO_CONTENT_TRANSITION}>
-                    <div className={`w-full h-32 bg-gradient-to-br ${project.gradient} rounded-lg border border-zinc-800 mb-3 flex items-center justify-center overflow-hidden`}>
+                    <div className="w-full h-32 bg-surface rounded-xl border border-border mb-3 flex items-center justify-center overflow-hidden">
                         <Image src="/icon-192.png" alt="" width={24} height={24} className="rounded opacity-30" />
                     </div>
-                    <span className="inline-block px-2 py-0.5 rounded text-[9px] font-semibold bg-zinc-800 text-zinc-300">{project.category}</span>
+                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-semibold bg-surface text-zinc-300 border border-border">{project.category}</span>
                     <h4 className="text-[11px] font-semibold text-zinc-100 mt-1.5">{project.title}</h4>
                     <p className="text-[9px] text-zinc-500 line-clamp-1 mt-0.5">{project.description}</p>
                     <div className="flex flex-wrap gap-1 mt-2">
                         {project.tech.map((t) => (
-                            <span key={t} className="px-1.5 py-0.5 rounded text-[8px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800">{t}</span>
+                            <span key={t} className="px-1.5 py-0.5 rounded-md text-[8px] font-medium bg-surface-inset text-zinc-400 border border-border">{t}</span>
                         ))}
                     </div>
-                    <div className="flex items-center justify-between text-[9px] text-zinc-600 mt-3 pt-2 border-t border-zinc-800/60">
+                    <div className="flex items-center justify-between text-[9px] text-zinc-500 mt-3 pt-2 border-t border-border">
                         <span>oleh {project.creator}</span>
                         <span>baru saja</span>
                     </div>
@@ -162,7 +162,7 @@ function FeaturedResource({ tick }: { tick: number }) {
     const resource = resourcePool[tick % resourcePool.length]!
 
     return (
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+        <div className="bg-card border border-border rounded-2xl p-4 overflow-hidden">
             <AnimatePresence initial={false} mode="wait">
                 <motion.div
                     key={resource.title}
@@ -171,14 +171,14 @@ function FeaturedResource({ tick }: { tick: number }) {
                     exit={{ opacity: 0, y: 8 }}
                     transition={DEMO_CONTENT_TRANSITION}>
                     <div className="flex items-center gap-1.5 mb-2">
-                        <span className="px-2 py-0.5 rounded text-[9px] font-semibold bg-zinc-800 text-zinc-300">{resource.type}</span>
+                        <span className="px-2.5 py-0.5 rounded-full text-[9px] font-semibold bg-surface text-zinc-300 border border-border">{resource.type}</span>
                         {resource.tags.map((tag) => (
-                            <span key={tag} className="px-1.5 py-0.5 rounded text-[8px] font-medium bg-zinc-950 text-zinc-500 border border-zinc-800">{tag}</span>
+                            <span key={tag} className="px-1.5 py-0.5 rounded-md text-[8px] font-medium bg-surface-inset text-zinc-400 border border-border">{tag}</span>
                         ))}
                     </div>
                     <h4 className="text-[11px] font-semibold text-zinc-100">{resource.title}</h4>
                     <p className="text-[9px] text-zinc-500 line-clamp-2 mt-1">{resource.description}</p>
-                    <div className="flex items-center justify-between text-[9px] text-zinc-600 mt-3 pt-2 border-t border-zinc-800/60">
+                    <div className="flex items-center justify-between text-[9px] text-zinc-500 mt-3 pt-2 border-t border-border">
                         <span>baru saja</span>
                         <span className="flex items-center gap-1"><Eye className="size-3" /> {resource.views + tick} views</span>
                     </div>
@@ -205,7 +205,7 @@ export default function FeaturesSection() {
                     <div className="mask-radial-at-top-left mask-radial-from-65% mask-radial-[100%_60%] z-1 absolute inset-3 size-64 rounded-tl-3xl border-l border-t md:size-96 lg:inset-4"></div>
 
                     {/* Main dashboard panel */}
-                    <div data-reveal className="relative z-10 bg-zinc-950 border border-zinc-800/60 rounded-2xl p-5 lg:p-6 shadow-2xl shadow-black/40">
+                    <div data-reveal className="relative z-10 bg-background border border-border rounded-3xl p-5 lg:p-6 shadow-2xl shadow-black/40">
                         <div className="flex items-center gap-2 mb-5">
                             <Calendar className="size-4 text-zinc-400" />
                             <span className="text-xs font-semibold text-zinc-100">Program & Kegiatan</span>
@@ -220,13 +220,13 @@ export default function FeaturesSection() {
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 12, scale: 0.98 }}
                                         transition={DEMO_ITEM_TRANSITION}
-                                        className="group bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl p-4 transition-colors duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20 active:scale-[0.98] cursor-pointer">
+                                        className="group bg-card border border-border hover:border-zinc-700 rounded-2xl p-4 transition-colors duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:shadow-lg hover:shadow-black/20 active:scale-[0.98] cursor-pointer">
                                         <div className="flex items-start justify-between gap-2 mb-2.5">
                                             <div className="min-w-0 flex-1">
                                                 <h4 className="text-[11px] font-semibold text-zinc-100 truncate group-hover:text-white transition-colors">{event.title}</h4>
                                                 <p className="text-[9px] text-zinc-500 mt-0.5 line-clamp-1">{event.description}</p>
                                             </div>
-                                            <span className={`shrink-0 px-2 py-0.5 rounded text-[9px] font-medium border transition-transform duration-200 group-hover:scale-105 ${event.statusColor}`}>
+                                            <span className={`shrink-0 px-2.5 py-0.5 rounded-full text-[9px] font-medium border transition-transform duration-200 group-hover:scale-105 ${event.statusColor}`}>
                                                 {event.status}
                                             </span>
                                         </div>
@@ -237,7 +237,7 @@ export default function FeaturesSection() {
                                             </div>
                                             <div className="flex -space-x-1">
                                                 {event.avatars.map((a, i) => (
-                                                    <div key={i} className="w-5 h-5 rounded bg-zinc-700 border border-zinc-800 flex items-center justify-center text-[7px] font-semibold text-zinc-200 transition-transform duration-200 group-hover:-translate-y-0.5">{a}</div>
+                                                    <div key={i} className="w-5 h-5 rounded-lg bg-surface border border-border flex items-center justify-center text-[7px] font-semibold text-zinc-200 transition-transform duration-200 group-hover:-translate-y-0.5">{a}</div>
                                                 ))}
                                             </div>
                                         </div>
@@ -251,17 +251,17 @@ export default function FeaturesSection() {
                             <FeaturedProject tick={tick} />
                             <FeaturedResource tick={tick} />
                             {/* Stats + activity */}
-                            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+                            <div className="bg-card border border-border rounded-2xl p-4">
                                 <div className="grid grid-cols-3 gap-2 mb-3">
                                     {[
-                                        { icon: Calendar, label: 'Program', base: 12, phase: 0 },
-                                        { icon: FolderGit2, label: 'Proyek', base: 28, phase: 1.5 },
-                                        { icon: BookOpen, label: 'Modul', base: 45, phase: 3 },
+                                        { icon: Calendar, label: 'PROGRAM', base: 12, phase: 0 },
+                                        { icon: FolderGit2, label: 'PROYEK', base: 28, phase: 1.5 },
+                                        { icon: BookOpen, label: 'MODUL', base: 45, phase: 3 },
                                     ].map((stat) => (
-                                        <div key={stat.label} className="group bg-zinc-950 border border-zinc-800 hover:border-zinc-700 rounded-lg p-2 text-center transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 hover:shadow-sm active:scale-95 cursor-pointer">
-                                            <stat.icon className="size-3 text-zinc-500 mx-auto mb-1 transition-transform duration-200 group-hover:scale-125 group-hover:rotate-6 group-hover:text-zinc-300" />
-                                            <AnimatedNumber value={demoStat(stat.base, tick, stat.phase)} className="text-xs font-bold text-zinc-100 group-hover:text-white" />
-                                            <div className="text-[7px] text-zinc-600">{stat.label}</div>
+                                        <div key={stat.label} className="group bg-surface border border-border hover:border-zinc-700 rounded-xl p-2 text-center transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-0.5 hover:shadow-sm active:scale-95 cursor-pointer">
+                                            <stat.icon className="size-3 text-zinc-400 mx-auto mb-1 transition-transform duration-200 group-hover:scale-125 group-hover:rotate-6 group-hover:text-zinc-200" />
+                                            <AnimatedNumber value={demoStat(stat.base, tick, stat.phase)} className="text-xs font-medium tabular-nums tracking-tight text-zinc-100 group-hover:text-white" />
+                                            <div className="text-[7px] text-zinc-500 tracking-[0.16em] uppercase">{stat.label}</div>
                                         </div>
                                     ))}
                                 </div>
@@ -292,23 +292,23 @@ export default function FeaturesSection() {
                     </div>
 
                     {/* Overlapping dashboard card */}
-                    <div data-reveal className="hidden sm:block absolute -bottom-8 right-0 sm:-right-4 lg:-bottom-12 lg:-right-8 z-20 w-64 lg:w-80 bg-zinc-950 border border-zinc-800/60 rounded-2xl p-4 lg:p-5 shadow-2xl shadow-black/50">
+                    <div data-reveal className="hidden sm:block absolute -bottom-8 right-0 sm:-right-4 lg:-bottom-12 lg:-right-8 z-20 w-64 lg:w-80 bg-card border border-border rounded-3xl p-4 lg:p-5 shadow-2xl shadow-black/50">
                         {/* Stats */}
                         <div className="grid grid-cols-4 gap-2 mb-3">
                             {[
-                                { label: 'Events', value: demoStat(4, tick, 0) },
-                                { label: 'Projects', value: demoStat(2, tick, 1.5) },
-                                { label: 'Resources', value: demoStat(2, tick, 3) },
-                                { label: 'Users', value: demoStat(8, tick, 4.5) },
+                                { label: 'EVENTS', value: demoStat(4, tick, 0) },
+                                { label: 'PROJECTS', value: demoStat(2, tick, 1.5) },
+                                { label: 'RESOURCES', value: demoStat(2, tick, 3) },
+                                { label: 'USERS', value: demoStat(8, tick, 4.5) },
                             ].map((metric) => (
-                                <div key={metric.label} className="bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-lg p-2 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 cursor-pointer">
-                                    <AnimatedNumber value={metric.value} className="text-xs font-bold text-zinc-100" />
-                                    <div className="text-[7px] text-zinc-500">{metric.label}</div>
+                                <div key={metric.label} className="bg-surface border border-border hover:border-zinc-700 rounded-xl p-2 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                                    <div className="text-[6px] font-medium text-zinc-500 tracking-[0.16em] uppercase">{metric.label}</div>
+                                    <AnimatedNumber value={metric.value} className="text-xs font-medium tabular-nums tracking-tight text-zinc-100" />
                                 </div>
                             ))}
                         </div>
                         {/* Chart */}
-                        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 mb-3">
+                        <div className="bg-surface border border-border rounded-2xl p-3 mb-3">
                             <span className="text-[9px] lg:text-[10px] font-semibold text-zinc-200">Aktivitas 7 Hari</span>
                             <div className="flex items-end gap-1 h-12 mt-2">
                                 {week.map((day, index) => {
